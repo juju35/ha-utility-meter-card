@@ -8,6 +8,15 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/juju35/ha-utility-meter-card/blob/main/LICENSE)
 [![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-FFDD00?logo=buymeacoffee&logoColor=black)](https://buymeacoffee.com/julienstep9)
 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/juju35/ha-utility-meter-card/main/images/esphome.png" alt="ESPHome" width="64">&nbsp;&nbsp;
+  <img src="https://raw.githubusercontent.com/juju35/ha-utility-meter-card/main/images/shelly.png" alt="Shelly" width="64">&nbsp;&nbsp;
+  <img src="https://raw.githubusercontent.com/juju35/ha-utility-meter-card/main/images/zha.png" alt="Zigbee Home Automation" width="64">&nbsp;&nbsp;
+  <img src="https://raw.githubusercontent.com/juju35/ha-utility-meter-card/main/images/zwave_js.png" alt="Z-Wave" width="64">&nbsp;&nbsp;
+  <img src="https://raw.githubusercontent.com/juju35/ha-utility-meter-card/main/images/gazpar.png" alt="Gazpar" width="64">&nbsp;&nbsp;
+  <img src="https://raw.githubusercontent.com/juju35/ha-utility-meter-card/main/images/suez_water.png" alt="Suez Water" width="64">
+</p>
+
 Lovelace cards for Home Assistant **water and gas meters**: the index, the consumption of the day, the week, the month and the year compared with the previous period, a history chart, the cost, and a **night leak detection** that raises an alert when water keeps flowing all night.
 
 The cards work on top of the meters you already have — a pulse counter, [Gazpar / GRDF](#supported-integrations), Suez, Veolia, Eau de Paris…, or a [utility_meter](https://www.home-assistant.io/integrations/utility_meter/) helper: any `sensor` with the `water` or `gas` device class. The consumption comes from Home Assistant's **long-term statistics**, read through the `recorder/statistics_during_period` WebSocket command, so the cards show months of history without any helper to create. The drawn meter (a brass water meter on its pipe, a gas meter cabinet) is **animated by what the meter is doing**.
@@ -46,10 +55,10 @@ The cards read a cumulative `sensor` (`state_class: total` or `total_increasing`
 
 | Source | Kind | What the cards use |
 |---|---|---|
-| Pulse counters — [ESPHome `pulse_meter`](https://esphome.io/components/sensor/pulse_meter.html) / `pulse_counter` with a `total`, Shelly, Zigbee or Z-Wave pulse readers | Water, gas | The index sensor and its statistics; the flow sensor as `flow_entity` |
+| Pulse counters — <img src="https://raw.githubusercontent.com/juju35/ha-utility-meter-card/main/images/esphome.png" alt="" width="16"> [ESPHome `pulse_meter`](https://esphome.io/components/sensor/pulse_meter.html) / `pulse_counter` with a `total`, <img src="https://raw.githubusercontent.com/juju35/ha-utility-meter-card/main/images/shelly.png" alt="" width="16"> Shelly, <img src="https://raw.githubusercontent.com/juju35/ha-utility-meter-card/main/images/zha.png" alt="" width="16"> Zigbee or <img src="https://raw.githubusercontent.com/juju35/ha-utility-meter-card/main/images/zwave_js.png" alt="" width="16"> Z-Wave pulse readers | Water, gas | The index sensor and its statistics; the flow sensor as `flow_entity` |
 | [AI-on-the-edge-device](https://github.com/jomjol/AI-on-the-edge-device) (camera reading a meter) | Water, gas | The index sensor and its statistics |
-| Gazpar / GRDF custom integrations, such as [home-assistant-gazpar](https://github.com/ssenart/home-assistant-gazpar) | Gas | The gas sensor the integration exposes (m³ or kWh), or `statistic_id` for the statistics it imports; `price_unit: energy` with the conversion factor of your bill for a price per kWh |
-| [Suez Water](https://www.home-assistant.io/integrations/suez_water/) (core) and the custom integrations of other water companies (Veolia, Eau de Paris…) | Water | The water sensor; `statistic_id` for the statistics the integration imports (its daily data is a day late, so the Day tab is left out when there is no hourly data) |
+| <img src="https://raw.githubusercontent.com/juju35/ha-utility-meter-card/main/images/gazpar.png" alt="" width="16"> Gazpar / GRDF custom integrations, such as [home-assistant-gazpar](https://github.com/ssenart/home-assistant-gazpar) | Gas | The gas sensor the integration exposes (m³ or kWh), or `statistic_id` for the statistics it imports; `price_unit: energy` with the conversion factor of your bill for a price per kWh |
+| <img src="https://raw.githubusercontent.com/juju35/ha-utility-meter-card/main/images/suez_water.png" alt="" width="16"> [Suez Water](https://www.home-assistant.io/integrations/suez_water/) (core) and the custom integrations of other water companies (Veolia, Eau de Paris…) | Water | The water sensor; `statistic_id` for the statistics the integration imports (its daily data is a day late, so the Day tab is left out when there is no hourly data) |
 | [Utility Meter](https://www.home-assistant.io/integrations/utility_meter/) helpers (core) | Water, gas | Daily, weekly, monthly and yearly helpers fed by the meter are found on their own and give the live value of their period (and their previous period when there are no statistics); `today_entity`, `week_entity`, `month_entity`, `year_entity` pick others |
 | Any `binary_sensor` leak / moisture sensor | Water | `leak_entity`: raises the leak alert when it turns on |
 
