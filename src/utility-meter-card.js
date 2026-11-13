@@ -1210,8 +1210,27 @@ class UtilityMeterCard extends HTMLElement {
     this._html = "";
     this._statsVersion = 0;
     this.shadowRoot.addEventListener("click", (ev) => this._onClick(ev));
+    // No rewrite of the card between the press and the release: Home Assistant updates the card several times a
+    // second, and a rewrite under the pointer replaces the element pressed, so that the click lands on the card itself
+    // and does nothing. The pending render is done once released (after the click). The focus is only kept across
+    // rewrites for the keyboard: put back after a mouse click or a tap, it would draw the focus ring.
+    this.shadowRoot.addEventListener("pointerdown", () => {
+      this._byPointer = true;
+      this._pressing = true;
+      window.addEventListener("pointerup", this._onPressEnd, true);
+      window.addEventListener("pointercancel", this._onPressEnd, true);
+    });
+    this._onPressEnd = () => {
+      window.removeEventListener("pointerup", this._onPressEnd, true);
+      window.removeEventListener("pointercancel", this._onPressEnd, true);
+      setTimeout(() => {
+        this._pressing = false;
+        if (this._dirty) this._update();
+      }, 0);
+    };
     // Enter / Space on an element with the button role acts as a click, as on a <button>.
     this.shadowRoot.addEventListener("keydown", (ev) => {
+      this._byPointer = false;
       if ((ev.key !== "Enter" && ev.key !== " ") || ev.target?.getAttribute?.("role") !== "button") return;
       ev.preventDefault();
       ev.target.click();
@@ -1290,6 +1309,9 @@ class UtilityMeterCard extends HTMLElement {
     clearInterval(this._tick);
     this._tick = null;
     this._outside?.off();
+    this._pressing = false;
+    window.removeEventListener("pointerup", this._onPressEnd, true);
+    window.removeEventListener("pointercancel", this._onPressEnd, true);
     // Left (another dashboard view, a conditional card hidden): back to the defaults, so that the card does not come
     // back unfolded or with its popup open.
     this._toggled = new Map();
@@ -1407,6 +1429,11 @@ class UtilityMeterCard extends HTMLElement {
 
   _update() {
     if (!this._hass || !this._config) return;
+    if (this._pressing) {
+      this._dirty = true;
+      return;
+    }
+    this._dirty = false;
     let html = this._render();
     if (this._popup) {
       const pop = this._popupHtml();
@@ -1414,7 +1441,7 @@ class UtilityMeterCard extends HTMLElement {
     }
     if (html === this._html) return;
     const active = this.shadowRoot.activeElement;
-    const kept = active?.dataset && Object.keys(active.dataset).length ? JSON.stringify({ ...active.dataset }) : null;
+    const kept = !this._byPointer && active?.dataset && Object.keys(active.dataset).length ? JSON.stringify({ ...active.dataset }) : null;
     this._html = html;
     this.shadowRoot.innerHTML = html;
     if (this._popup) this.shadowRoot.querySelector('[data-action="popup_close"]')?.focus?.({ preventScroll: true });
@@ -1429,6 +1456,8 @@ class UtilityMeterCard extends HTMLElement {
   }
 
   _onClick(ev) {
+    this._pressing = false;
+    if (ev.detail === 0) this._byPointer = false;
     const path = ev.composedPath();
     const el = path.find((n) => n.dataset && (n.dataset.entity || n.dataset.action));
     if (this._popup) {
