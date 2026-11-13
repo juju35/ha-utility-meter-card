@@ -30,7 +30,22 @@ jobs:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
+      # A plugin is only loadable by HACS once a release carries its JS (dist/ is not committed),
+      # so the very first release cannot be validated beforehand: skip until one is published.
+      - name: Check for a published release
+        id: release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if gh release view --repo "${{ github.repository }}" >/dev/null 2>&1; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::No release yet: HACS validation runs once the first release is published."
+          fi
+
       - name: HACS validation
+        if: steps.release.outputs.exists == 'true'
         uses: hacs/action@1ebf01c408f29afcb6406bd431bc98fd8cbb15aa # main
         with:
           category: plugin
