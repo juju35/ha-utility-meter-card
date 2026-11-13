@@ -1,6 +1,6 @@
 {
   "name": "ha-utility-meter-card",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Lovelace cards for Home Assistant water and gas meters: index, daily to yearly consumption, comparison with the previous period, history chart, cost and night leak detection.",
   "private": true,
   "type": "module",

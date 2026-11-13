@@ -310,6 +310,24 @@ test("sections fold and unfold, and fold back when the page is clicked elsewhere
   assert.match(html(), /data-section="consumption" aria-expanded="true"/);
 });
 
+test("folding: a tap elsewhere (pointer), not a press in the card released outside; leaving the page folds back", async () => {
+  const { card, html } = await newCard();
+  card.connectedCallback();
+  click(card, { action: "toggle_section", section: "night" });
+  // A slider pressed in the card and released outside of it: nothing folds.
+  card._outside.tap({ composedPath: () => [card] });
+  assert.match(html(), /data-section="night" aria-expanded="true"/);
+  // A tap on a spot that sends no click (iOS): the pointer alone folds it.
+  card._outside.tap({ composedPath: () => [] });
+  assert.match(html(), /data-section="night" aria-expanded="false"/);
+  // Left with the section open and back: folded.
+  click(card, { action: "toggle_section", section: "night" });
+  card.disconnectedCallback();
+  card.connectedCallback();
+  assert.match(html(), /data-section="night" aria-expanded="false"/);
+  card.disconnectedCallback();
+});
+
 test("chart tabs switch the period; a bar opens its details at the top of the card", async () => {
   const { card, html } = await newCard({ price: 4 });
   click(card, { action: "tab", period: "year" });
