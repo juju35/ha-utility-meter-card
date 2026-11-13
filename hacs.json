@@ -1,0 +1,7 @@
+{
+  "name": "Utility Meter Card",
+  "render_readme": true,
+  "content_in_root": false,
+  "filename": "utility-meter-card.js",
+  "homeassistant": "2024.8.0"
+}

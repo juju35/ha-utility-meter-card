@@ -1,0 +1,114 @@
+name: Screenshots
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [main]
+    paths:
+      - "src/**"
+      - "scripts/**"
+      - "package.json"
+      - "package-lock.json"
+      - ".github/workflows/screenshots.yml"
+
+# Protected main is never pushed to: the job commits the refreshed screenshots
+# back onto the pull request's own branch, so they land through the normal merge.
+# A push made with GITHUB_TOKEN does not trigger pull_request workflows, so after
+# pushing a screenshot commit the job re-runs the checks on it via workflow_dispatch.
+permissions:
+  contents: write
+
+concurrency:
+  group: screenshots-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  screenshots:
+    name: Render screenshots
+    runs-on: ubuntu-latest
+    # Debian 12 container (Node 22 included): apt goes to the Debian mirrors, not the runner's Ubuntu ones, which
+    # kept hanging. The job runs as root, hence no sudo below.
+    container: node:22-bookworm
+    # In a container, run steps default to sh (dash, no pipefail): keep bash.
+    defaults:
+      run:
+        shell: bash
+    permissions:
+      contents: write
+      actions: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          # Fork PR branches do not exist in this repository: only check out the
+          # head branch for same-repo PRs (where screenshots get pushed back).
+          # Everything else keeps the default ref — for a fork PR that is the merge
+          # ref, which github.ref_name ("N/merge") does not resolve to.
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository && github.head_ref || '' }}
+      # The workspace is owned by another user than the container's root: let git work in it (commit step).
+      - run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+      - run: npm ci
+      # Download the browser binary (no apt here) separately from its system libraries, so the apt work all sits in
+      # the time-boxed, retried step below; the CDN download itself is time-boxed and retried too.
+      - name: Download Chromium
+        timeout-minutes: 10
+        run: |
+          for i in 1 2 3; do
+            timeout 180 npx playwright install chromium && exit 0
+            echo "Chromium download attempt $i failed or timed out, retrying in 15s"; sleep 15
+          done
+          echo "::error::Chromium download failed 3 times"; exit 1
+      # ffmpeg (required, not preinstalled) + Roboto + gh (re-run step) + the browser's apt deps, each apt call time-boxed and retried
+      # so a flaky mirror is abandoned and retried instead of hanging; fail loudly if ffmpeg is still missing.
+      - name: Install ffmpeg, Roboto and browser deps
+        timeout-minutes: 12
+        run: |
+          ok=
+          for i in 1 2 3; do
+            timeout 150 apt-get update \
+              && DEBIAN_FRONTEND=noninteractive timeout 300 apt-get install -y --no-install-recommends ffmpeg fonts-roboto gh \
+              && timeout 300 npx playwright install-deps chromium \
+              && ok=1 && break
+            echo "apt attempt $i failed or timed out, retrying in 15s"; sleep 15
+          done
+          [ -n "$ok" ] || { echo "::error::apt failed 3 times"; exit 1; }
+          ffmpeg -version > /dev/null
+      - run: npm run build
+      - name: Render screenshots
+        run: |
+          set -o pipefail
+          npm run screenshots 2>&1 | tee /tmp/screenshots.log || {
+            echo "::error::screenshots failed: $(tail -c 1200 /tmp/screenshots.log | tr -d '\r' | tr '\n' ' ')"
+            exit 1
+          }
+      - name: Commit refreshed screenshots
+        id: commit
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+        run: |
+          if [ -z "$(git status --porcelain screenshots)" ]; then
+            echo "No screenshot changes."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add screenshots
+          # [skip ci]: a push made with GITHUB_TOKEN starts pull_request runs that then wait for an approval.
+          # The PR checks are re-run on this commit below as workflow_dispatch runs, which it does not stop.
+          git commit -m "chore: refresh screenshots [skip ci]"
+          git push
+          echo "pushed=true" >> "$GITHUB_OUTPUT"
+      - name: Re-run checks on the screenshot commit
+        if: steps.commit.outputs.pushed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          # Passed through the environment, never expanded into the script: a branch name cannot inject commands.
+          HEAD_REF: ${{ github.head_ref }}
+        run: |
+          for wf in lint.yml validate.yml hacs.yml; do
+            [ -f ".github/workflows/$wf" ] && gh workflow run "$wf" --ref "$HEAD_REF"
+          done
+      - name: Upload screenshots (manual run)
+        if: github.event_name == 'workflow_dispatch'
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: screenshots
+          path: screenshots/
