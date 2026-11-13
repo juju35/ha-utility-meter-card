@@ -310,6 +310,44 @@ test("sections fold and unfold, and fold back when the page is clicked elsewhere
   assert.match(html(), /data-section="consumption" aria-expanded="true"/);
 });
 
+test("no rewrite under a press: the pending update is drawn on release, a click renders at once", async () => {
+  const { card, html } = await newCard();
+  card.connectedCallback();
+  click(card, { action: "toggle_section", section: "night" });
+  const open = html();
+  card.shadowRoot.listeners.pointerdown({});
+  card._outside.tap({ composedPath: () => [] });
+  assert.equal(html(), open, "no rewrite under the pointer");
+  card._onPressEnd();
+  await new Promise((r) => setTimeout(r, 10));
+  assert.notEqual(html(), open, "drawn once released");
+  // A click during a press renders at once.
+  card.shadowRoot.listeners.pointerdown({});
+  const before = html();
+  click(card, { action: "toggle_section", section: "night" });
+  assert.notEqual(html(), before);
+  assert.equal(card._pressing, false);
+  card.disconnectedCallback();
+});
+
+test("folding: a tap elsewhere (pointer), not a press in the card released outside; leaving the page folds back", async () => {
+  const { card, html } = await newCard();
+  card.connectedCallback();
+  click(card, { action: "toggle_section", section: "night" });
+  // A slider pressed in the card and released outside of it: nothing folds.
+  card._outside.tap({ composedPath: () => [card] });
+  assert.match(html(), /data-section="night" aria-expanded="true"/);
+  // A tap on a spot that sends no click (iOS): the pointer alone folds it.
+  card._outside.tap({ composedPath: () => [] });
+  assert.match(html(), /data-section="night" aria-expanded="false"/);
+  // Left with the section open and back: folded.
+  click(card, { action: "toggle_section", section: "night" });
+  card.disconnectedCallback();
+  card.connectedCallback();
+  assert.match(html(), /data-section="night" aria-expanded="false"/);
+  card.disconnectedCallback();
+});
+
 test("chart tabs switch the period; a bar opens its details at the top of the card", async () => {
   const { card, html } = await newCard({ price: 4 });
   click(card, { action: "tab", period: "year" });
