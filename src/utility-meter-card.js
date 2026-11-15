@@ -17,17 +17,19 @@ const MIN_REFETCH_MS = 60000;
 const PERIODS = ["day", "week", "month", "year"];
 const DEFAULT_COLLAPSED = ["night"];
 const SECTIONS = ["consumption", "history", "night"];
-const DEFAULT_LEAK = { start: "01:00", end: "05:00", water: 2, gas: 0.05 };
+const DEFAULT_LEAK = { start: "01:00", end: "05:00", water: 2, gas: 0.05, electricity: 0.3 };
 
 // Accent of each kind of meter, [light theme, dark theme].
 const TYPES = {
   water: { accent: ["#0288d1", "#29b6f6"] },
   gas: { accent: ["#ef6c00", "#ffa726"] },
+  electricity: { accent: ["#2e7d32", "#66bb6a"] },
 };
 
 const ICONS = {
   water: "M12,20A6,6 0 0,1 6,14C6,10 12,3.25 12,3.25C12,3.25 18,10 18,14A6,6 0 0,1 12,20Z",
   gas: "M12 2c.6 3.1-1.4 4.6-2.9 6.5C7.6 10.4 6.5 12.2 6.5 14.6 6.5 18.3 9 21 12 21s5.5-2.7 5.5-6.2c0-2.4-1-4.1-2.1-5.6-.2 1.4-.9 2.5-2 3 .4-2.8-.3-6.6-1.4-10.2zM12 19c-1.5 0-2.6-1.2-2.6-2.7 0-1.4 1-2.3 1.9-3.4.2 1 .7 1.6 1.4 1.9.1-.8.4-1.5.9-2.1.7.9 1.1 1.8 1.1 3 0 1.9-1.2 3.3-2.7 3.3z",
+  electricity: "M11 15H6l7-14v8h5l-7 14v-8z",
   counter: "M4 5h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2zm0 2v10h16V7H4zm2 2h2v6H6V9zm4 0h2v6h-2V9zm4 0h4v6h-4V9z",
   calendar: "M19 4h-1V2h-2v2H8V2H6v2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 16H5V9h14v11zM7 11h5v5H7z",
   stats: "M22,21H2V3H4V19H6V10H10V19H12V6H16V19H18V14H22V21Z",
@@ -48,6 +50,7 @@ const STRINGS = {
   en: {
     meter_water: "Water meter",
     meter_gas: "Gas meter",
+    meter_electricity: "Electricity meter",
     index: "Index",
     today: "Today",
     week: "This week",
@@ -71,6 +74,7 @@ const STRINGS = {
     average: "Average {value}",
     cost: "Cost",
     flow: "Flow",
+    power: "Power",
     status_ok: "Normal",
     status_leak: "Leak suspected",
     status_high: "High usage",
@@ -89,7 +93,7 @@ const STRINGS = {
     per_hour: "{value}/h",
     zoom_in: "Show details",
     zoom_out: "Show less",
-    no_meter: "No water or gas meter found",
+    no_meter: "No water, gas or electricity meter found",
     unknown_entity: "Entity not found",
     entity: "Meter (index sensor)",
     title: "Title",
@@ -97,6 +101,12 @@ const STRINGS = {
     type_auto: "Automatic",
     type_water: "Water",
     type_gas: "Gas",
+    type_electricity: "Electricity",
+    picture_style: "Electricity meter picture",
+    style_auto: "Automatic",
+    style_digital: "Digital meter",
+    style_disc: "Spinning disc",
+    style_submeter: "Sub-meter (clamp)",
     chart_period: "Default chart",
     show_title: "Show title",
     show_subtitle: "Show subtitle",
@@ -117,6 +127,7 @@ const STRINGS = {
     unit_volume: "Volume (m³)",
     unit_energy: "Energy (kWh)",
     conversion_factor: "Conversion factor (kWh per m³)",
+    conversion_factor_entity: "Conversion factor entity",
     leak_section: "Leak detection",
     flow_entity: "Flow sensor",
     leak_entity: "Leak sensor",
@@ -136,27 +147,28 @@ const STRINGS = {
     lang_auto: "Automatic (Home Assistant)",
   },
   fr: {
-    meter_water: "Compteur d'eau", meter_gas: "Compteur de gaz", index: "Index", today: "Aujourd'hui", week: "Cette semaine", month: "Ce mois-ci", year: "Cette année",
+    meter_water: "Compteur d'eau", meter_gas: "Compteur de gaz", meter_electricity: "Compteur électrique", index: "Index", today: "Aujourd'hui", week: "Cette semaine", month: "Ce mois-ci", year: "Cette année",
     yesterday: "Hier", last_week: "Semaine dernière", last_month: "Mois dernier", last_year: "Année dernière",
     vs_day: "par rapport à hier", vs_week: "par rapport à la semaine dernière", vs_month: "par rapport au mois dernier", vs_year: "par rapport à l'an dernier",
     consumption: "Consommation", history: "Historique", night: "Surveillance nocturne", tab_day: "Jour", tab_week: "Semaine", tab_month: "Mois", tab_year: "Année",
-    average: "Moyenne {value}", cost: "Coût", flow: "Débit", status_ok: "Normal", status_leak: "Fuite suspectée", status_high: "Consommation élevée", status_unavailable: "Indisponible",
+    average: "Moyenne {value}", cost: "Coût", flow: "Débit", power: "Puissance", status_ok: "Normal", status_leak: "Fuite suspectée", status_high: "Consommation élevée", status_unavailable: "Indisponible",
     leak_alert: "Débit continu toute la nuit : au moins {value} chaque heure de {start} à {end}", leak_sensor: "{name} signale une fuite",
     high_alert: "La consommation du jour dépasse la limite journalière ({value})", night_window: "Plage nocturne", night_lowest: "Heure la plus basse la nuit dernière",
     night_threshold: "Seuil d'alerte", sensor_ok: "Sec", sensor_wet: "Fuite détectée", no_stats: "Pas encore de statistiques long terme pour ce compteur", loading: "Chargement…",
-    close: "Fermer", per_hour: "{value}/h", zoom_in: "Afficher les détails", zoom_out: "Réduire", no_meter: "Aucun compteur d'eau ou de gaz trouvé", unknown_entity: "Entité introuvable",
-    entity: "Compteur (capteur d'index)", title: "Titre", meter_type: "Type de compteur", type_auto: "Automatique", type_water: "Eau", type_gas: "Gaz", chart_period: "Graphique par défaut",
+    close: "Fermer", per_hour: "{value}/h", zoom_in: "Afficher les détails", zoom_out: "Réduire", no_meter: "Aucun compteur d'eau, de gaz ou d'électricité trouvé", unknown_entity: "Entité introuvable",
+    entity: "Compteur (capteur d'index)", title: "Titre", meter_type: "Type de compteur", type_auto: "Automatique", type_water: "Eau", type_gas: "Gaz", type_electricity: "Électricité", chart_period: "Graphique par défaut",
+    picture_style: "Illustration du compteur électrique", style_auto: "Automatique", style_digital: "Compteur numérique", style_disc: "Disque tournant", style_submeter: "Sous-compteur (pince)",
     show_title: "Afficher le titre", show_subtitle: "Afficher le sous-titre", show_picture: "Afficher l'illustration du compteur", show_index: "Afficher l'index",
     show_consumption: "Afficher la consommation", show_comparison: "Comparer avec la période précédente", show_chart: "Afficher le graphique d'historique", show_cost: "Afficher le coût",
     leak_detection: "Détection de fuite", liters: "Petites quantités d'eau en litres", collapsed: "Sections repliées par défaut", cost_section: "Coût", price: "Prix unitaire",
-    price_entity: "Entité de prix", currency: "Devise", price_unit: "Prix par", unit_volume: "Volume (m³)", unit_energy: "Énergie (kWh)", conversion_factor: "Coefficient de conversion (kWh par m³)",
+    price_entity: "Entité de prix", currency: "Devise", price_unit: "Prix par", unit_volume: "Volume (m³)", unit_energy: "Énergie (kWh)", conversion_factor: "Coefficient de conversion (kWh par m³)", conversion_factor_entity: "Entité de coefficient de conversion",
     leak_section: "Détection de fuite", flow_entity: "Capteur de débit", leak_entity: "Détecteur de fuite", leak_start: "Début de la plage nocturne", leak_end: "Fin de la plage nocturne",
     leak_threshold: "Seuil (L/h pour l'eau)", daily_limit: "Limite journalière", sources_section: "Sources de données", statistic_id: "Statistique (au lieu de celle du capteur)",
     today_entity: "Compteur de services (journalier)", week_entity: "Compteur de services (hebdomadaire)", month_entity: "Compteur de services (mensuel)", year_entity: "Compteur de services (annuel)",
     zoom: "Bouton détail", zoom_helper: "Bascule la mini-carte vers la carte complète et inversement", language: "Langue", lang_auto: "Automatique (Home Assistant)",
   },
   de: {
-    meter_water: "Wasserzähler", meter_gas: "Gaszähler", index: "Zählerstand", today: "Heute", week: "Diese Woche", month: "Dieser Monat", year: "Dieses Jahr",
+    meter_water: "Wasserzähler", meter_gas: "Gaszähler", meter_electricity: "Stromzähler", type_electricity: "Strom", power: "Leistung", index: "Zählerstand", today: "Heute", week: "Diese Woche", month: "Dieser Monat", year: "Dieses Jahr",
     yesterday: "Gestern", last_week: "Letzte Woche", last_month: "Letzter Monat", last_year: "Letztes Jahr",
     vs_day: "ggü. gestern", vs_week: "ggü. letzter Woche", vs_month: "ggü. letztem Monat", vs_year: "ggü. letztem Jahr",
     consumption: "Verbrauch", history: "Verlauf", night: "Nachtüberwachung", tab_day: "Tag", tab_week: "Woche", tab_month: "Monat", tab_year: "Jahr",
@@ -169,14 +181,14 @@ const STRINGS = {
     show_title: "Titel anzeigen", show_subtitle: "Untertitel anzeigen", show_picture: "Zählerbild anzeigen", show_index: "Zählerstand anzeigen",
     show_consumption: "Verbrauch anzeigen", show_comparison: "Mit dem vorherigen Zeitraum vergleichen", show_chart: "Verlaufsdiagramm anzeigen", show_cost: "Kosten anzeigen",
     leak_detection: "Leckerkennung", liters: "Kleine Wassermengen in Litern", collapsed: "Standardmäßig eingeklappte Abschnitte", cost_section: "Kosten", price: "Preis pro Einheit",
-    price_entity: "Preis-Entität", currency: "Währung", price_unit: "Preis pro", unit_volume: "Volumen (m³)", unit_energy: "Energie (kWh)", conversion_factor: "Umrechnungsfaktor (kWh pro m³)",
+    price_entity: "Preis-Entität", currency: "Währung", price_unit: "Preis pro", unit_volume: "Volumen (m³)", unit_energy: "Energie (kWh)", conversion_factor: "Umrechnungsfaktor (kWh pro m³)", conversion_factor_entity: "Entität des Umrechnungsfaktors", picture_style: "Bild des Stromzählers", style_auto: "Automatisch", style_digital: "Digitaler Zähler", style_disc: "Drehscheibe", style_submeter: "Unterzähler (Zange)",
     leak_section: "Leckerkennung", flow_entity: "Durchflusssensor", leak_entity: "Lecksensor", leak_start: "Beginn des Nachtzeitraums", leak_end: "Ende des Nachtzeitraums",
     leak_threshold: "Schwelle (L/h für Wasser)", daily_limit: "Tageslimit", sources_section: "Datenquellen", statistic_id: "Statistik (statt der des Sensors)",
     today_entity: "Verbrauchszähler (täglich)", week_entity: "Verbrauchszähler (wöchentlich)", month_entity: "Verbrauchszähler (monatlich)", year_entity: "Verbrauchszähler (jährlich)",
     zoom: "Detail-Schaltfläche", zoom_helper: "Schaltet die Mini-Karte auf die vollständige Karte um und zurück", language: "Sprache", lang_auto: "Automatisch (Home Assistant)",
   },
   es: {
-    meter_water: "Contador de agua", meter_gas: "Contador de gas", index: "Lectura", today: "Hoy", week: "Esta semana", month: "Este mes", year: "Este año",
+    meter_water: "Contador de agua", meter_gas: "Contador de gas", meter_electricity: "Contador de electricidad", type_electricity: "Electricidad", power: "Potencia", index: "Lectura", today: "Hoy", week: "Esta semana", month: "Este mes", year: "Este año",
     yesterday: "Ayer", last_week: "Semana pasada", last_month: "Mes pasado", last_year: "Año pasado",
     vs_day: "frente a ayer", vs_week: "frente a la semana pasada", vs_month: "frente al mes pasado", vs_year: "frente al año pasado",
     consumption: "Consumo", history: "Historial", night: "Vigilancia nocturna", tab_day: "Día", tab_week: "Semana", tab_month: "Mes", tab_year: "Año",
@@ -189,14 +201,14 @@ const STRINGS = {
     show_title: "Mostrar el título", show_subtitle: "Mostrar el subtítulo", show_picture: "Mostrar la ilustración del contador", show_index: "Mostrar la lectura",
     show_consumption: "Mostrar el consumo", show_comparison: "Comparar con el periodo anterior", show_chart: "Mostrar el gráfico de historial", show_cost: "Mostrar el coste",
     leak_detection: "Detección de fugas", liters: "Pequeñas cantidades de agua en litros", collapsed: "Secciones plegadas por defecto", cost_section: "Coste", price: "Precio por unidad",
-    price_entity: "Entidad de precio", currency: "Moneda", price_unit: "Precio por", unit_volume: "Volumen (m³)", unit_energy: "Energía (kWh)", conversion_factor: "Factor de conversión (kWh por m³)",
+    price_entity: "Entidad de precio", currency: "Moneda", price_unit: "Precio por", unit_volume: "Volumen (m³)", unit_energy: "Energía (kWh)", conversion_factor: "Factor de conversión (kWh por m³)", conversion_factor_entity: "Entidad del factor de conversión", picture_style: "Imagen del contador eléctrico", style_auto: "Automático", style_digital: "Contador digital", style_disc: "Disco giratorio", style_submeter: "Subcontador (pinza)",
     leak_section: "Detección de fugas", flow_entity: "Sensor de caudal", leak_entity: "Sensor de fugas", leak_start: "Inicio de la franja nocturna", leak_end: "Fin de la franja nocturna",
     leak_threshold: "Umbral (L/h para el agua)", daily_limit: "Límite diario", sources_section: "Fuentes de datos", statistic_id: "Estadística (en lugar de la del sensor)",
     today_entity: "Contador de consumo (diario)", week_entity: "Contador de consumo (semanal)", month_entity: "Contador de consumo (mensual)", year_entity: "Contador de consumo (anual)",
     zoom: "Botón de detalle", zoom_helper: "Cambia la minitarjeta a la tarjeta completa y viceversa", language: "Idioma", lang_auto: "Automático (Home Assistant)",
   },
   sr: {
-    meter_water: "Водомер", meter_gas: "Гасомер", index: "Стање бројила", today: "Данас", week: "Ове недеље", month: "Овог месеца", year: "Ове године",
+    meter_water: "Водомер", meter_gas: "Гасомер", meter_electricity: "Бројило струје", type_electricity: "Струја", power: "Снага", index: "Стање бројила", today: "Данас", week: "Ове недеље", month: "Овог месеца", year: "Ове године",
     yesterday: "Јуче", last_week: "Прошле недеље", last_month: "Прошлог месеца", last_year: "Прошле године",
     vs_day: "у односу на јуче", vs_week: "у односу на прошлу недељу", vs_month: "у односу на прошли месец", vs_year: "у односу на прошлу годину",
     consumption: "Потрошња", history: "Историја", night: "Ноћни надзор", tab_day: "Дан", tab_week: "Недеља", tab_month: "Месец", tab_year: "Година",
@@ -209,14 +221,14 @@ const STRINGS = {
     show_title: "Прикажи наслов", show_subtitle: "Прикажи поднаслов", show_picture: "Прикажи слику бројила", show_index: "Прикажи стање бројила",
     show_consumption: "Прикажи потрошњу", show_comparison: "Упореди са претходним периодом", show_chart: "Прикажи графикон историје", show_cost: "Прикажи трошак",
     leak_detection: "Откривање цурења", liters: "Мале количине воде у литрима", collapsed: "Подразумевано скупљени одељци", cost_section: "Трошак", price: "Цена по јединици",
-    price_entity: "Ентитет цене", currency: "Валута", price_unit: "Цена по", unit_volume: "Запремина (m³)", unit_energy: "Енергија (kWh)", conversion_factor: "Фактор претварања (kWh по m³)",
+    price_entity: "Ентитет цене", currency: "Валута", price_unit: "Цена по", unit_volume: "Запремина (m³)", unit_energy: "Енергија (kWh)", conversion_factor: "Фактор претварања (kWh по m³)", conversion_factor_entity: "Ентитет фактора претварања", picture_style: "Слика бројила струје", style_auto: "Аутоматски", style_digital: "Дигитално бројило", style_disc: "Ротирајући диск", style_submeter: "Подбројило (клешта)",
     leak_section: "Откривање цурења", flow_entity: "Сензор протока", leak_entity: "Сензор цурења", leak_start: "Почетак ноћног периода", leak_end: "Крај ноћног периода",
     leak_threshold: "Праг (L/h за воду)", daily_limit: "Дневно ограничење", sources_section: "Извори података", statistic_id: "Статистика (уместо статистике сензора)",
     today_entity: "Бројач потрошње (дневни)", week_entity: "Бројач потрошње (недељни)", month_entity: "Бројач потрошње (месечни)", year_entity: "Бројач потрошње (годишњи)",
     zoom: "Дугме за детаље", zoom_helper: "Пребацује мини картицу на пуну картицу и назад", language: "Језик", lang_auto: "Аутоматски (Home Assistant)",
   },
   "sr-Latn": {
-    meter_water: "Vodomer", meter_gas: "Gasomer", index: "Stanje brojila", today: "Danas", week: "Ove nedelje", month: "Ovog meseca", year: "Ove godine",
+    meter_water: "Vodomer", meter_gas: "Gasomer", meter_electricity: "Brojilo struje", type_electricity: "Struja", power: "Snaga", index: "Stanje brojila", today: "Danas", week: "Ove nedelje", month: "Ovog meseca", year: "Ove godine",
     yesterday: "Juče", last_week: "Prošle nedelje", last_month: "Prošlog meseca", last_year: "Prošle godine",
     vs_day: "u odnosu na juče", vs_week: "u odnosu na prošlu nedelju", vs_month: "u odnosu na prošli mesec", vs_year: "u odnosu na prošlu godinu",
     consumption: "Potrošnja", history: "Istorija", night: "Noćni nadzor", tab_day: "Dan", tab_week: "Nedelja", tab_month: "Mesec", tab_year: "Godina",
@@ -229,14 +241,14 @@ const STRINGS = {
     show_title: "Prikaži naslov", show_subtitle: "Prikaži podnaslov", show_picture: "Prikaži sliku brojila", show_index: "Prikaži stanje brojila",
     show_consumption: "Prikaži potrošnju", show_comparison: "Uporedi sa prethodnim periodom", show_chart: "Prikaži grafikon istorije", show_cost: "Prikaži trošak",
     leak_detection: "Otkrivanje curenja", liters: "Male količine vode u litrima", collapsed: "Podrazumevano skupljeni odeljci", cost_section: "Trošak", price: "Cena po jedinici",
-    price_entity: "Entitet cene", currency: "Valuta", price_unit: "Cena po", unit_volume: "Zapremina (m³)", unit_energy: "Energija (kWh)", conversion_factor: "Faktor pretvaranja (kWh po m³)",
+    price_entity: "Entitet cene", currency: "Valuta", price_unit: "Cena po", unit_volume: "Zapremina (m³)", unit_energy: "Energija (kWh)", conversion_factor: "Faktor pretvaranja (kWh po m³)", conversion_factor_entity: "Entitet faktora pretvaranja", picture_style: "Slika brojila struje", style_auto: "Automatski", style_digital: "Digitalno brojilo", style_disc: "Rotirajući disk", style_submeter: "Podbrojilo (klešta)",
     leak_section: "Otkrivanje curenja", flow_entity: "Senzor protoka", leak_entity: "Senzor curenja", leak_start: "Početak noćnog perioda", leak_end: "Kraj noćnog perioda",
     leak_threshold: "Prag (L/h za vodu)", daily_limit: "Dnevno ograničenje", sources_section: "Izvori podataka", statistic_id: "Statistika (umesto statistike senzora)",
     today_entity: "Brojač potrošnje (dnevni)", week_entity: "Brojač potrošnje (nedeljni)", month_entity: "Brojač potrošnje (mesečni)", year_entity: "Brojač potrošnje (godišnji)",
     zoom: "Dugme za detalje", zoom_helper: "Prebacuje mini karticu na punu karticu i nazad", language: "Jezik", lang_auto: "Automatski (Home Assistant)",
   },
   it: {
-    meter_water: "Contatore dell'acqua", meter_gas: "Contatore del gas", index: "Lettura", today: "Oggi", week: "Questa settimana", month: "Questo mese", year: "Quest'anno",
+    meter_water: "Contatore dell'acqua", meter_gas: "Contatore del gas", meter_electricity: "Contatore elettrico", type_electricity: "Elettricità", power: "Potenza", index: "Lettura", today: "Oggi", week: "Questa settimana", month: "Questo mese", year: "Quest'anno",
     yesterday: "Ieri", last_week: "Settimana scorsa", last_month: "Mese scorso", last_year: "Anno scorso",
     vs_day: "rispetto a ieri", vs_week: "rispetto alla settimana scorsa", vs_month: "rispetto al mese scorso", vs_year: "rispetto all'anno scorso",
     consumption: "Consumo", history: "Cronologia", night: "Monitoraggio notturno", tab_day: "Giorno", tab_week: "Settimana", tab_month: "Mese", tab_year: "Anno",
@@ -249,14 +261,14 @@ const STRINGS = {
     show_title: "Mostra il titolo", show_subtitle: "Mostra il sottotitolo", show_picture: "Mostra l'illustrazione del contatore", show_index: "Mostra la lettura",
     show_consumption: "Mostra il consumo", show_comparison: "Confronta con il periodo precedente", show_chart: "Mostra il grafico della cronologia", show_cost: "Mostra il costo",
     leak_detection: "Rilevamento perdite", liters: "Piccole quantità d'acqua in litri", collapsed: "Sezioni chiuse per impostazione predefinita", cost_section: "Costo", price: "Prezzo unitario",
-    price_entity: "Entità del prezzo", currency: "Valuta", price_unit: "Prezzo per", unit_volume: "Volume (m³)", unit_energy: "Energia (kWh)", conversion_factor: "Fattore di conversione (kWh per m³)",
+    price_entity: "Entità del prezzo", currency: "Valuta", price_unit: "Prezzo per", unit_volume: "Volume (m³)", unit_energy: "Energia (kWh)", conversion_factor: "Fattore di conversione (kWh per m³)", conversion_factor_entity: "Entità del fattore di conversione", picture_style: "Immagine del contatore elettrico", style_auto: "Automatico", style_digital: "Contatore digitale", style_disc: "Disco rotante", style_submeter: "Sottocontatore (pinza)",
     leak_section: "Rilevamento perdite", flow_entity: "Sensore di portata", leak_entity: "Sensore di perdite", leak_start: "Inizio della fascia notturna", leak_end: "Fine della fascia notturna",
     leak_threshold: "Soglia (L/h per l'acqua)", daily_limit: "Limite giornaliero", sources_section: "Fonti dei dati", statistic_id: "Statistica (al posto di quella del sensore)",
     today_entity: "Contatore dei consumi (giornaliero)", week_entity: "Contatore dei consumi (settimanale)", month_entity: "Contatore dei consumi (mensile)", year_entity: "Contatore dei consumi (annuale)",
     zoom: "Pulsante dettagli", zoom_helper: "Passa dalla mini scheda alla scheda completa e viceversa", language: "Lingua", lang_auto: "Automatica (Home Assistant)",
   },
   nl: {
-    meter_water: "Watermeter", meter_gas: "Gasmeter", index: "Meterstand", today: "Vandaag", week: "Deze week", month: "Deze maand", year: "Dit jaar",
+    meter_water: "Watermeter", meter_gas: "Gasmeter", meter_electricity: "Elektriciteitsmeter", type_electricity: "Elektriciteit", power: "Vermogen", index: "Meterstand", today: "Vandaag", week: "Deze week", month: "Deze maand", year: "Dit jaar",
     yesterday: "Gisteren", last_week: "Vorige week", last_month: "Vorige maand", last_year: "Vorig jaar",
     vs_day: "t.o.v. gisteren", vs_week: "t.o.v. vorige week", vs_month: "t.o.v. vorige maand", vs_year: "t.o.v. vorig jaar",
     consumption: "Verbruik", history: "Geschiedenis", night: "Nachtbewaking", tab_day: "Dag", tab_week: "Week", tab_month: "Maand", tab_year: "Jaar",
@@ -269,14 +281,14 @@ const STRINGS = {
     show_title: "Titel tonen", show_subtitle: "Ondertitel tonen", show_picture: "Afbeelding van de meter tonen", show_index: "Meterstand tonen",
     show_consumption: "Verbruik tonen", show_comparison: "Vergelijken met de vorige periode", show_chart: "Geschiedenisgrafiek tonen", show_cost: "Kosten tonen",
     leak_detection: "Lekdetectie", liters: "Kleine hoeveelheden water in liters", collapsed: "Standaard ingeklapte secties", cost_section: "Kosten", price: "Prijs per eenheid",
-    price_entity: "Prijsentiteit", currency: "Valuta", price_unit: "Prijs per", unit_volume: "Volume (m³)", unit_energy: "Energie (kWh)", conversion_factor: "Omrekenfactor (kWh per m³)",
+    price_entity: "Prijsentiteit", currency: "Valuta", price_unit: "Prijs per", unit_volume: "Volume (m³)", unit_energy: "Energie (kWh)", conversion_factor: "Omrekenfactor (kWh per m³)", conversion_factor_entity: "Entiteit van de omrekenfactor", picture_style: "Afbeelding van de elektriciteitsmeter", style_auto: "Automatisch", style_digital: "Digitale meter", style_disc: "Draaiende schijf", style_submeter: "Tussenmeter (klem)",
     leak_section: "Lekdetectie", flow_entity: "Debietsensor", leak_entity: "Leksensor", leak_start: "Begin van de nachtperiode", leak_end: "Einde van de nachtperiode",
     leak_threshold: "Drempel (L/u voor water)", daily_limit: "Daglimiet", sources_section: "Gegevensbronnen", statistic_id: "Statistiek (in plaats van die van de sensor)",
     today_entity: "Verbruiksmeter (dagelijks)", week_entity: "Verbruiksmeter (wekelijks)", month_entity: "Verbruiksmeter (maandelijks)", year_entity: "Verbruiksmeter (jaarlijks)",
     zoom: "Detailknop", zoom_helper: "Schakelt de minikaart naar de volledige kaart en terug", language: "Taal", lang_auto: "Automatisch (Home Assistant)",
   },
   pt: {
-    meter_water: "Contador de água", meter_gas: "Contador de gás", index: "Leitura", today: "Hoje", week: "Esta semana", month: "Este mês", year: "Este ano",
+    meter_water: "Contador de água", meter_gas: "Contador de gás", meter_electricity: "Contador de eletricidade", type_electricity: "Eletricidade", power: "Potência", index: "Leitura", today: "Hoje", week: "Esta semana", month: "Este mês", year: "Este ano",
     yesterday: "Ontem", last_week: "Semana passada", last_month: "Mês passado", last_year: "Ano passado",
     vs_day: "face a ontem", vs_week: "face à semana passada", vs_month: "face ao mês passado", vs_year: "face ao ano passado",
     consumption: "Consumo", history: "Histórico", night: "Vigilância noturna", tab_day: "Dia", tab_week: "Semana", tab_month: "Mês", tab_year: "Ano",
@@ -289,14 +301,14 @@ const STRINGS = {
     show_title: "Mostrar o título", show_subtitle: "Mostrar o subtítulo", show_picture: "Mostrar a ilustração do contador", show_index: "Mostrar a leitura",
     show_consumption: "Mostrar o consumo", show_comparison: "Comparar com o período anterior", show_chart: "Mostrar o gráfico do histórico", show_cost: "Mostrar o custo",
     leak_detection: "Deteção de fugas", liters: "Pequenas quantidades de água em litros", collapsed: "Secções recolhidas por predefinição", cost_section: "Custo", price: "Preço por unidade",
-    price_entity: "Entidade do preço", currency: "Moeda", price_unit: "Preço por", unit_volume: "Volume (m³)", unit_energy: "Energia (kWh)", conversion_factor: "Fator de conversão (kWh por m³)",
+    price_entity: "Entidade do preço", currency: "Moeda", price_unit: "Preço por", unit_volume: "Volume (m³)", unit_energy: "Energia (kWh)", conversion_factor: "Fator de conversão (kWh por m³)", conversion_factor_entity: "Entidade do fator de conversão", picture_style: "Imagem do contador elétrico", style_auto: "Automático", style_digital: "Contador digital", style_disc: "Disco rotativo", style_submeter: "Subcontador (pinça)",
     leak_section: "Deteção de fugas", flow_entity: "Sensor de caudal", leak_entity: "Sensor de fugas", leak_start: "Início do período noturno", leak_end: "Fim do período noturno",
     leak_threshold: "Limiar (L/h para a água)", daily_limit: "Limite diário", sources_section: "Fontes de dados", statistic_id: "Estatística (em vez da do sensor)",
     today_entity: "Contador de consumo (diário)", week_entity: "Contador de consumo (semanal)", month_entity: "Contador de consumo (mensal)", year_entity: "Contador de consumo (anual)",
     zoom: "Botão de detalhe", zoom_helper: "Muda o mini cartão para o cartão completo e vice-versa", language: "Idioma", lang_auto: "Automático (Home Assistant)",
   },
   pl: {
-    meter_water: "Wodomierz", meter_gas: "Gazomierz", index: "Stan licznika", today: "Dziś", week: "Ten tydzień", month: "Ten miesiąc", year: "Ten rok",
+    meter_water: "Wodomierz", meter_gas: "Gazomierz", meter_electricity: "Licznik energii elektrycznej", type_electricity: "Energia elektryczna", power: "Moc", index: "Stan licznika", today: "Dziś", week: "Ten tydzień", month: "Ten miesiąc", year: "Ten rok",
     yesterday: "Wczoraj", last_week: "Poprzedni tydzień", last_month: "Poprzedni miesiąc", last_year: "Poprzedni rok",
     vs_day: "względem wczoraj", vs_week: "względem poprzedniego tygodnia", vs_month: "względem poprzedniego miesiąca", vs_year: "względem poprzedniego roku",
     consumption: "Zużycie", history: "Historia", night: "Nadzór nocny", tab_day: "Dzień", tab_week: "Tydzień", tab_month: "Miesiąc", tab_year: "Rok",
@@ -309,14 +321,14 @@ const STRINGS = {
     show_title: "Pokaż tytuł", show_subtitle: "Pokaż podtytuł", show_picture: "Pokaż ilustrację licznika", show_index: "Pokaż stan licznika",
     show_consumption: "Pokaż zużycie", show_comparison: "Porównaj z poprzednim okresem", show_chart: "Pokaż wykres historii", show_cost: "Pokaż koszt",
     leak_detection: "Wykrywanie wycieków", liters: "Małe ilości wody w litrach", collapsed: "Sekcje domyślnie zwinięte", cost_section: "Koszt", price: "Cena za jednostkę",
-    price_entity: "Encja ceny", currency: "Waluta", price_unit: "Cena za", unit_volume: "Objętość (m³)", unit_energy: "Energia (kWh)", conversion_factor: "Współczynnik przeliczeniowy (kWh na m³)",
+    price_entity: "Encja ceny", currency: "Waluta", price_unit: "Cena za", unit_volume: "Objętość (m³)", unit_energy: "Energia (kWh)", conversion_factor: "Współczynnik przeliczeniowy (kWh na m³)", conversion_factor_entity: "Encja współczynnika przeliczeniowego", picture_style: "Obraz licznika energii", style_auto: "Automatycznie", style_digital: "Licznik cyfrowy", style_disc: "Obracająca się tarcza", style_submeter: "Podlicznik (cęgi)",
     leak_section: "Wykrywanie wycieków", flow_entity: "Czujnik przepływu", leak_entity: "Czujnik wycieku", leak_start: "Początek okna nocnego", leak_end: "Koniec okna nocnego",
     leak_threshold: "Próg (L/h dla wody)", daily_limit: "Dzienny limit", sources_section: "Źródła danych", statistic_id: "Statystyka (zamiast statystyki czujnika)",
     today_entity: "Licznik mediów (dzienny)", week_entity: "Licznik mediów (tygodniowy)", month_entity: "Licznik mediów (miesięczny)", year_entity: "Licznik mediów (roczny)",
     zoom: "Przycisk szczegółów", zoom_helper: "Przełącza minikartę na pełną kartę i z powrotem", language: "Język", lang_auto: "Automatycznie (Home Assistant)",
   },
   ro: {
-    meter_water: "Contor de apă", meter_gas: "Contor de gaz", index: "Index", today: "Azi", week: "Săptămâna aceasta", month: "Luna aceasta", year: "Anul acesta",
+    meter_water: "Contor de apă", meter_gas: "Contor de gaz", meter_electricity: "Contor de energie electrică", type_electricity: "Electricitate", power: "Putere", index: "Index", today: "Azi", week: "Săptămâna aceasta", month: "Luna aceasta", year: "Anul acesta",
     yesterday: "Ieri", last_week: "Săptămâna trecută", last_month: "Luna trecută", last_year: "Anul trecut",
     vs_day: "față de ieri", vs_week: "față de săptămâna trecută", vs_month: "față de luna trecută", vs_year: "față de anul trecut",
     consumption: "Consum", history: "Istoric", night: "Supraveghere nocturnă", tab_day: "Zi", tab_week: "Săptămână", tab_month: "Lună", tab_year: "An",
@@ -329,14 +341,14 @@ const STRINGS = {
     show_title: "Afișează titlul", show_subtitle: "Afișează subtitlul", show_picture: "Afișează ilustrația contorului", show_index: "Afișează indexul",
     show_consumption: "Afișează consumul", show_comparison: "Compară cu perioada anterioară", show_chart: "Afișează graficul istoricului", show_cost: "Afișează costul",
     leak_detection: "Detectarea scurgerilor", liters: "Cantități mici de apă în litri", collapsed: "Secțiuni restrânse implicit", cost_section: "Cost", price: "Preț pe unitate",
-    price_entity: "Entitate de preț", currency: "Monedă", price_unit: "Preț pe", unit_volume: "Volum (m³)", unit_energy: "Energie (kWh)", conversion_factor: "Factor de conversie (kWh pe m³)",
+    price_entity: "Entitate de preț", currency: "Monedă", price_unit: "Preț pe", unit_volume: "Volum (m³)", unit_energy: "Energie (kWh)", conversion_factor: "Factor de conversie (kWh pe m³)", conversion_factor_entity: "Entitate a factorului de conversie", picture_style: "Imaginea contorului electric", style_auto: "Automat", style_digital: "Contor digital", style_disc: "Disc rotativ", style_submeter: "Subcontor (clește)",
     leak_section: "Detectarea scurgerilor", flow_entity: "Senzor de debit", leak_entity: "Senzor de scurgere", leak_start: "Începutul intervalului nocturn", leak_end: "Sfârșitul intervalului nocturn",
     leak_threshold: "Prag (L/h pentru apă)", daily_limit: "Limită zilnică", sources_section: "Surse de date", statistic_id: "Statistică (în locul celei a senzorului)",
     today_entity: "Contor de consum (zilnic)", week_entity: "Contor de consum (săptămânal)", month_entity: "Contor de consum (lunar)", year_entity: "Contor de consum (anual)",
     zoom: "Buton de detalii", zoom_helper: "Comută mini cardul la cardul complet și înapoi", language: "Limbă", lang_auto: "Automat (Home Assistant)",
   },
   da: {
-    meter_water: "Vandmåler", meter_gas: "Gasmåler", index: "Målerstand", today: "I dag", week: "Denne uge", month: "Denne måned", year: "I år",
+    meter_water: "Vandmåler", meter_gas: "Gasmåler", meter_electricity: "Elmåler", type_electricity: "El", power: "Effekt", index: "Målerstand", today: "I dag", week: "Denne uge", month: "Denne måned", year: "I år",
     yesterday: "I går", last_week: "Sidste uge", last_month: "Sidste måned", last_year: "Sidste år",
     vs_day: "ift. i går", vs_week: "ift. sidste uge", vs_month: "ift. sidste måned", vs_year: "ift. sidste år",
     consumption: "Forbrug", history: "Historik", night: "Natovervågning", tab_day: "Dag", tab_week: "Uge", tab_month: "Måned", tab_year: "År",
@@ -349,14 +361,14 @@ const STRINGS = {
     show_title: "Vis titel", show_subtitle: "Vis undertitel", show_picture: "Vis billede af måleren", show_index: "Vis målerstand",
     show_consumption: "Vis forbrug", show_comparison: "Sammenlign med forrige periode", show_chart: "Vis historikdiagram", show_cost: "Vis pris",
     leak_detection: "Lækagedetektion", liters: "Små vandmængder i liter", collapsed: "Sektioner foldet sammen som standard", cost_section: "Pris", price: "Pris pr. enhed",
-    price_entity: "Prisenhed", currency: "Valuta", price_unit: "Pris pr.", unit_volume: "Volumen (m³)", unit_energy: "Energi (kWh)", conversion_factor: "Omregningsfaktor (kWh pr. m³)",
+    price_entity: "Prisenhed", currency: "Valuta", price_unit: "Pris pr.", unit_volume: "Volumen (m³)", unit_energy: "Energi (kWh)", conversion_factor: "Omregningsfaktor (kWh pr. m³)", conversion_factor_entity: "Enhed for omregningsfaktor", picture_style: "Billede af elmåler", style_auto: "Automatisk", style_digital: "Digital måler", style_disc: "Roterende skive", style_submeter: "Bimåler (tang)",
     leak_section: "Lækagedetektion", flow_entity: "Flowsensor", leak_entity: "Lækagesensor", leak_start: "Start på natperiode", leak_end: "Slut på natperiode",
     leak_threshold: "Tærskel (L/t for vand)", daily_limit: "Dagsgrænse", sources_section: "Datakilder", statistic_id: "Statistik (i stedet for sensorens)",
     today_entity: "Forbrugsmåler (daglig)", week_entity: "Forbrugsmåler (ugentlig)", month_entity: "Forbrugsmåler (månedlig)", year_entity: "Forbrugsmåler (årlig)",
     zoom: "Detaljeknap", zoom_helper: "Skifter minikortet til det fulde kort og tilbage", language: "Sprog", lang_auto: "Automatisk (Home Assistant)",
   },
   sv: {
-    meter_water: "Vattenmätare", meter_gas: "Gasmätare", index: "Mätarställning", today: "I dag", week: "Den här veckan", month: "Den här månaden", year: "I år",
+    meter_water: "Vattenmätare", meter_gas: "Gasmätare", meter_electricity: "Elmätare", type_electricity: "El", power: "Effekt", index: "Mätarställning", today: "I dag", week: "Den här veckan", month: "Den här månaden", year: "I år",
     yesterday: "I går", last_week: "Förra veckan", last_month: "Förra månaden", last_year: "Förra året",
     vs_day: "jämfört med i går", vs_week: "jämfört med förra veckan", vs_month: "jämfört med förra månaden", vs_year: "jämfört med förra året",
     consumption: "Förbrukning", history: "Historik", night: "Nattövervakning", tab_day: "Dag", tab_week: "Vecka", tab_month: "Månad", tab_year: "År",
@@ -369,14 +381,14 @@ const STRINGS = {
     show_title: "Visa titel", show_subtitle: "Visa underrubrik", show_picture: "Visa bild av mätaren", show_index: "Visa mätarställning",
     show_consumption: "Visa förbrukning", show_comparison: "Jämför med föregående period", show_chart: "Visa historikdiagram", show_cost: "Visa kostnad",
     leak_detection: "Läckagedetektering", liters: "Små vattenmängder i liter", collapsed: "Avsnitt hopfällda som standard", cost_section: "Kostnad", price: "Pris per enhet",
-    price_entity: "Prisentitet", currency: "Valuta", price_unit: "Pris per", unit_volume: "Volym (m³)", unit_energy: "Energi (kWh)", conversion_factor: "Omräkningsfaktor (kWh per m³)",
+    price_entity: "Prisentitet", currency: "Valuta", price_unit: "Pris per", unit_volume: "Volym (m³)", unit_energy: "Energi (kWh)", conversion_factor: "Omräkningsfaktor (kWh per m³)", conversion_factor_entity: "Entitet för omräkningsfaktor", picture_style: "Bild av elmätare", style_auto: "Automatisk", style_digital: "Digital mätare", style_disc: "Roterande skiva", style_submeter: "Undermätare (tång)",
     leak_section: "Läckagedetektering", flow_entity: "Flödessensor", leak_entity: "Läckagesensor", leak_start: "Nattperiodens början", leak_end: "Nattperiodens slut",
     leak_threshold: "Tröskel (L/h för vatten)", daily_limit: "Dagsgräns", sources_section: "Datakällor", statistic_id: "Statistik (i stället för sensorns)",
     today_entity: "Förbrukningsmätare (daglig)", week_entity: "Förbrukningsmätare (veckovis)", month_entity: "Förbrukningsmätare (månadsvis)", year_entity: "Förbrukningsmätare (årlig)",
     zoom: "Detaljknapp", zoom_helper: "Växlar minikortet till hela kortet och tillbaka", language: "Språk", lang_auto: "Automatiskt (Home Assistant)",
   },
   bg: {
-    meter_water: "Водомер", meter_gas: "Газомер", index: "Показание", today: "Днес", week: "Тази седмица", month: "Този месец", year: "Тази година",
+    meter_water: "Водомер", meter_gas: "Газомер", meter_electricity: "Електромер", type_electricity: "Електричество", power: "Мощност", index: "Показание", today: "Днес", week: "Тази седмица", month: "Този месец", year: "Тази година",
     yesterday: "Вчера", last_week: "Миналата седмица", last_month: "Миналия месец", last_year: "Миналата година",
     vs_day: "спрямо вчера", vs_week: "спрямо миналата седмица", vs_month: "спрямо миналия месец", vs_year: "спрямо миналата година",
     consumption: "Потребление", history: "История", night: "Нощно наблюдение", tab_day: "Ден", tab_week: "Седмица", tab_month: "Месец", tab_year: "Година",
@@ -389,14 +401,14 @@ const STRINGS = {
     show_title: "Покажи заглавието", show_subtitle: "Покажи подзаглавието", show_picture: "Покажи изображение на уреда", show_index: "Покажи показанието",
     show_consumption: "Покажи потреблението", show_comparison: "Сравни с предходния период", show_chart: "Покажи графиката на историята", show_cost: "Покажи разхода",
     leak_detection: "Откриване на течове", liters: "Малки количества вода в литри", collapsed: "Свити по подразбиране раздели", cost_section: "Разход", price: "Цена за единица",
-    price_entity: "Обект за цена", currency: "Валута", price_unit: "Цена за", unit_volume: "Обем (m³)", unit_energy: "Енергия (kWh)", conversion_factor: "Коефициент на преобразуване (kWh за m³)",
+    price_entity: "Обект за цена", currency: "Валута", price_unit: "Цена за", unit_volume: "Обем (m³)", unit_energy: "Енергия (kWh)", conversion_factor: "Коефициент на преобразуване (kWh за m³)", conversion_factor_entity: "Обект за коефициент на преобразуване", picture_style: "Изображение на електромера", style_auto: "Автоматично", style_digital: "Цифров уред", style_disc: "Въртящ се диск", style_submeter: "Подброяч (щипка)",
     leak_section: "Откриване на течове", flow_entity: "Сензор за дебит", leak_entity: "Сензор за теч", leak_start: "Начало на нощния период", leak_end: "Край на нощния период",
     leak_threshold: "Праг (L/ч за вода)", daily_limit: "Дневен лимит", sources_section: "Източници на данни", statistic_id: "Статистика (вместо тази на сензора)",
     today_entity: "Брояч на потребление (дневен)", week_entity: "Брояч на потребление (седмичен)", month_entity: "Брояч на потребление (месечен)", year_entity: "Брояч на потребление (годишен)",
     zoom: "Бутон за подробности", zoom_helper: "Превключва мини картата към пълната карта и обратно", language: "Език", lang_auto: "Автоматично (Home Assistant)",
   },
   ru: {
-    meter_water: "Счётчик воды", meter_gas: "Счётчик газа", index: "Показания", today: "Сегодня", week: "Эта неделя", month: "Этот месяц", year: "Этот год",
+    meter_water: "Счётчик воды", meter_gas: "Счётчик газа", meter_electricity: "Счётчик электроэнергии", type_electricity: "Электричество", power: "Мощность", index: "Показания", today: "Сегодня", week: "Эта неделя", month: "Этот месяц", year: "Этот год",
     yesterday: "Вчера", last_week: "Прошлая неделя", last_month: "Прошлый месяц", last_year: "Прошлый год",
     vs_day: "к вчерашнему дню", vs_week: "к прошлой неделе", vs_month: "к прошлому месяцу", vs_year: "к прошлому году",
     consumption: "Потребление", history: "История", night: "Ночной контроль", tab_day: "День", tab_week: "Неделя", tab_month: "Месяц", tab_year: "Год",
@@ -409,14 +421,14 @@ const STRINGS = {
     show_title: "Показывать заголовок", show_subtitle: "Показывать подзаголовок", show_picture: "Показывать изображение счётчика", show_index: "Показывать показания",
     show_consumption: "Показывать потребление", show_comparison: "Сравнивать с предыдущим периодом", show_chart: "Показывать график истории", show_cost: "Показывать стоимость",
     leak_detection: "Обнаружение утечек", liters: "Малые объёмы воды в литрах", collapsed: "Разделы, свёрнутые по умолчанию", cost_section: "Стоимость", price: "Цена за единицу",
-    price_entity: "Объект цены", currency: "Валюта", price_unit: "Цена за", unit_volume: "Объём (m³)", unit_energy: "Энергия (kWh)", conversion_factor: "Коэффициент пересчёта (kWh на m³)",
+    price_entity: "Объект цены", currency: "Валюта", price_unit: "Цена за", unit_volume: "Объём (m³)", unit_energy: "Энергия (kWh)", conversion_factor: "Коэффициент пересчёта (kWh на m³)", conversion_factor_entity: "Объект коэффициента пересчёта", picture_style: "Изображение счётчика электроэнергии", style_auto: "Автоматически", style_digital: "Цифровой счётчик", style_disc: "Вращающийся диск", style_submeter: "Субсчётчик (клещи)",
     leak_section: "Обнаружение утечек", flow_entity: "Датчик расхода", leak_entity: "Датчик протечки", leak_start: "Начало ночного интервала", leak_end: "Конец ночного интервала",
     leak_threshold: "Порог (л/ч для воды)", daily_limit: "Дневной лимит", sources_section: "Источники данных", statistic_id: "Статистика (вместо статистики датчика)",
     today_entity: "Счётчик потребления (за день)", week_entity: "Счётчик потребления (за неделю)", month_entity: "Счётчик потребления (за месяц)", year_entity: "Счётчик потребления (за год)",
     zoom: "Кнопка подробностей", zoom_helper: "Переключает мини-карточку на полную и обратно", language: "Язык", lang_auto: "Автоматически (Home Assistant)",
   },
   uk: {
-    meter_water: "Лічильник води", meter_gas: "Лічильник газу", index: "Показники", today: "Сьогодні", week: "Цей тиждень", month: "Цей місяць", year: "Цей рік",
+    meter_water: "Лічильник води", meter_gas: "Лічильник газу", meter_electricity: "Лічильник електроенергії", type_electricity: "Електрика", power: "Потужність", index: "Показники", today: "Сьогодні", week: "Цей тиждень", month: "Цей місяць", year: "Цей рік",
     yesterday: "Учора", last_week: "Минулий тиждень", last_month: "Минулий місяць", last_year: "Минулий рік",
     vs_day: "до вчора", vs_week: "до минулого тижня", vs_month: "до минулого місяця", vs_year: "до минулого року",
     consumption: "Споживання", history: "Історія", night: "Нічний контроль", tab_day: "День", tab_week: "Тиждень", tab_month: "Місяць", tab_year: "Рік",
@@ -429,14 +441,14 @@ const STRINGS = {
     show_title: "Показувати заголовок", show_subtitle: "Показувати підзаголовок", show_picture: "Показувати зображення лічильника", show_index: "Показувати показники",
     show_consumption: "Показувати споживання", show_comparison: "Порівнювати з попереднім періодом", show_chart: "Показувати графік історії", show_cost: "Показувати вартість",
     leak_detection: "Виявлення витоків", liters: "Малі об'єми води в літрах", collapsed: "Розділи, згорнуті за замовчуванням", cost_section: "Вартість", price: "Ціна за одиницю",
-    price_entity: "Об'єкт ціни", currency: "Валюта", price_unit: "Ціна за", unit_volume: "Об'єм (m³)", unit_energy: "Енергія (kWh)", conversion_factor: "Коефіцієнт перерахунку (kWh на m³)",
+    price_entity: "Об'єкт ціни", currency: "Валюта", price_unit: "Ціна за", unit_volume: "Об'єм (m³)", unit_energy: "Енергія (kWh)", conversion_factor: "Коефіцієнт перерахунку (kWh на m³)", conversion_factor_entity: "Сутність коефіцієнта перерахунку", picture_style: "Зображення лічильника електроенергії", style_auto: "Автоматично", style_digital: "Цифровий лічильник", style_disc: "Обертовий диск", style_submeter: "Сублічильник (кліщі)",
     leak_section: "Виявлення витоків", flow_entity: "Датчик витрати", leak_entity: "Датчик протікання", leak_start: "Початок нічного інтервалу", leak_end: "Кінець нічного інтервалу",
     leak_threshold: "Поріг (л/год для води)", daily_limit: "Денний ліміт", sources_section: "Джерела даних", statistic_id: "Статистика (замість статистики датчика)",
     today_entity: "Лічильник споживання (денний)", week_entity: "Лічильник споживання (тижневий)", month_entity: "Лічильник споживання (місячний)", year_entity: "Лічильник споживання (річний)",
     zoom: "Кнопка подробиць", zoom_helper: "Перемикає міні-картку на повну й назад", language: "Мова", lang_auto: "Автоматично (Home Assistant)",
   },
   hu: {
-    meter_water: "Vízóra", meter_gas: "Gázóra", index: "Mérőállás", today: "Ma", week: "Ezen a héten", month: "Ebben a hónapban", year: "Ebben az évben",
+    meter_water: "Vízóra", meter_gas: "Gázóra", meter_electricity: "Villanyóra", type_electricity: "Áram", power: "Teljesítmény", index: "Mérőállás", today: "Ma", week: "Ezen a héten", month: "Ebben a hónapban", year: "Ebben az évben",
     yesterday: "Tegnap", last_week: "Múlt hét", last_month: "Múlt hónap", last_year: "Tavaly",
     vs_day: "a tegnapihoz képest", vs_week: "a múlt héthez képest", vs_month: "a múlt hónaphoz képest", vs_year: "a tavalyihoz képest",
     consumption: "Fogyasztás", history: "Előzmények", night: "Éjszakai felügyelet", tab_day: "Nap", tab_week: "Hét", tab_month: "Hónap", tab_year: "Év",
@@ -449,14 +461,14 @@ const STRINGS = {
     show_title: "Cím megjelenítése", show_subtitle: "Alcím megjelenítése", show_picture: "A mérő képének megjelenítése", show_index: "Mérőállás megjelenítése",
     show_consumption: "Fogyasztás megjelenítése", show_comparison: "Összevetés az előző időszakkal", show_chart: "Előzménydiagram megjelenítése", show_cost: "Költség megjelenítése",
     leak_detection: "Szivárgásérzékelés", liters: "Kis vízmennyiségek literben", collapsed: "Alapértelmezetten összecsukott szakaszok", cost_section: "Költség", price: "Egységár",
-    price_entity: "Ár entitás", currency: "Pénznem", price_unit: "Ár / egység", unit_volume: "Térfogat (m³)", unit_energy: "Energia (kWh)", conversion_factor: "Átváltási tényező (kWh / m³)",
+    price_entity: "Ár entitás", currency: "Pénznem", price_unit: "Ár / egység", unit_volume: "Térfogat (m³)", unit_energy: "Energia (kWh)", conversion_factor: "Átváltási tényező (kWh / m³)", conversion_factor_entity: "Átváltási tényező entitás", picture_style: "Villanyóra képe", style_auto: "Automatikus", style_digital: "Digitális mérő", style_disc: "Forgó tárcsa", style_submeter: "Almérő (lakatfogó)",
     leak_section: "Szivárgásérzékelés", flow_entity: "Átfolyásérzékelő", leak_entity: "Szivárgásérzékelő", leak_start: "Az éjszakai időszak kezdete", leak_end: "Az éjszakai időszak vége",
     leak_threshold: "Küszöb (L/óra víz esetén)", daily_limit: "Napi korlát", sources_section: "Adatforrások", statistic_id: "Statisztika (az érzékelőé helyett)",
     today_entity: "Fogyasztásmérő (napi)", week_entity: "Fogyasztásmérő (heti)", month_entity: "Fogyasztásmérő (havi)", year_entity: "Fogyasztásmérő (éves)",
     zoom: "Részletek gomb", zoom_helper: "A mini kártyát a teljes kártyára váltja és vissza", language: "Nyelv", lang_auto: "Automatikus (Home Assistant)",
   },
   sk: {
-    meter_water: "Vodomer", meter_gas: "Plynomer", index: "Stav meradla", today: "Dnes", week: "Tento týždeň", month: "Tento mesiac", year: "Tento rok",
+    meter_water: "Vodomer", meter_gas: "Plynomer", meter_electricity: "Elektromer", type_electricity: "Elektrina", power: "Výkon", index: "Stav meradla", today: "Dnes", week: "Tento týždeň", month: "Tento mesiac", year: "Tento rok",
     yesterday: "Včera", last_week: "Minulý týždeň", last_month: "Minulý mesiac", last_year: "Minulý rok",
     vs_day: "oproti včerajšku", vs_week: "oproti minulému týždňu", vs_month: "oproti minulému mesiacu", vs_year: "oproti minulému roku",
     consumption: "Spotreba", history: "História", night: "Nočný dohľad", tab_day: "Deň", tab_week: "Týždeň", tab_month: "Mesiac", tab_year: "Rok",
@@ -469,14 +481,14 @@ const STRINGS = {
     show_title: "Zobraziť názov", show_subtitle: "Zobraziť podnadpis", show_picture: "Zobraziť obrázok meradla", show_index: "Zobraziť stav meradla",
     show_consumption: "Zobraziť spotrebu", show_comparison: "Porovnať s predchádzajúcim obdobím", show_chart: "Zobraziť graf histórie", show_cost: "Zobraziť náklady",
     leak_detection: "Detekcia únikov", liters: "Malé množstvá vody v litroch", collapsed: "Predvolene zbalené sekcie", cost_section: "Náklady", price: "Cena za jednotku",
-    price_entity: "Entita ceny", currency: "Mena", price_unit: "Cena za", unit_volume: "Objem (m³)", unit_energy: "Energia (kWh)", conversion_factor: "Prepočítavací koeficient (kWh na m³)",
+    price_entity: "Entita ceny", currency: "Mena", price_unit: "Cena za", unit_volume: "Objem (m³)", unit_energy: "Energia (kWh)", conversion_factor: "Prepočítavací koeficient (kWh na m³)", conversion_factor_entity: "Entita prepočítavacieho koeficientu", picture_style: "Obrázok elektromera", style_auto: "Automaticky", style_digital: "Digitálny merač", style_disc: "Otáčajúci sa disk", style_submeter: "Podružný merač (kliešte)",
     leak_section: "Detekcia únikov", flow_entity: "Senzor prietoku", leak_entity: "Senzor úniku", leak_start: "Začiatok nočného okna", leak_end: "Koniec nočného okna",
     leak_threshold: "Prah (L/h pre vodu)", daily_limit: "Denný limit", sources_section: "Zdroje údajov", statistic_id: "Štatistika (namiesto štatistiky senzora)",
     today_entity: "Merač spotreby (denný)", week_entity: "Merač spotreby (týždenný)", month_entity: "Merač spotreby (mesačný)", year_entity: "Merač spotreby (ročný)",
     zoom: "Tlačidlo podrobností", zoom_helper: "Prepne mini kartu na úplnú kartu a späť", language: "Jazyk", lang_auto: "Automaticky (Home Assistant)",
   },
   cs: {
-    meter_water: "Vodoměr", meter_gas: "Plynoměr", index: "Stav měřidla", today: "Dnes", week: "Tento týden", month: "Tento měsíc", year: "Letos",
+    meter_water: "Vodoměr", meter_gas: "Plynoměr", meter_electricity: "Elektroměr", type_electricity: "Elektřina", power: "Výkon", index: "Stav měřidla", today: "Dnes", week: "Tento týden", month: "Tento měsíc", year: "Letos",
     yesterday: "Včera", last_week: "Minulý týden", last_month: "Minulý měsíc", last_year: "Loni",
     vs_day: "oproti včerejšku", vs_week: "oproti minulému týdnu", vs_month: "oproti minulému měsíci", vs_year: "oproti loňsku",
     consumption: "Spotřeba", history: "Historie", night: "Noční dohled", tab_day: "Den", tab_week: "Týden", tab_month: "Měsíc", tab_year: "Rok",
@@ -489,14 +501,14 @@ const STRINGS = {
     show_title: "Zobrazit název", show_subtitle: "Zobrazit podnadpis", show_picture: "Zobrazit obrázek měřidla", show_index: "Zobrazit stav měřidla",
     show_consumption: "Zobrazit spotřebu", show_comparison: "Porovnat s předchozím obdobím", show_chart: "Zobrazit graf historie", show_cost: "Zobrazit náklady",
     leak_detection: "Detekce úniků", liters: "Malá množství vody v litrech", collapsed: "Ve výchozím stavu sbalené sekce", cost_section: "Náklady", price: "Cena za jednotku",
-    price_entity: "Entita ceny", currency: "Měna", price_unit: "Cena za", unit_volume: "Objem (m³)", unit_energy: "Energie (kWh)", conversion_factor: "Přepočítací koeficient (kWh na m³)",
+    price_entity: "Entita ceny", currency: "Měna", price_unit: "Cena za", unit_volume: "Objem (m³)", unit_energy: "Energie (kWh)", conversion_factor: "Přepočítací koeficient (kWh na m³)", conversion_factor_entity: "Entita přepočítacího koeficientu", picture_style: "Obrázek elektroměru", style_auto: "Automaticky", style_digital: "Digitální měřidlo", style_disc: "Otáčející se disk", style_submeter: "Podružné měřidlo (kleště)",
     leak_section: "Detekce úniků", flow_entity: "Senzor průtoku", leak_entity: "Senzor úniku", leak_start: "Začátek nočního okna", leak_end: "Konec nočního okna",
     leak_threshold: "Práh (L/h pro vodu)", daily_limit: "Denní limit", sources_section: "Zdroje dat", statistic_id: "Statistika (místo statistiky senzoru)",
     today_entity: "Měřič spotřeby (denní)", week_entity: "Měřič spotřeby (týdenní)", month_entity: "Měřič spotřeby (měsíční)", year_entity: "Měřič spotřeby (roční)",
     zoom: "Tlačítko podrobností", zoom_helper: "Přepne mini kartu na úplnou kartu a zpět", language: "Jazyk", lang_auto: "Automaticky (Home Assistant)",
   },
   sl: {
-    meter_water: "Vodomer", meter_gas: "Plinomer", index: "Stanje števca", today: "Danes", week: "Ta teden", month: "Ta mesec", year: "Letos",
+    meter_water: "Vodomer", meter_gas: "Plinomer", meter_electricity: "Števec elektrike", type_electricity: "Elektrika", power: "Moč", index: "Stanje števca", today: "Danes", week: "Ta teden", month: "Ta mesec", year: "Letos",
     yesterday: "Včeraj", last_week: "Prejšnji teden", last_month: "Prejšnji mesec", last_year: "Lani",
     vs_day: "glede na včeraj", vs_week: "glede na prejšnji teden", vs_month: "glede na prejšnji mesec", vs_year: "glede na lani",
     consumption: "Poraba", history: "Zgodovina", night: "Nočni nadzor", tab_day: "Dan", tab_week: "Teden", tab_month: "Mesec", tab_year: "Leto",
@@ -509,14 +521,14 @@ const STRINGS = {
     show_title: "Prikaži naslov", show_subtitle: "Prikaži podnaslov", show_picture: "Prikaži sliko števca", show_index: "Prikaži stanje števca",
     show_consumption: "Prikaži porabo", show_comparison: "Primerjaj s prejšnjim obdobjem", show_chart: "Prikaži graf zgodovine", show_cost: "Prikaži strošek",
     leak_detection: "Zaznavanje puščanja", liters: "Majhne količine vode v litrih", collapsed: "Privzeto strnjeni razdelki", cost_section: "Strošek", price: "Cena na enoto",
-    price_entity: "Entiteta cene", currency: "Valuta", price_unit: "Cena na", unit_volume: "Prostornina (m³)", unit_energy: "Energija (kWh)", conversion_factor: "Pretvorbeni faktor (kWh na m³)",
+    price_entity: "Entiteta cene", currency: "Valuta", price_unit: "Cena na", unit_volume: "Prostornina (m³)", unit_energy: "Energija (kWh)", conversion_factor: "Pretvorbeni faktor (kWh na m³)", conversion_factor_entity: "Entiteta pretvorbenega faktorja", picture_style: "Slika števca elektrike", style_auto: "Samodejno", style_digital: "Digitalni števec", style_disc: "Vrteči se disk", style_submeter: "Podštevec (klešče)",
     leak_section: "Zaznavanje puščanja", flow_entity: "Senzor pretoka", leak_entity: "Senzor puščanja", leak_start: "Začetek nočnega okna", leak_end: "Konec nočnega okna",
     leak_threshold: "Prag (L/h za vodo)", daily_limit: "Dnevna omejitev", sources_section: "Viri podatkov", statistic_id: "Statistika (namesto statistike senzorja)",
     today_entity: "Števec porabe (dnevni)", week_entity: "Števec porabe (tedenski)", month_entity: "Števec porabe (mesečni)", year_entity: "Števec porabe (letni)",
     zoom: "Gumb za podrobnosti", zoom_helper: "Preklopi mini kartico na polno kartico in nazaj", language: "Jezik", lang_auto: "Samodejno (Home Assistant)",
   },
   lv: {
-    meter_water: "Ūdens skaitītājs", meter_gas: "Gāzes skaitītājs", index: "Rādījums", today: "Šodien", week: "Šonedēļ", month: "Šomēnes", year: "Šogad",
+    meter_water: "Ūdens skaitītājs", meter_gas: "Gāzes skaitītājs", meter_electricity: "Elektrības skaitītājs", type_electricity: "Elektrība", power: "Jauda", index: "Rādījums", today: "Šodien", week: "Šonedēļ", month: "Šomēnes", year: "Šogad",
     yesterday: "Vakar", last_week: "Pagājušajā nedēļā", last_month: "Pagājušajā mēnesī", last_year: "Pagājušajā gadā",
     vs_day: "salīdzinot ar vakardienu", vs_week: "salīdzinot ar pagājušo nedēļu", vs_month: "salīdzinot ar pagājušo mēnesi", vs_year: "salīdzinot ar pagājušo gadu",
     consumption: "Patēriņš", history: "Vēsture", night: "Nakts uzraudzība", tab_day: "Diena", tab_week: "Nedēļa", tab_month: "Mēnesis", tab_year: "Gads",
@@ -529,14 +541,14 @@ const STRINGS = {
     show_title: "Rādīt virsrakstu", show_subtitle: "Rādīt apakšvirsrakstu", show_picture: "Rādīt skaitītāja attēlu", show_index: "Rādīt rādījumu",
     show_consumption: "Rādīt patēriņu", show_comparison: "Salīdzināt ar iepriekšējo periodu", show_chart: "Rādīt vēstures diagrammu", show_cost: "Rādīt izmaksas",
     leak_detection: "Noplūžu noteikšana", liters: "Nelielus ūdens daudzumus litros", collapsed: "Pēc noklusējuma sakļautās sadaļas", cost_section: "Izmaksas", price: "Vienības cena",
-    price_entity: "Cenas entītija", currency: "Valūta", price_unit: "Cena par", unit_volume: "Tilpums (m³)", unit_energy: "Enerģija (kWh)", conversion_factor: "Pārrēķina koeficients (kWh uz m³)",
+    price_entity: "Cenas entītija", currency: "Valūta", price_unit: "Cena par", unit_volume: "Tilpums (m³)", unit_energy: "Enerģija (kWh)", conversion_factor: "Pārrēķina koeficients (kWh uz m³)", conversion_factor_entity: "Pārrēķina koeficienta entītija", picture_style: "Elektrības skaitītāja attēls", style_auto: "Automātiski", style_digital: "Digitāls skaitītājs", style_disc: "Rotējošs disks", style_submeter: "Apakšskaitītājs (knaibles)",
     leak_section: "Noplūžu noteikšana", flow_entity: "Plūsmas sensors", leak_entity: "Noplūdes sensors", leak_start: "Nakts perioda sākums", leak_end: "Nakts perioda beigas",
     leak_threshold: "Slieksnis (L/h ūdenim)", daily_limit: "Dienas limits", sources_section: "Datu avoti", statistic_id: "Statistika (sensora statistikas vietā)",
     today_entity: "Patēriņa skaitītājs (dienas)", week_entity: "Patēriņa skaitītājs (nedēļas)", month_entity: "Patēriņa skaitītājs (mēneša)", year_entity: "Patēriņa skaitītājs (gada)",
     zoom: "Detaļu poga", zoom_helper: "Pārslēdz mini karti uz pilno karti un atpakaļ", language: "Valoda", lang_auto: "Automātiski (Home Assistant)",
   },
   el: {
-    meter_water: "Μετρητής νερού", meter_gas: "Μετρητής αερίου", index: "Ένδειξη", today: "Σήμερα", week: "Αυτή την εβδομάδα", month: "Αυτόν τον μήνα", year: "Φέτος",
+    meter_water: "Μετρητής νερού", meter_gas: "Μετρητής αερίου", meter_electricity: "Μετρητής ηλεκτρικού", type_electricity: "Ηλεκτρικό", power: "Ισχύς", index: "Ένδειξη", today: "Σήμερα", week: "Αυτή την εβδομάδα", month: "Αυτόν τον μήνα", year: "Φέτος",
     yesterday: "Χθες", last_week: "Προηγούμενη εβδομάδα", last_month: "Προηγούμενος μήνας", last_year: "Πέρσι",
     vs_day: "σε σχέση με χθες", vs_week: "σε σχέση με την προηγούμενη εβδομάδα", vs_month: "σε σχέση με τον προηγούμενο μήνα", vs_year: "σε σχέση με πέρσι",
     consumption: "Κατανάλωση", history: "Ιστορικό", night: "Νυχτερινή επιτήρηση", tab_day: "Ημέρα", tab_week: "Εβδομάδα", tab_month: "Μήνας", tab_year: "Έτος",
@@ -549,7 +561,7 @@ const STRINGS = {
     show_title: "Εμφάνιση τίτλου", show_subtitle: "Εμφάνιση υπότιτλου", show_picture: "Εμφάνιση εικόνας μετρητή", show_index: "Εμφάνιση ένδειξης",
     show_consumption: "Εμφάνιση κατανάλωσης", show_comparison: "Σύγκριση με την προηγούμενη περίοδο", show_chart: "Εμφάνιση γραφήματος ιστορικού", show_cost: "Εμφάνιση κόστους",
     leak_detection: "Ανίχνευση διαρροών", liters: "Μικρές ποσότητες νερού σε λίτρα", collapsed: "Ενότητες συμπτυγμένες από προεπιλογή", cost_section: "Κόστος", price: "Τιμή ανά μονάδα",
-    price_entity: "Οντότητα τιμής", currency: "Νόμισμα", price_unit: "Τιμή ανά", unit_volume: "Όγκος (m³)", unit_energy: "Ενέργεια (kWh)", conversion_factor: "Συντελεστής μετατροπής (kWh ανά m³)",
+    price_entity: "Οντότητα τιμής", currency: "Νόμισμα", price_unit: "Τιμή ανά", unit_volume: "Όγκος (m³)", unit_energy: "Ενέργεια (kWh)", conversion_factor: "Συντελεστής μετατροπής (kWh ανά m³)", conversion_factor_entity: "Οντότητα συντελεστή μετατροπής", picture_style: "Εικόνα μετρητή ηλεκτρικού", style_auto: "Αυτόματα", style_digital: "Ψηφιακός μετρητής", style_disc: "Περιστρεφόμενος δίσκος", style_submeter: "Υπομετρητής (δαγκάνα)",
     leak_section: "Ανίχνευση διαρροών", flow_entity: "Αισθητήρας ροής", leak_entity: "Αισθητήρας διαρροής", leak_start: "Αρχή νυχτερινού διαστήματος", leak_end: "Τέλος νυχτερινού διαστήματος",
     leak_threshold: "Όριο (L/ώρα για νερό)", daily_limit: "Ημερήσιο όριο", sources_section: "Πηγές δεδομένων", statistic_id: "Στατιστικό (αντί του αισθητήρα)",
     today_entity: "Μετρητής κατανάλωσης (ημερήσιος)", week_entity: "Μετρητής κατανάλωσης (εβδομαδιαίος)", month_entity: "Μετρητής κατανάλωσης (μηνιαίος)", year_entity: "Μετρητής κατανάλωσης (ετήσιος)",
@@ -878,16 +890,20 @@ const leakThreshold = (config, type, unit) => {
   return type === "water" && normUnit(unit) in VOLUME_L ? convert(x, "L", unit) : x;
 };
 
+// An energy sensor is a meter only when it counts up (state_class total / total_increasing): plain `power` sensors in W
+// are not, and `energy` sensors without a cumulative state_class (a rate, a daily reset helper's value) are skipped.
+const METER_DC = { water: 0, gas: 1, energy: 2 };
 const meterOf = (s) => {
   const dc = s?.attributes?.device_class;
-  return s?.entity_id?.startsWith("sensor.") && (dc === "water" || dc === "gas");
+  if (!s?.entity_id?.startsWith("sensor.") || !(dc in METER_DC)) return false;
+  return dc !== "energy" || ["total", "total_increasing"].includes(s.attributes.state_class);
 };
-// Meters first: a cumulative sensor (state_class total / total_increasing), water before gas.
+// Meters first: a cumulative sensor (state_class total / total_increasing), then water, gas, electricity.
 const listMeters = (hass) =>
   Object.values(hass?.states || {})
     .filter(meterOf)
     .sort((a, b) => {
-      const rank = (s) => (["total", "total_increasing"].includes(s.attributes.state_class) ? 0 : 2) + (s.attributes.device_class === "water" ? 0 : 1);
+      const rank = (s) => (["total", "total_increasing"].includes(s.attributes.state_class) ? 0 : 6) + METER_DC[s.attributes.device_class];
       return rank(a) - rank(b) || a.entity_id.localeCompare(b.entity_id);
     });
 
@@ -990,6 +1006,52 @@ const gasArt = (index) =>
   '<rect x="19" y="50" width="22" height="2.4" rx="1.2" fill="#d9cfb7"/><rect x="19" y="55" width="16" height="2.4" rx="1.2" fill="#d9cfb7"/>' +
   "</svg>";
 
+// Electricity meter, three drawings (`picture_style`): `digital` a wall smart meter (its index digits, a mains LED and a
+// power bar), `disc` the classic Ferraris meter (an aluminium disc that spins the faster the more is drawn), `submeter`
+// a module clamped on a wire (a current that runs along the wire, a power screen in W). `active`: power is being drawn
+// now. `high`: above the daily limit — the meter pulses red and the disc or the current speeds up.
+const elecDigital = (index) =>
+  '<rect x="31" y="70" width="18" height="18" fill="#9aa5b1"/>' +
+  '<rect class="halo" x="12" y="4" width="56" height="70" rx="12"/>' +
+  '<rect x="15" y="6" width="50" height="66" rx="9" fill="#eef2ea" stroke="#bcc6b4" stroke-width="1"/>' +
+  '<path d="M15 15a9 9 0 0 1 9-9h32a9 9 0 0 1 9 9v3H15z" fill="#2e7d32"/>' +
+  '<rect x="21" y="25" width="38" height="15" rx="2.5" fill="#10261a"/>' +
+  `<text class="digits" x="40" y="35" text-anchor="middle">${esc(digitsOf(index, 6))}</text>` +
+  '<rect class="elec-scan" x="22" y="26" width="5" height="13"/>' +
+  '<text class="unit elec-unit" x="40" y="47" text-anchor="middle">kWh</text>' +
+  '<circle class="elec-led" cx="27" cy="53" r="2"/><circle cx="34" cy="53" r="2" fill="#cfd8c8"/><circle cx="41" cy="53" r="2" fill="#cfd8c8"/>' +
+  '<rect x="21" y="60" width="38" height="5" rx="2.5" fill="#d3dccb"/>' +
+  '<rect class="elec-bar" x="21" y="60" width="38" height="5" rx="2.5"/>';
+
+const elecDisc = (index) =>
+  '<defs><radialGradient id="um-edome" cx=".4" cy=".3" r=".8"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#dfe6ee"/></radialGradient></defs>' +
+  '<rect x="34" y="66" width="12" height="22" fill="#9aa5b1"/>' +
+  '<circle class="halo" cx="40" cy="36" r="31"/>' +
+  '<circle cx="40" cy="36" r="30" fill="#e9eef3" stroke="#b7c0ca" stroke-width="1.5"/>' +
+  '<circle cx="40" cy="36" r="24.5" fill="url(#um-edome)" stroke="#c3ccd6" stroke-width="1"/>' +
+  '<rect x="26" y="19" width="28" height="9" rx="1.5" fill="#1d2632"/>' +
+  `<text class="digits" x="40" y="26" text-anchor="middle">${esc(digitsOf(index, 5))}</text>` +
+  '<ellipse cx="40" cy="45" rx="17" ry="6.5" fill="#cdd5dd" stroke="#aeb7c1" stroke-width=".8"/>' +
+  '<g class="elec-disc"><rect x="39" y="38.5" width="2" height="13" rx="1" fill="#2b333c"/></g>' +
+  '<text class="unit elec-unit" x="40" y="58.5" text-anchor="middle">kWh</text>';
+
+const elecSubmeter = (power) =>
+  '<path d="M2 62 H78" stroke="#5b6670" stroke-width="6" fill="none" stroke-linecap="round"/>' +
+  '<path class="elec-cur" d="M2 62 H78"/>' +
+  '<path d="M62 54a8 8 0 1 0 0 16" fill="none" stroke="#9aa5b1" stroke-width="3.4" stroke-linecap="round"/>' +
+  '<path d="M62 54a8 8 0 1 1 0 16" fill="none" stroke="#c2cad2" stroke-width="3.4" stroke-linecap="round" opacity=".5"/>' +
+  '<rect class="halo" x="13" y="6" width="42" height="42" rx="9"/>' +
+  '<rect x="15" y="8" width="38" height="38" rx="7" fill="#f3f6f1" stroke="#b7c0ca" stroke-width="1"/>' +
+  '<rect x="15" y="8" width="38" height="8" rx="7" fill="#2e7d32"/><rect x="15" y="13" width="38" height="3" fill="#2e7d32"/>' +
+  '<rect x="20" y="20" width="28" height="14" rx="2" fill="#10261a"/>' +
+  `<text class="digits" style="font-size:5.4px" x="34" y="29.5" text-anchor="middle">${esc(power)}</text>` +
+  '<text class="unit elec-unit" x="44" y="42" text-anchor="middle">W</text>' +
+  '<circle class="elec-led" cx="22" cy="40" r="2.3"/>';
+
+const ELEC_ARTS = { digital: elecDigital, disc: elecDisc, submeter: elecSubmeter };
+const electricArt = (index, style, power) =>
+  `<svg viewBox="0 0 80 88" aria-hidden="true">${(ELEC_ARTS[style] || elecDigital)(style === "submeter" ? power : index)}</svg>`;
+
 const ART_STYLE = `
   .picture { flex: none; display: flex; align-items: center; justify-content: center; }
   .picture svg { width: 100%; height: 100%; overflow: visible; filter: drop-shadow(0 3px 6px rgba(0,0,0,.18)); }
@@ -1017,6 +1079,28 @@ const ART_STYLE = `
   @keyframes um-drip { 0% { opacity: 0; transform: translateY(-2px); } 15% { opacity: 1; } 85% { opacity: 1; transform: translateY(8px); } 100% { opacity: 0; transform: translateY(9px); } }
   @keyframes um-puddle { 0%, 100% { opacity: .45; transform: scale(.75, 1); } 50% { opacity: .7; transform: scale(1, 1); } }
   @keyframes um-halo { 0% { opacity: .8; transform: scale(.94); } 100% { opacity: 0; transform: scale(1.08); } }
+  /* Electricity meters: digital (LED, power bar, screen sweep), disc (Ferraris), submeter (current along the wire). */
+  .picture .elec-unit { fill: #8fb89a; }
+  .picture .elec-led { fill: #9fb7a4; }
+  .picture .elec-bar { fill: #43a047; transform-box: fill-box; transform-origin: 0 50%; transform: scaleX(.18); }
+  .picture .elec-scan { fill: #8fffbf; opacity: 0; }
+  .picture .elec-disc { transform-box: fill-box; transform-origin: 50% 50%; }
+  .picture .elec-cur { fill: none; stroke: #66bb6a; stroke-width: 2.6; stroke-linecap: round; stroke-dasharray: 4 11; opacity: 0; }
+  .picture.active .elec-led { fill: #43a047; animation: um-eblink 1.1s steps(1, end) infinite; }
+  .picture.active .elec-bar { animation: um-ebar 2.6s ease-in-out infinite; }
+  .picture.active .elec-scan { animation: um-escan 2.2s ease-in-out infinite; }
+  .picture.active .elec-disc { animation: um-edisc 2s linear infinite; }
+  .picture.active .elec-cur { opacity: 1; animation: um-eflow 1s linear infinite; }
+  .picture.high .halo { animation: um-halo 1.5s ease-out infinite; }
+  .picture.high .elec-disc { animation-duration: .7s; }
+  .picture.high .elec-cur { stroke: #ffb199; animation-duration: .45s; }
+  .picture.high .elec-led { fill: var(--um-crit); animation: um-eblink .5s steps(1, end) infinite; }
+  .picture.high .elec-bar { fill: var(--um-crit); transform: scaleX(.92); }
+  @keyframes um-eblink { 0%, 55% { opacity: 1; } 56%, 100% { opacity: .25; } }
+  @keyframes um-ebar { 0%, 100% { transform: scaleX(.18); } 50% { transform: scaleX(.74); } }
+  @keyframes um-escan { 0% { opacity: 0; transform: translateX(-6px); } 20% { opacity: .5; } 60% { opacity: .5; } 100% { opacity: 0; transform: translateX(26px); } }
+  @keyframes um-edisc { to { transform: rotate(360deg); } }
+  @keyframes um-eflow { to { stroke-dashoffset: -15; } }
 `;
 
 // ---------------------------------------------------------------------------
@@ -1342,8 +1426,9 @@ class UtilityMeterCard extends HTMLElement {
 
   _type(st) {
     const c = this._config.meter_type;
-    if (c === "water" || c === "gas") return c;
-    return st?.attributes?.device_class === "gas" ? "gas" : "water";
+    if (c === "water" || c === "gas" || c === "electricity") return c;
+    const dc = st?.attributes?.device_class;
+    return dc === "gas" ? "gas" : dc === "energy" ? "electricity" : "water";
   }
 
   _utility() {
@@ -1362,7 +1447,7 @@ class UtilityMeterCard extends HTMLElement {
     const h = this._hass;
     if (!h || !this._config) return null;
     const c = this._config;
-    const ids = [this._entity(), c.flow_entity, c.leak_entity, c.price_entity, ...Object.values(this._utility())];
+    const ids = [this._entity(), c.flow_entity, c.leak_entity, c.price_entity, c.conversion_factor_entity, ...Object.values(this._utility())];
     return [h.language, h.locale, h.themes?.darkMode, h.config?.currency, this._statsVersion, startOfDay(Date.now()), ...ids.map((id) => h.states[id])];
   }
 
@@ -1564,14 +1649,27 @@ class UtilityMeterCard extends HTMLElement {
     return String(this._config.currency || this._hass.config?.currency || "EUR").toUpperCase();
   }
 
+  // The m³→kWh conversion factor for gas cost: a live sensor (`conversion_factor_entity`, the daily factor GRDF
+  // publishes), else the fixed `conversion_factor`, else 11.2. A sensor reading unknown falls back to the fixed value.
+  _conversionFactor() {
+    const c = this._config;
+    const se = this._s(c.conversion_factor_entity);
+    const sv = se ? num(se) : null;
+    if (sv !== null && sv > 0) return sv;
+    const fixed = Number(c.conversion_factor);
+    return Number.isFinite(fixed) && fixed > 0 ? fixed : 11.2;
+  }
+
   // Cost of a consumption in the sensor's unit: price per m³ (per the sensor's unit when it is not metric) or per kWh
-  // (`price_unit: energy`, with `conversion_factor` kWh per m³ for a meter counting volumes, as Gazpar's).
+  // (`price_unit: energy`, with the conversion factor kWh per m³ for a meter counting volumes, as Gazpar's).
+  // Electricity meters count kWh and are priced per kWh, so their default price unit is energy.
   _cost(m, v) {
     const p = this._price();
     if (p === null || v === null || v === undefined || this._config.show_cost === false) return null;
-    const factor = Number(this._config.conversion_factor) || 11.2;
+    const priceUnit = this._config.price_unit || (m.type === "electricity" ? "energy" : "volume");
+    const factor = this._conversionFactor();
     let q = v;
-    if (this._config.price_unit === "energy") {
+    if (priceUnit === "energy") {
       if (isEnergy(m.unit)) q = convert(v, m.unit, "kWh");
       // The factor is per m³: any volume (ft³, CCF, gal) is moved to m³ first.
       else q = (normUnit(m.unit) in VOLUME_L ? convert(v, m.unit, "m³") : v) * factor;
@@ -1661,14 +1759,30 @@ class UtilityMeterCard extends HTMLElement {
   _flowText(m) {
     const f = m.flow;
     const v = f.v === null ? "—" : `${fmtNum(f.v, this._locale(), Math.abs(f.v) < 10 ? 2 : 1)} ${f.unit}`.trim();
-    return `${this._t("flow")} ${v}`;
+    return `${this._t(m.type === "electricity" ? "power" : "flow")} ${v}`;
+  }
+
+  // Electricity picture: `digital`, `disc` or `submeter`; `auto` (the default) picks `submeter` when a power/flow sensor
+  // is set (that is a sub-meter: a clamp or a Shelly EM), else `digital`.
+  _pictureStyle(m) {
+    const s = this._config.picture_style;
+    if (s === "digital" || s === "disc" || s === "submeter") return s;
+    return m.flow ? "submeter" : "digital";
+  }
+
+  _art(m) {
+    if (m.type === "water") return waterArt(num(m.st));
+    if (m.type === "gas") return gasArt(num(m.st));
+    const power = m.flow?.v != null ? fmtNum(Math.round(Math.abs(m.flow.v)), this._locale(), 0) : "———";
+    return electricArt(num(m.st), this._pictureStyle(m), power);
   }
 
   _picture(m) {
     if (this._config.show_picture === false) return "";
-    const cls = `${m.active ? " active" : ""}${m.leak ? " leak" : ""}`;
+    const high = m.type === "electricity" && m.high ? " high" : "";
+    const cls = `${m.active ? " active" : ""}${m.leak ? " leak" : ""}${high}`;
     const label = `${this._t(`meter_${m.type}`)} · ${this._t(m.status.key)}`;
-    return `<div class="picture clickable${cls}" role="button" tabindex="0" aria-label="${esc(label)}" data-entity="${esc(m.id)}">${(m.type === "gas" ? gasArt : waterArt)(num(m.st))}</div>`;
+    return `<div class="picture clickable${cls}" role="button" tabindex="0" aria-label="${esc(label)}" data-entity="${esc(m.id)}">${this._art(m)}</div>`;
   }
 
   _hero(m) {
@@ -1683,7 +1797,7 @@ class UtilityMeterCard extends HTMLElement {
     }
     if (m.flow) {
       const on = m.flow.v !== null && m.flow.v > 0;
-      info.push(`<div><span class="flow clickable${on ? " flowing" : ""}" role="button" tabindex="0" data-entity="${esc(c.flow_entity)}">${svgIcon(m.type === "gas" ? ICONS.gas : ICONS.flow)}<span>${esc(this._flowText(m))}</span></span></div>`);
+      info.push(`<div><span class="flow clickable${on ? " flowing" : ""}" role="button" tabindex="0" data-entity="${esc(c.flow_entity)}">${svgIcon(m.type === "water" ? ICONS.flow : ICONS[m.type])}<span>${esc(this._flowText(m))}</span></span></div>`);
     }
     if (m.night) {
       info.push(
@@ -1913,7 +2027,7 @@ class UtilityMeterMiniCard extends UtilityMeterCard {
         .join("")}</div>`;
     }
     const flow = m.flow
-      ? `<div class="flowline clickable${m.flow.v > 0 ? " flowing" : ""}" role="button" tabindex="0" data-entity="${esc(c.flow_entity)}">${svgIcon(m.type === "gas" ? ICONS.gas : ICONS.flow)}<span>${esc(this._flowText(m))}</span></div>`
+      ? `<div class="flowline clickable${m.flow.v > 0 ? " flowing" : ""}" role="button" tabindex="0" data-entity="${esc(c.flow_entity)}">${svgIcon(m.type === "water" ? ICONS.flow : ICONS[m.type])}<span>${esc(this._flowText(m))}</span></div>`
       : "";
     return `${this._style(m, MINI_STYLE)}
       <ha-card>
@@ -1949,7 +2063,9 @@ class UtilityMeterEditorBase extends HTMLElement {
   // Defaults of the toggles: leak detection is on for water meters, off for gas meters.
   _defaults() {
     const st = this._hass?.states[this._config.entity || listMeters(this._hass)[0]?.entity_id];
-    const type = this._config.meter_type === "gas" || this._config.meter_type === "water" ? this._config.meter_type : st?.attributes?.device_class === "gas" ? "gas" : "water";
+    const cfgType = this._config.meter_type;
+    const dc = st?.attributes?.device_class;
+    const type = ["water", "gas", "electricity"].includes(cfgType) ? cfgType : dc === "gas" ? "gas" : dc === "energy" ? "electricity" : "water";
     const d = {
       show_title: true,
       show_subtitle: true,
@@ -1962,8 +2078,9 @@ class UtilityMeterEditorBase extends HTMLElement {
       leak_detection: type === "water",
       liters: true,
       meter_type: "auto",
+      picture_style: "auto",
       chart_period: "week",
-      price_unit: "volume",
+      price_unit: type === "electricity" ? "energy" : "volume",
       collapsed: DEFAULT_COLLAPSED,
       leak_start: `${DEFAULT_LEAK.start}:00`,
       leak_end: `${DEFAULT_LEAK.end}:00`,
@@ -1978,14 +2095,15 @@ class UtilityMeterEditorBase extends HTMLElement {
     const toggles = ["show_title", "show_subtitle", "show_picture", "show_index", "show_consumption", "show_comparison", "show_chart", "show_cost", "leak_detection", "liters"];
     if (this.constructor.mini) toggles.push("zoom");
     return [
-      { name: "entity", selector: { entity: { filter: [{ domain: "sensor", device_class: "water" }, { domain: "sensor", device_class: "gas" }] } } },
+      { name: "entity", selector: { entity: { filter: [{ domain: "sensor", device_class: "water" }, { domain: "sensor", device_class: "gas" }, { domain: "sensor", device_class: "energy" }] } } },
       { name: "title", selector: { text: {} } },
       {
         type: "grid",
         name: "",
         schema: [
-          { name: "meter_type", selector: { select: { mode: "dropdown", options: ["auto", "water", "gas"].map((v) => ({ value: v, label: tr(`type_${v}`) })) } } },
+          { name: "meter_type", selector: { select: { mode: "dropdown", options: ["auto", "water", "gas", "electricity"].map((v) => ({ value: v, label: tr(`type_${v}`) })) } } },
           { name: "chart_period", selector: { select: { mode: "dropdown", options: PERIODS.map((v) => ({ value: v, label: tr(`tab_${v}`) })) } } },
+          { name: "picture_style", selector: { select: { mode: "dropdown", options: ["auto", "digital", "disc", "submeter"].map((v) => ({ value: v, label: tr(`style_${v}`) })) } } },
         ],
       },
       { type: "grid", name: "", schema: toggles.map((name) => ({ name, selector: { boolean: {} } })) },
@@ -2005,6 +2123,7 @@ class UtilityMeterEditorBase extends HTMLElement {
           { name: "currency", selector: { text: {} } },
           { name: "price_unit", selector: { select: { mode: "dropdown", options: ["volume", "energy"].map((v) => ({ value: v, label: tr(`unit_${v}`) })) } } },
           { name: "conversion_factor", selector: { number: { min: 0, step: "any", mode: "box" } } },
+          { name: "conversion_factor_entity", selector: sensor() },
         ],
       },
       {

@@ -19,9 +19,9 @@
   <img src="https://raw.githubusercontent.com/juju35/ha-utility-meter-card/main/images/suez_water.png" alt="Suez Water" width="64">
 </p>
 
-Lovelace cards for Home Assistant **water and gas meters**: the index, the consumption of the day, the week, the month and the year compared with the previous period, a history chart, the cost, and a **night leak detection** that raises an alert when water keeps flowing all night.
+Lovelace cards for Home Assistant **water, gas and electricity meters**: the index, the consumption of the day, the week, the month and the year compared with the previous period, a history chart, the cost, and a **night leak detection** that raises an alert when water keeps flowing all night.
 
-The cards work on top of the meters you already have — a pulse counter, [Gazpar / GRDF](#supported-integrations), Suez, Veolia, Eau de Paris…, or a [utility_meter](https://www.home-assistant.io/integrations/utility_meter/) helper: any `sensor` with the `water` or `gas` device class. The consumption comes from Home Assistant's **long-term statistics**, read through the `recorder/statistics_during_period` WebSocket command, so the cards show months of history without any helper to create. The drawn meter (a brass water meter on its pipe, a gas meter cabinet) is **animated by what the meter is doing**.
+The cards work on top of the meters you already have — a pulse counter, [Linky / Enedis](#supported-integrations), a Shelly EM, [Gazpar / GRDF](#supported-integrations), Suez, Veolia, Eau de Paris…, or a [utility_meter](https://www.home-assistant.io/integrations/utility_meter/) helper: any `sensor` with the `water`, `gas` or `energy` device class. The consumption comes from Home Assistant's **long-term statistics**, read through the `recorder/statistics_during_period` WebSocket command, so the cards show months of history without any helper to create. The drawn meter (a brass water meter on its pipe, a gas meter cabinet, or an electricity meter you can draw three ways) is **animated by what the meter is doing**.
 
 [![Open your Home Assistant instance and open a repository inside the Marketplace.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/marketplace_repository/?owner=juju35&repository=ha-utility-meter-card&category=plugin)
 
@@ -33,15 +33,16 @@ The cards work on top of the meters you already have — a pulse counter, [Gazpa
 ## Features
 
 - Two cards: a full **Utility Meter Card** (`custom:utility-meter-card`) and a compact **Utility Meter Mini Card** (`custom:utility-meter-mini-card`)
-- Water and gas meters, the kind of meter read from the sensor's device class (or forced with `meter_type`)
+- Water, gas and electricity meters, the kind of meter read from the sensor's device class (or forced with `meter_type`)
+- **Electricity meter** drawn three ways (`picture_style`): a `digital` smart meter (its mains LED and a live power bar), the classic `disc` meter (an aluminium disc that spins the faster the more is drawn), or a `submeter` clamped on a wire (the current runs along the wire) — `auto` picks the sub-meter when a power sensor is set, else the digital meter. Live power (W) shows next to the index; above the `daily_limit` the meter pulses red
 - **Index** of the meter, in its unit, with the meter's usual digits (three decimals for m³)
 - **Consumption** of today, this week, this month and this year, from the long-term statistics, or live from a utility_meter helper fed by the meter when there is one
 - **Comparison with the previous period at the same point**: today until now against yesterday until the same hour, this month so far against the same time elapsed last month… as a percentage, orange when it goes up, green when it goes down
 - **History chart** of the day (hours), the week (days), the month (days) or the year (months), each bar in front of the same slot of the previous period, with the average; a click on a bar opens its details (consumption, cost, previous period) in a popup at the top of the card
-- **Cost** (optional): a fixed price or a price entity, per m³ or per kWh — with a conversion factor for gas meters counting m³ — in Home Assistant's currency or your own
+- **Cost** (optional): a fixed price or a price entity, per m³ or per kWh — electricity is priced per kWh by default — with a conversion factor for gas meters counting m³, fixed (`conversion_factor`) or from a live sensor (`conversion_factor_entity`, the daily factor GRDF publishes) — in Home Assistant's currency or your own
 - **Leak detection**: water used every single hour of a night window (01:00 – 05:00 by default) above a threshold (2 L/h by default) raises an alert; a leak sensor (`binary_sensor`) and a daily limit can raise one too. The status pill turns red (orange for the daily limit), an alert banner appears and the night section unfolds
-- Drawn water meter and gas meter, animated by their state (see [Animations](#animations)): water flowing, gas burning, leak
-- Live flow from a flow sensor (`flow_entity`), which also drives the animation
+- Drawn water, gas and electricity meters, animated by their state (see [Animations](#animations)): water flowing, gas burning, power being drawn, leak
+- Live flow from a flow sensor (`flow_entity`) — a power sensor (W) for electricity — which also drives the animation
 - Header icon of the kind of meter in a tinted round badge, colored with the meter state, and a status pill on the title line
 - Collapsible sections (the night section folded by default, unfolded on a suspected leak); a click anywhere else folds them back
 - Sections view: the full card takes 12 columns by default and at least 6, the mini card 6; narrow widths get their own layout (see [Screenshots](#screenshots))
@@ -53,22 +54,24 @@ The cards work on top of the meters you already have — a pulse counter, [Gazpa
 
 ## Supported integrations
 
-The cards read a cumulative `sensor` (`state_class: total` or `total_increasing`) with the `water` or `gas` device class, and its long-term statistics. Anything that provides one works, for example:
+The cards read a cumulative `sensor` (`state_class: total` or `total_increasing`) with the `water`, `gas` or `energy` device class, and its long-term statistics. Anything that provides one works, for example:
 
 | Source | Kind | What the cards use |
 |---|---|---|
-| Pulse counters — <img src="https://raw.githubusercontent.com/juju35/ha-utility-meter-card/main/images/esphome.png" alt="" width="16"> [ESPHome `pulse_meter`](https://esphome.io/components/sensor/pulse_meter.html) / `pulse_counter` with a `total`, <img src="https://raw.githubusercontent.com/juju35/ha-utility-meter-card/main/images/shelly.png" alt="" width="16"> Shelly, <img src="https://raw.githubusercontent.com/juju35/ha-utility-meter-card/main/images/zha.png" alt="" width="16"> Zigbee or <img src="https://raw.githubusercontent.com/juju35/ha-utility-meter-card/main/images/zwave_js.png" alt="" width="16"> Z-Wave pulse readers | Water, gas | The index sensor and its statistics; the flow sensor as `flow_entity` |
-| [AI-on-the-edge-device](https://github.com/jomjol/AI-on-the-edge-device) (camera reading a meter) | Water, gas | The index sensor and its statistics |
-| <img src="https://raw.githubusercontent.com/juju35/ha-utility-meter-card/main/images/gazpar.png" alt="" width="16"> Gazpar / GRDF custom integrations, such as [home-assistant-gazpar](https://github.com/ssenart/home-assistant-gazpar) | Gas | The gas sensor the integration exposes (m³ or kWh), or `statistic_id` for the statistics it imports; `price_unit: energy` with the conversion factor of your bill for a price per kWh |
+| Pulse counters — <img src="https://raw.githubusercontent.com/juju35/ha-utility-meter-card/main/images/esphome.png" alt="" width="16"> [ESPHome `pulse_meter`](https://esphome.io/components/sensor/pulse_meter.html) / `pulse_counter` with a `total`, <img src="https://raw.githubusercontent.com/juju35/ha-utility-meter-card/main/images/shelly.png" alt="" width="16"> Shelly, <img src="https://raw.githubusercontent.com/juju35/ha-utility-meter-card/main/images/zha.png" alt="" width="16"> Zigbee or <img src="https://raw.githubusercontent.com/juju35/ha-utility-meter-card/main/images/zwave_js.png" alt="" width="16"> Z-Wave pulse readers | Water, gas, electricity | The index sensor and its statistics; the flow (or power) sensor as `flow_entity` |
+| Linky / Enedis — [MyElectricalData](https://github.com/MyElectricalData/myelectricaldata_ha), [LixeeLinky / ZLinky_TIC](https://github.com/fairecasoimeme/Zlinky_TIC), the core [Teleinfo / Enedis](https://www.home-assistant.io/integrations/enedis/) integrations | Electricity | The cumulative energy sensor (kWh) and its statistics, or `statistic_id` for an imported one; a power sensor (W) as `flow_entity` |
+| <img src="https://raw.githubusercontent.com/juju35/ha-utility-meter-card/main/images/shelly.png" alt="" width="16"> Shelly EM / Pro EM, Tasmota, Emporia Vue, Tuya, SmartThings energy monitors and sub-meters | Electricity | The energy sensor (kWh) of a channel and its statistics; its power sensor (W) as `flow_entity` for the live reading and the sub-meter animation |
+| [AI-on-the-edge-device](https://github.com/jomjol/AI-on-the-edge-device) (camera reading a meter) | Water, gas, electricity | The index sensor and its statistics |
+| <img src="https://raw.githubusercontent.com/juju35/ha-utility-meter-card/main/images/gazpar.png" alt="" width="16"> Gazpar / GRDF custom integrations, such as [home-assistant-gazpar](https://github.com/ssenart/home-assistant-gazpar) | Gas | The gas sensor the integration exposes (m³ or kWh), or `statistic_id` for the statistics it imports; `price_unit: energy` with the conversion factor of your bill for a price per kWh, fixed or from `conversion_factor_entity` |
 | <img src="https://raw.githubusercontent.com/juju35/ha-utility-meter-card/main/images/suez_water.png" alt="" width="16"> [Suez Water](https://www.home-assistant.io/integrations/suez_water/) (core) and the custom integrations of other water companies (Veolia, Eau de Paris…) | Water | The water sensor; `statistic_id` for the statistics the integration imports (its daily data is a day late, so the Day tab is left out when there is no hourly data) |
-| [Utility Meter](https://www.home-assistant.io/integrations/utility_meter/) helpers (core) | Water, gas | Daily, weekly, monthly and yearly helpers fed by the meter are found on their own and give the live value of their period (and their previous period when there are no statistics); `today_entity`, `week_entity`, `month_entity`, `year_entity` pick others |
+| [Utility Meter](https://www.home-assistant.io/integrations/utility_meter/) helpers (core) | Water, gas, electricity | Daily, weekly, monthly and yearly helpers fed by the meter are found on their own and give the live value of their period (and their previous period when there are no statistics); `today_entity`, `week_entity`, `month_entity`, `year_entity` pick others |
 | Any `binary_sensor` leak / moisture sensor | Water | `leak_entity`: raises the leak alert when it turns on |
 
-The statistics are the ones Home Assistant keeps for every sensor with a state class (the same as the Energy dashboard's water and gas sources).
+The statistics are the ones Home Assistant keeps for every sensor with a state class (the same as the Energy dashboard's water, gas and electricity sources).
 
 ## Prerequisites
 
-Home Assistant 2024.8 or later, the [recorder](https://www.home-assistant.io/integrations/recorder/) (on by default) and a water or gas meter sensor.
+Home Assistant 2024.8 or later, the [recorder](https://www.home-assistant.io/integrations/recorder/) (on by default) and a water, gas or electricity meter sensor.
 
 ## Installation
 
@@ -156,27 +159,39 @@ statistic_id: sensor.water_meter
 today_entity: sensor.water_daily
 ```
 
-A gas meter counting m³ with a price per kWh (Gazpar):
+A gas meter counting m³ with a price per kWh (Gazpar), the conversion factor from the live sensor GRDF publishes:
 
 ```yaml
 type: custom:utility-meter-card
 entity: sensor.gazpar_index
 price: 0.105
 price_unit: energy
-conversion_factor: 11.2
+conversion_factor_entity: sensor.gazpar_conversion_factor   # or conversion_factor: 11.2
 chart_period: year
+```
+
+An electricity sub-meter (a Shelly EM channel), priced per kWh, drawn as a clamp with the live power:
+
+```yaml
+type: custom:utility-meter-card
+entity: sensor.office_energy
+flow_entity: sensor.office_power     # W, shown live and drives the animation
+price_entity: sensor.electricity_price
+picture_style: submeter              # auto picks this when a power sensor is set
+daily_limit: 5                       # kWh today above this → "High usage", the meter pulses red
 ```
 
 ### Options reference
 
 | Option | Card | Default | Description |
 |---|---|---|---|
-| `entity` | both | First water meter, then gas meter | The meter: a `sensor` with the `water` or `gas` device class, cumulative (its index) |
+| `entity` | both | First water, then gas, then electricity meter | The meter: a `sensor` with the `water`, `gas` or `energy` device class, cumulative (its index) |
 | `title` | both | Entity name | Card title |
 | `show_title` | both | `true` | Show the title in the header |
 | `show_subtitle` | both | `true` | Show the subtitle (the kind of meter; the index on the mini card) |
-| `meter_type` | both | `auto` | `auto` (from the device class), `water` or `gas`: icon, colors, drawing, liters and leak detection default |
+| `meter_type` | both | `auto` | `auto` (from the device class), `water`, `gas` or `electricity`: icon, colors, drawing, liters and leak detection default |
 | `show_picture` | both | `true` | Show the drawn meter, animated by its state |
+| `picture_style` | both | `auto` | Electricity drawing: `auto` (submeter when a power sensor is set, else digital), `digital`, `disc` or `submeter` |
 | `show_index` | both | `true` | Show the index |
 | `index_decimals` | both | `3` for m³, `0` for L and kWh | Decimals of the index (YAML only) |
 | `show_consumption` | full | `true` | Today, this week, this month and this year |
@@ -189,13 +204,14 @@ chart_period: year
 | `price` | both | — | Price per m³ (per the sensor's unit when it is not metric) or per kWh |
 | `price_entity` | both | — | Entity holding the price, instead of `price` |
 | `currency` | both | Home Assistant's | Currency code, e.g. `EUR`, `CHF` |
-| `price_unit` | both | `volume` | `volume` (price per m³) or `energy` (price per kWh) |
+| `price_unit` | both | `volume` (`energy` for electricity) | `volume` (price per m³) or `energy` (price per kWh) |
 | `conversion_factor` | both | `11.2` | kWh per m³, to price a gas meter counting m³ per kWh (or an energy meter per m³); on your gas bill |
+| `conversion_factor_entity` | both | — | A sensor holding the conversion factor (kWh per m³), instead of the fixed `conversion_factor` — e.g. the daily factor GRDF publishes; falls back to `conversion_factor` when it is unavailable |
 | `leak_detection` | both | `true` for water, `false` for gas | Night leak detection |
 | `leak_start` / `leak_end` | both | `01:00` / `05:00` | Night window, a continuous flow through it being a leak; it may cross midnight (`23:00` → `06:00`) |
 | `leak_threshold` | both | `2` (water) / `0.05` (gas) | Lowest use per hour counted as flowing: L/h for water, the sensor's unit per hour for gas |
-| `daily_limit` | both | — | Today's consumption above this (sensor's unit) shows "High usage" |
-| `flow_entity` | both | — | Flow sensor (L/min, m³/h…): shown live, and drives the animation |
+| `daily_limit` | both | — | Today's consumption above this (sensor's unit) shows "High usage"; the electricity meter pulses red |
+| `flow_entity` | both | — | Flow sensor (L/min, m³/h…), or a power sensor (W) for electricity: shown live, and drives the animation |
 | `leak_entity` | both | — | Leak or moisture `binary_sensor`: its `on` state raises the leak alert |
 | `statistic_id` | both | The entity's | Long-term statistic to read instead of the sensor's, e.g. one imported by Suez Water or a Gazpar integration (in a unit of the same kind as the sensor's: volume or energy) |
 | `today_entity`, `week_entity`, `month_entity`, `year_entity` | both | Found on their own | utility_meter helpers giving the live value of each period |
@@ -228,6 +244,18 @@ On a suspected leak, drops fall from the pipe joint into a growing puddle, a red
 |---|---|
 | <img src="https://raw.githubusercontent.com/juju35/ha-utility-meter-card/main/screenshots/water-leak.gif" alt="leak animation" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-utility-meter-card/main/screenshots/water-leak-dark.gif" alt="leak animation dark" width="400"> |
 
+While power is being drawn, each electricity drawing has its own animation. The `digital` meter: the mains LED blinks and the live power bar breathes. The `disc` (Ferraris) meter: the aluminium disc spins. The `submeter` on its wire: the current runs along the wire and the power LED pulses. Above the `daily_limit` the meter pulses red.
+
+| Digital (dark) | Disc (light) |
+|---|---|
+| <img src="https://raw.githubusercontent.com/juju35/ha-utility-meter-card/main/screenshots/electricity-digital.gif" alt="electricity digital meter animation" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-utility-meter-card/main/screenshots/electricity-disc.gif" alt="electricity disc meter animation" width="400"> |
+| <img src="https://raw.githubusercontent.com/juju35/ha-utility-meter-card/main/screenshots/electricity-digital-light.gif" alt="electricity digital meter animation light" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-utility-meter-card/main/screenshots/electricity-disc-dark.gif" alt="electricity disc meter animation dark" width="400"> |
+
+| Sub-meter (dark) | High usage (light) |
+|---|---|
+| <img src="https://raw.githubusercontent.com/juju35/ha-utility-meter-card/main/screenshots/electricity-submeter.gif" alt="electricity sub-meter animation" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-utility-meter-card/main/screenshots/electricity-high.gif" alt="electricity high usage animation" width="400"> |
+| <img src="https://raw.githubusercontent.com/juju35/ha-utility-meter-card/main/screenshots/electricity-submeter-light.gif" alt="electricity sub-meter animation light" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-utility-meter-card/main/screenshots/electricity-high-dark.gif" alt="electricity high usage animation dark" width="400"> |
+
 ### Utility Meter Card
 
 Water meter with a flow sensor and a price entity: index, the four periods with their cost and comparison, the week chart (each bar in front of the same day of last week, the dashed line is the average), the night section folded:
@@ -241,6 +269,12 @@ Gas meter counting m³ priced per kWh, on the Year tab (this year's months in fr
 | Dark | Light |
 |---|---|
 | <img src="https://raw.githubusercontent.com/juju35/ha-utility-meter-card/main/screenshots/card-gas.png" alt="gas card" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-utility-meter-card/main/screenshots/card-gas-light.png" alt="gas card light" width="400"> |
+
+Electricity meter priced per kWh, drawn as a digital smart meter with the live power next to the index:
+
+| Dark | Light |
+|---|---|
+| <img src="https://raw.githubusercontent.com/juju35/ha-utility-meter-card/main/screenshots/card-electricity.png" alt="electricity card" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-utility-meter-card/main/screenshots/card-electricity-light.png" alt="electricity card light" width="400"> |
 
 Leak: water kept flowing every hour of last night. The alert banner and the red status pill appear, the night hours are red in the Day chart, and the night section unfolds with the window, the threshold, last night's lowest hour and the leak sensor:
 
@@ -300,7 +334,7 @@ The card can only show the alert while it is on screen: for a notification, use 
 
 ### Cost
 
-`price` (or `price_entity`) is per m³ by default — liters are converted — and per kWh with `price_unit: energy`. A gas meter counting m³ is converted to kWh with `conversion_factor` (the kWh per m³ on your gas bill, about 11.2 in France); an energy meter priced per m³ is converted the other way. Only the consumption is priced: no subscription or fixed part.
+`price` (or `price_entity`) is per m³ by default — liters are converted — and per kWh with `price_unit: energy`. An electricity meter counts kWh and is priced per kWh by default. A gas meter counting m³ is converted to kWh with `conversion_factor` (the kWh per m³ on your gas bill, about 11.2 in France) or `conversion_factor_entity` (a live sensor, such as the daily factor GRDF publishes); an energy meter priced per m³ is converted the other way. Only the consumption is priced: no subscription or fixed part.
 
 ## Development
 

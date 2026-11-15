@@ -52,7 +52,7 @@ test("animations only run in an animated state, and every one stops with prefers
   assert.match(source, /@media \(prefers-reduced-motion: reduce\) \{ \*, \*::before, \*::after \{ transition: none !important; animation: none !important; \} \}/);
   const uses = [...source.matchAll(/^\s*([^{}\n]+)\{[^}]*\banimation: um-/gm)].map((m) => m[1].trim());
   assert.ok(uses.length >= 6, uses.join(" | "));
-  for (const sel of uses) assert.match(sel, /\.(active|leak|crit)\b/, sel);
+  for (const sel of uses) assert.match(sel, /\.(active|leak|crit|high)\b/, sel);
 });
 
 test("state colors in text are mixed with the text color for contrast", () => {

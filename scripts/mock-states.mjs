@@ -30,10 +30,21 @@ entity("sensor.gas_meter", "8456.12", {
   unit_of_measurement: "m³",
 });
 entity("sensor.gas_flow", "0", { friendly_name: "Gas flow", device_class: "volume_flow_rate", unit_of_measurement: "m³/h" });
+// Gas conversion factor published daily by the operator (GRDF): kWh per m³, read live by the card.
+entity("sensor.gas_conversion_factor", "11.27", { friendly_name: "Gas conversion factor", unit_of_measurement: "kWh/m³" });
+entity("sensor.electricity_meter", "4619.5", {
+  friendly_name: "House electricity",
+  device_class: "energy",
+  state_class: "total_increasing",
+  unit_of_measurement: "kWh",
+});
+entity("sensor.electricity_power", "0", { friendly_name: "Power", device_class: "power", unit_of_measurement: "W" });
+entity("sensor.electricity_price", "0.2516", { friendly_name: "Electricity price", unit_of_measurement: "EUR/kWh" });
 
-// Overrides of the GIFs: water and gas flowing right now.
+// Overrides of the GIFs: water, gas and electricity flowing right now.
 export const waterFlowing = { "sensor.water_flow": { state: "6.5" } };
 export const gasFlowing = { "sensor.gas_flow": { state: "0.42" } };
+export const electricityFlowing = { "sensor.electricity_power": { state: "1240" } };
 
 /**
  * Answers a `recorder/statistics_during_period` message like Home Assistant: { [statistic_id]: [{ start, end, change }] },
@@ -45,6 +56,8 @@ export function mockStatistics(msg) {
   // Liters per hour of the day for a household, m³ of gas per hour (heating mornings and evenings).
   const WATER = [0, 0, 0, 0, 0, 0, 8, 35, 22, 6, 4, 5, 10, 6, 4, 3, 5, 12, 18, 28, 20, 10, 6, 2];
   const GAS = [0.05, 0.05, 0.04, 0.04, 0.05, 0.12, 0.42, 0.38, 0.22, 0.12, 0.08, 0.08, 0.1, 0.08, 0.07, 0.08, 0.12, 0.26, 0.36, 0.34, 0.28, 0.2, 0.12, 0.08];
+  // kWh of electricity per hour of the day (base load, morning and evening peaks).
+  const ELEC = [0.3, 0.25, 0.22, 0.22, 0.25, 0.4, 0.9, 1.1, 0.7, 0.5, 0.45, 0.5, 0.6, 0.5, 0.45, 0.5, 0.7, 1.2, 1.6, 1.5, 1.2, 0.9, 0.6, 0.4];
   // Heating season: gas use by month (January first).
   const SEASON = [1.35, 1.25, 0.95, 0.6, 0.3, 0.12, 0.08, 0.08, 0.2, 0.55, 1, 1.3];
   const noise = (n) => {
@@ -57,6 +70,7 @@ export function mockStatistics(msg) {
     const f = 0.8 + 0.4 * noise(day + (id.length % 7));
     const h = d.getHours();
     if (id === "sensor.gas_meter") return GAS[h] * SEASON[d.getMonth()] * f;
+    if (id === "sensor.electricity_meter") return ELEC[h] * f * (1 + 0.2 * Math.sin(d.getMonth() / 1.9));
     if (id === "sensor.cottage_water_meter") return ((WATER[h] * 0.45 * f + 4) / 1000);
     if (id === "sensor.water_meter") return (WATER[h] * f * (1 + 0.15 * Math.sin(d.getMonth() / 1.9))) / 1000;
     return 0;
@@ -66,7 +80,7 @@ export function mockStatistics(msg) {
   const end = Math.min(Date.parse(msg.end_time), now);
   const out = {};
   for (const id of msg.statistic_ids) {
-    if (!["sensor.water_meter", "sensor.cottage_water_meter", "sensor.gas_meter"].includes(id)) continue;
+    if (!["sensor.water_meter", "sensor.cottage_water_meter", "sensor.gas_meter", "sensor.electricity_meter"].includes(id)) continue;
     const rows = [];
     if (msg.period === "hour") {
       for (let t = Math.floor(start / HOUR) * HOUR; t < end; t += HOUR) {
