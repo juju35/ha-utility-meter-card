@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.1.1 - 2026-11-15
+
+### Docs
+- README: the top table now shows the electricity meter (full and mini card) in place of the leak alert, which keeps its own section and animation below.
+
 ## 1.1.0 - 2026-11-15
 
 ### Features
