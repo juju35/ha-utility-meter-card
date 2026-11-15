@@ -25,10 +25,10 @@ The cards work on top of the meters you already have — a pulse counter, [Linky
 
 [![Open your Home Assistant instance and open a repository inside the Marketplace.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/marketplace_repository/?owner=juju35&repository=ha-utility-meter-card&category=plugin)
 
-| Water | Gas | Leak alert |
+| Water | Gas | Electricity |
 |---|---|---|
-| <img src="https://raw.githubusercontent.com/juju35/ha-utility-meter-card/main/screenshots/card.png" alt="water meter card" width="360"> | <img src="https://raw.githubusercontent.com/juju35/ha-utility-meter-card/main/screenshots/card-gas.png" alt="gas meter card" width="360"> | <img src="https://raw.githubusercontent.com/juju35/ha-utility-meter-card/main/screenshots/card-leak.png" alt="leak alert card" width="360"> |
-| <img src="https://raw.githubusercontent.com/juju35/ha-utility-meter-card/main/screenshots/mini-card.png" alt="water meter mini card" width="360"> | <img src="https://raw.githubusercontent.com/juju35/ha-utility-meter-card/main/screenshots/mini-card-gas.png" alt="gas meter mini card" width="360"> | <img src="https://raw.githubusercontent.com/juju35/ha-utility-meter-card/main/screenshots/mini-card-leak.png" alt="leak alert mini card" width="360"> |
+| <img src="https://raw.githubusercontent.com/juju35/ha-utility-meter-card/main/screenshots/card.png" alt="water meter card" width="360"> | <img src="https://raw.githubusercontent.com/juju35/ha-utility-meter-card/main/screenshots/card-gas.png" alt="gas meter card" width="360"> | <img src="https://raw.githubusercontent.com/juju35/ha-utility-meter-card/main/screenshots/card-electricity.png" alt="electricity meter card" width="360"> |
+| <img src="https://raw.githubusercontent.com/juju35/ha-utility-meter-card/main/screenshots/mini-card.png" alt="water meter mini card" width="360"> | <img src="https://raw.githubusercontent.com/juju35/ha-utility-meter-card/main/screenshots/mini-card-gas.png" alt="gas meter mini card" width="360"> | <img src="https://raw.githubusercontent.com/juju35/ha-utility-meter-card/main/screenshots/mini-card-electricity.png" alt="electricity meter mini card" width="360"> |
 
 ## Features
 
