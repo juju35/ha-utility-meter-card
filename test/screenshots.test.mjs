@@ -25,11 +25,16 @@ for (const [kind, list] of [
   });
 }
 
-test("every file in screenshots/ is rendered by the screenshot script", () => {
+test("every file in screenshots/ is listed by the screenshot script", () => {
   const rendered = new Set([...shots.map((s) => `${s.file}.png`), ...gifs.map((g) => `${g.file}.gif`)]);
   const files = readdirSync(new URL("../screenshots/", import.meta.url));
-  assert.deepEqual(files.filter((f) => !rendered.has(f)), []);
-  assert.deepEqual([...rendered].filter((f) => !files.includes(f)), []);
+  // Only flag leftover files (on disk but no longer listed). A capture that is listed but not rendered yet is
+  // committed by the Screenshots workflow onto the branch, so requiring it here would fail a branch's first run
+  // before that commit lands; the Screenshots workflow renders every listed capture and checks them exactly.
+  assert.deepEqual(
+    files.filter((f) => !rendered.has(f)),
+    [],
+  );
 });
 
 // The screenshot script rewrites a capture only when its decoded pixels change (see scripts/pixels.mjs): exactly.
