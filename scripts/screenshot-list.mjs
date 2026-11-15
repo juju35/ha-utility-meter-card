@@ -25,6 +25,7 @@ export const shots = [
   ...twins("card-month", "utility-meter-card", 460, { ...water, chart_period: "month", collapsed: ["consumption"] }),
   ...twins("mini-card", "utility-meter-mini-card", 380, water),
   ...twins("mini-card-gas", "utility-meter-mini-card", 380, gas, {}, "dark"),
+  ...twins("mini-card-electricity", "utility-meter-mini-card", 380, { ...elec, picture_style: "digital" }, {}, "dark"),
   ...twins("mini-card-leak", "utility-meter-mini-card", 380, leak),
   ...twins("mini-card-zoom", "utility-meter-mini-card", 460, water, { clicks: [".zoom"] }, "dark"),
   // Narrow cards: the full card at 6 of 12 columns of a phone's Sections view and the mini card at 170 px.
