@@ -444,16 +444,53 @@ test("errors: no meter at all, an unknown entity", async () => {
   const card = new um.Card();
   card.setConfig({});
   card.hass = makeHass({}, () => ({}));
-  assert.match(card.shadowRoot.innerHTML, /No water or gas meter found/);
+  assert.match(card.shadowRoot.innerHTML, /No water, gas or electricity meter found/);
   const b = await newCard({ entity: "sensor.nope" });
   assert.match(b.html(), /Entity not found: sensor\.nope/);
+});
+
+test("electricity: detected from the energy device class, with its three pictures", async () => {
+  const styles = [
+    ["digital", /elec-bar/],
+    ["disc", /elec-disc/],
+    ["submeter", /elec-cur/],
+  ];
+  for (const [picture_style, marker] of styles) {
+    const { html } = await newCard({ entity: "sensor.electricity_meter", picture_style });
+    assert.match(html(), /aria-label="Electricity meter · Normal"/, picture_style);
+    assert.match(html(), marker, picture_style);
+  }
+});
+
+test("electricity auto picture: submeter with a power sensor, digital without", async () => {
+  const withPower = await newCard({ entity: "sensor.electricity_meter", flow_entity: "sensor.electricity_power" });
+  assert.match(withPower.html(), /elec-cur/);
+  const without = await newCard({ entity: "sensor.electricity_meter" });
+  assert.match(without.html(), /elec-bar/);
+});
+
+test("electricity: power shown and the meter animates when power is drawn", async () => {
+  const st = clone(states);
+  st["sensor.electricity_power"].state = "1240";
+  const { html } = await newCard({ entity: "sensor.electricity_meter", flow_entity: "sensor.electricity_power" }, { st });
+  assert.match(html(), /Power .*1.?240 W/);
+  assert.match(html(), /class="picture clickable active/);
+});
+
+test("conversion factor: the live entity wins over the fixed value, else the fixed value, else 11.2", async () => {
+  const { card } = await newCard({ entity: "sensor.gas_meter", conversion_factor: 10, conversion_factor_entity: "sensor.gas_conversion_factor" });
+  assert.equal(card._conversionFactor(), 11.27);
+  const fixed = await newCard({ entity: "sensor.gas_meter", conversion_factor: 10 });
+  assert.equal(fixed.card._conversionFactor(), 10);
+  const none = await newCard({ entity: "sensor.gas_meter" });
+  assert.equal(none.card._conversionFactor(), 11.2);
 });
 
 test("stub config and default meter: cumulative water meter first", () => {
   assert.deepEqual({ ...um.Card.getStubConfig({ states }) }, { entity: "sensor.cottage_water_meter" });
   assert.deepEqual(
     plain(um.listMeters({ states }).map((s) => s.entity_id)),
-    ["sensor.cottage_water_meter", "sensor.water_meter", "sensor.gas_meter"],
+    ["sensor.cottage_water_meter", "sensor.water_meter", "sensor.gas_meter", "sensor.electricity_meter"],
   );
 });
 

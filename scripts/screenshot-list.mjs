@@ -1,11 +1,12 @@
 // The README screenshots (PNG) and animations (GIF) rendered by scripts/screenshots.mjs.
 // Every capture has a twin in the other theme ("-dark" for a light capture, "-light" for a dark one)
 // that shows exactly the same state: only the theme differs (checked by test/screenshots.test.mjs).
-import { gasFlowing, waterFlowing } from "./mock-states.mjs";
+import { electricityFlowing, gasFlowing, waterFlowing } from "./mock-states.mjs";
 
 const water = { entity: "sensor.water_meter", flow_entity: "sensor.water_flow", price_entity: "sensor.water_price" };
 const gas = { entity: "sensor.gas_meter", flow_entity: "sensor.gas_flow", price: 0.105, price_unit: "energy", chart_period: "year" };
 const leak = { entity: "sensor.cottage_water_meter", leak_entity: "binary_sensor.cottage_leak", price: 3.9, chart_period: "day" };
+const elec = { entity: "sensor.electricity_meter", flow_entity: "sensor.electricity_power", price_entity: "sensor.electricity_price" };
 
 const twins = (file, type, width, config, extra = {}, first = "light") => {
   const other = first === "light" ? "dark" : "light";
@@ -18,6 +19,7 @@ const twins = (file, type, width, config, extra = {}, first = "light") => {
 export const shots = [
   ...twins("card", "utility-meter-card", 460, water),
   ...twins("card-gas", "utility-meter-card", 460, gas, {}, "dark"),
+  ...twins("card-electricity", "utility-meter-card", 460, { ...elec, picture_style: "digital" }, {}, "dark"),
   ...twins("card-leak", "utility-meter-card", 460, leak),
   ...twins("card-popup", "utility-meter-card", 460, water, { clicks: ['[data-action="slot"][data-index="2"]'] }, "dark"),
   ...twins("card-month", "utility-meter-card", 460, { ...water, chart_period: "month", collapsed: ["consumption"] }),
@@ -35,9 +37,17 @@ export const shots = [
 //   gas-flowing   — gas burning now: the last digit rolls and the flame flickers
 //   water-leak    — continuous flow all night: drops fall from the pipe joint into a puddle, the meter pulses red,
 //                   the alert icon pulses
+//   electricity-digital   — power drawn now, digital meter: the mains LED blinks, the power bar breathes, the screen sweeps
+//   electricity-disc      — power drawn now, Ferraris meter: the aluminium disc spins
+//   electricity-submeter  — power drawn now, clamp sub-meter: the current runs along the wire, the power LED pulses
+//   electricity-high      — above the daily limit: the digital meter pulses red
 // Each one is followed by its twin in the other theme.
 export const gifs = [
   ...twins("water-flowing", "utility-meter-card", 460, water, { overrides: waterFlowing }),
   ...twins("gas-flowing", "utility-meter-card", 460, gas, { overrides: gasFlowing }, "dark"),
   ...twins("water-leak", "utility-meter-card", 460, leak),
+  ...twins("electricity-digital", "utility-meter-card", 460, { ...elec, picture_style: "digital" }, { overrides: electricityFlowing }, "dark"),
+  ...twins("electricity-disc", "utility-meter-card", 460, { ...elec, picture_style: "disc" }, { overrides: electricityFlowing }),
+  ...twins("electricity-submeter", "utility-meter-card", 460, { ...elec, picture_style: "submeter" }, { overrides: electricityFlowing }, "dark"),
+  ...twins("electricity-high", "utility-meter-card", 460, { ...elec, picture_style: "digital", daily_limit: 5 }, { overrides: electricityFlowing }),
 ];

@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.1.0 - 2026-11-15
+
+### Features
+- **Electricity meters** (`energy` device class, kWh): index, consumption of the day, week, month and year, cost per kWh, history chart and live power — the same as water and gas. Detected on their own, or forced with `meter_type: electricity`. Works with Linky / Enedis (MyElectricalData, LixeeLinky / ZLinky, Teleinfo), Shelly EM, Tasmota, ESPHome, Z-Wave, Zigbee, Emporia, Tuya, utility_meter helpers and any cumulative energy sensor (#9).
+- Electricity meter drawn three ways with `picture_style`: `digital` (a smart meter with its mains LED and a live power bar), `disc` (the classic Ferraris meter, an aluminium disc that spins the faster the more is drawn) and `submeter` (a module clamped on a wire, the current running along it). `auto` picks the sub-meter when a power sensor is set, else the digital meter. Live power (W) shows next to the index, and the meter pulses red above the `daily_limit`.
+- **Dynamic gas conversion factor**: `conversion_factor_entity` reads the kWh-per-m³ factor from a live sensor (the daily factor GRDF publishes), instead of the fixed `conversion_factor`; it falls back to the fixed value when the sensor is unavailable (#9).
+
 ## 1.0.1 - 2026-11-13
 
 ### Fixes
