@@ -425,7 +425,7 @@ test("the picture: still when nothing flows, animated while flowing (flow sensor
 
 test("mini card: index in the subtitle, today and this month, detail button switching to the full card", async () => {
   const { card, html } = await newCard({}, { Card: um.MiniCard });
-  assert.match(html(), /<div class="sub">1,234\.567 m³<\/div>/);
+  assert.match(html(), /<div class="sub"[^>]*>1,234\.567 m³<\/div>/);
   assert.match(html(), /<div class="k">Today<\/div>/);
   assert.match(html(), /<div class="k">This month<\/div>/);
   assert.match(html(), /class="zoom" data-action="zoom"/);
@@ -539,4 +539,16 @@ test("the card follows the language option", async () => {
   assert.match(html(), /Aujourd&#39;hui/);
   assert.match(html(), /Compteur d&#39;eau/);
   assert.match(html(), /1\s234,567/);
+});
+
+test("night picture: the sun below the horizon or the dark theme, even while the sun is up; forced day or night wins", () => {
+  const hass = (state, darkMode) => ({ states: state ? { "sun.sun": { entity_id: "sun.sun", state, attributes: {} } } : {}, themes: { darkMode } });
+  assert.equal(um.umIsNight(hass("above_horizon", true), {}), true, "dark theme, sun up: night");
+  assert.equal(um.umIsNight(hass("above_horizon", false), {}), false, "light theme, sun up: day");
+  assert.equal(um.umIsNight(hass("below_horizon", false), {}), true, "sun down: night");
+  assert.equal(um.umIsNight(hass("unavailable", true), {}), true, "no sun: the dark theme decides");
+  assert.equal(um.umIsNight(hass("unavailable", false), {}), false);
+  assert.equal(um.umIsNight(hass("above_horizon", true), { illustration_theme: "day" }), false);
+  assert.equal(um.umIsNight(hass("below_horizon", true), { illustration_theme: "day" }), false);
+  assert.equal(um.umIsNight(hass("above_horizon", false), { illustration_theme: "night" }), true);
 });

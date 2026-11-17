@@ -145,6 +145,11 @@ const STRINGS = {
     zoom_helper: "Switches the mini card to the full card and back",
     language: "Language",
     lang_auto: "Automatic (Home Assistant)",
+    illustration: "Illustrated header",
+    illustration_theme: "Header picture",
+    theme_auto: "Automatic (sun or dark theme)",
+    theme_day: "Day",
+    theme_night: "Night",
   },
   fr: {
     meter_water: "Compteur d'eau", meter_gas: "Compteur de gaz", meter_electricity: "Compteur électrique", index: "Index", today: "Aujourd'hui", week: "Cette semaine", month: "Ce mois-ci", year: "Cette année",
@@ -165,7 +170,7 @@ const STRINGS = {
     leak_section: "Détection de fuite", flow_entity: "Capteur de débit", leak_entity: "Détecteur de fuite", leak_start: "Début de la plage nocturne", leak_end: "Fin de la plage nocturne",
     leak_threshold: "Seuil (L/h pour l'eau)", daily_limit: "Limite journalière", sources_section: "Sources de données", statistic_id: "Statistique (au lieu de celle du capteur)",
     today_entity: "Compteur de services (journalier)", week_entity: "Compteur de services (hebdomadaire)", month_entity: "Compteur de services (mensuel)", year_entity: "Compteur de services (annuel)",
-    zoom: "Bouton détail", zoom_helper: "Bascule la mini-carte vers la carte complète et inversement", language: "Langue", lang_auto: "Automatique (Home Assistant)",
+    zoom: "Bouton détail", zoom_helper: "Bascule la mini-carte vers la carte complète et inversement", language: "Langue", lang_auto: "Automatique (Home Assistant)", illustration: "En-tête illustré", illustration_theme: "Ambiance de l'en-tête", theme_auto: "Automatique (soleil ou thème sombre)", theme_day: "Jour", theme_night: "Nuit",
   },
   de: {
     meter_water: "Wasserzähler", meter_gas: "Gaszähler", meter_electricity: "Stromzähler", type_electricity: "Strom", power: "Leistung", index: "Zählerstand", today: "Heute", week: "Diese Woche", month: "Dieser Monat", year: "Dieses Jahr",
@@ -185,7 +190,7 @@ const STRINGS = {
     leak_section: "Leckerkennung", flow_entity: "Durchflusssensor", leak_entity: "Lecksensor", leak_start: "Beginn des Nachtzeitraums", leak_end: "Ende des Nachtzeitraums",
     leak_threshold: "Schwelle (L/h für Wasser)", daily_limit: "Tageslimit", sources_section: "Datenquellen", statistic_id: "Statistik (statt der des Sensors)",
     today_entity: "Verbrauchszähler (täglich)", week_entity: "Verbrauchszähler (wöchentlich)", month_entity: "Verbrauchszähler (monatlich)", year_entity: "Verbrauchszähler (jährlich)",
-    zoom: "Detail-Schaltfläche", zoom_helper: "Schaltet die Mini-Karte auf die vollständige Karte um und zurück", language: "Sprache", lang_auto: "Automatisch (Home Assistant)",
+    zoom: "Detail-Schaltfläche", zoom_helper: "Schaltet die Mini-Karte auf die vollständige Karte um und zurück", language: "Sprache", lang_auto: "Automatisch (Home Assistant)", illustration: "Illustrierte Kopfzeile", illustration_theme: "Bild der Kopfzeile", theme_auto: "Automatisch (Sonne oder dunkles Design)", theme_day: "Tag", theme_night: "Nacht",
   },
   es: {
     meter_water: "Contador de agua", meter_gas: "Contador de gas", meter_electricity: "Contador de electricidad", type_electricity: "Electricidad", power: "Potencia", index: "Lectura", today: "Hoy", week: "Esta semana", month: "Este mes", year: "Este año",
@@ -205,7 +210,7 @@ const STRINGS = {
     leak_section: "Detección de fugas", flow_entity: "Sensor de caudal", leak_entity: "Sensor de fugas", leak_start: "Inicio de la franja nocturna", leak_end: "Fin de la franja nocturna",
     leak_threshold: "Umbral (L/h para el agua)", daily_limit: "Límite diario", sources_section: "Fuentes de datos", statistic_id: "Estadística (en lugar de la del sensor)",
     today_entity: "Contador de consumo (diario)", week_entity: "Contador de consumo (semanal)", month_entity: "Contador de consumo (mensual)", year_entity: "Contador de consumo (anual)",
-    zoom: "Botón de detalle", zoom_helper: "Cambia la minitarjeta a la tarjeta completa y viceversa", language: "Idioma", lang_auto: "Automático (Home Assistant)",
+    zoom: "Botón de detalle", zoom_helper: "Cambia la minitarjeta a la tarjeta completa y viceversa", language: "Idioma", lang_auto: "Automático (Home Assistant)", illustration: "Cabecera ilustrada", illustration_theme: "Ambiente de la cabecera", theme_auto: "Automático (sol o tema oscuro)", theme_day: "Día", theme_night: "Noche",
   },
   sr: {
     meter_water: "Водомер", meter_gas: "Гасомер", meter_electricity: "Бројило струје", type_electricity: "Струја", power: "Снага", index: "Стање бројила", today: "Данас", week: "Ове недеље", month: "Овог месеца", year: "Ове године",
@@ -225,7 +230,7 @@ const STRINGS = {
     leak_section: "Откривање цурења", flow_entity: "Сензор протока", leak_entity: "Сензор цурења", leak_start: "Почетак ноћног периода", leak_end: "Крај ноћног периода",
     leak_threshold: "Праг (L/h за воду)", daily_limit: "Дневно ограничење", sources_section: "Извори података", statistic_id: "Статистика (уместо статистике сензора)",
     today_entity: "Бројач потрошње (дневни)", week_entity: "Бројач потрошње (недељни)", month_entity: "Бројач потрошње (месечни)", year_entity: "Бројач потрошње (годишњи)",
-    zoom: "Дугме за детаље", zoom_helper: "Пребацује мини картицу на пуну картицу и назад", language: "Језик", lang_auto: "Аутоматски (Home Assistant)",
+    zoom: "Дугме за детаље", zoom_helper: "Пребацује мини картицу на пуну картицу и назад", language: "Језик", lang_auto: "Аутоматски (Home Assistant)", illustration: "Илустровано заглавље", illustration_theme: "Слика заглавља", theme_auto: "Аутоматски (сунце или тамна тема)", theme_day: "Дан", theme_night: "Ноћ",
   },
   "sr-Latn": {
     meter_water: "Vodomer", meter_gas: "Gasomer", meter_electricity: "Brojilo struje", type_electricity: "Struja", power: "Snaga", index: "Stanje brojila", today: "Danas", week: "Ove nedelje", month: "Ovog meseca", year: "Ove godine",
@@ -245,7 +250,7 @@ const STRINGS = {
     leak_section: "Otkrivanje curenja", flow_entity: "Senzor protoka", leak_entity: "Senzor curenja", leak_start: "Početak noćnog perioda", leak_end: "Kraj noćnog perioda",
     leak_threshold: "Prag (L/h za vodu)", daily_limit: "Dnevno ograničenje", sources_section: "Izvori podataka", statistic_id: "Statistika (umesto statistike senzora)",
     today_entity: "Brojač potrošnje (dnevni)", week_entity: "Brojač potrošnje (nedeljni)", month_entity: "Brojač potrošnje (mesečni)", year_entity: "Brojač potrošnje (godišnji)",
-    zoom: "Dugme za detalje", zoom_helper: "Prebacuje mini karticu na punu karticu i nazad", language: "Jezik", lang_auto: "Automatski (Home Assistant)",
+    zoom: "Dugme za detalje", zoom_helper: "Prebacuje mini karticu na punu karticu i nazad", language: "Jezik", lang_auto: "Automatski (Home Assistant)", illustration: "Ilustrovano zaglavlje", illustration_theme: "Slika zaglavlja", theme_auto: "Automatski (sunce ili tamna tema)", theme_day: "Dan", theme_night: "Noć",
   },
   it: {
     meter_water: "Contatore dell'acqua", meter_gas: "Contatore del gas", meter_electricity: "Contatore elettrico", type_electricity: "Elettricità", power: "Potenza", index: "Lettura", today: "Oggi", week: "Questa settimana", month: "Questo mese", year: "Quest'anno",
@@ -265,7 +270,7 @@ const STRINGS = {
     leak_section: "Rilevamento perdite", flow_entity: "Sensore di portata", leak_entity: "Sensore di perdite", leak_start: "Inizio della fascia notturna", leak_end: "Fine della fascia notturna",
     leak_threshold: "Soglia (L/h per l'acqua)", daily_limit: "Limite giornaliero", sources_section: "Fonti dei dati", statistic_id: "Statistica (al posto di quella del sensore)",
     today_entity: "Contatore dei consumi (giornaliero)", week_entity: "Contatore dei consumi (settimanale)", month_entity: "Contatore dei consumi (mensile)", year_entity: "Contatore dei consumi (annuale)",
-    zoom: "Pulsante dettagli", zoom_helper: "Passa dalla mini scheda alla scheda completa e viceversa", language: "Lingua", lang_auto: "Automatica (Home Assistant)",
+    zoom: "Pulsante dettagli", zoom_helper: "Passa dalla mini scheda alla scheda completa e viceversa", language: "Lingua", lang_auto: "Automatica (Home Assistant)", illustration: "Intestazione illustrata", illustration_theme: "Atmosfera dell'intestazione", theme_auto: "Automatica (sole o tema scuro)", theme_day: "Giorno", theme_night: "Notte",
   },
   nl: {
     meter_water: "Watermeter", meter_gas: "Gasmeter", meter_electricity: "Elektriciteitsmeter", type_electricity: "Elektriciteit", power: "Vermogen", index: "Meterstand", today: "Vandaag", week: "Deze week", month: "Deze maand", year: "Dit jaar",
@@ -285,7 +290,7 @@ const STRINGS = {
     leak_section: "Lekdetectie", flow_entity: "Debietsensor", leak_entity: "Leksensor", leak_start: "Begin van de nachtperiode", leak_end: "Einde van de nachtperiode",
     leak_threshold: "Drempel (L/u voor water)", daily_limit: "Daglimiet", sources_section: "Gegevensbronnen", statistic_id: "Statistiek (in plaats van die van de sensor)",
     today_entity: "Verbruiksmeter (dagelijks)", week_entity: "Verbruiksmeter (wekelijks)", month_entity: "Verbruiksmeter (maandelijks)", year_entity: "Verbruiksmeter (jaarlijks)",
-    zoom: "Detailknop", zoom_helper: "Schakelt de minikaart naar de volledige kaart en terug", language: "Taal", lang_auto: "Automatisch (Home Assistant)",
+    zoom: "Detailknop", zoom_helper: "Schakelt de minikaart naar de volledige kaart en terug", language: "Taal", lang_auto: "Automatisch (Home Assistant)", illustration: "Geïllustreerde koptekst", illustration_theme: "Sfeer van de koptekst", theme_auto: "Automatisch (zon of donker thema)", theme_day: "Dag", theme_night: "Nacht",
   },
   pt: {
     meter_water: "Contador de água", meter_gas: "Contador de gás", meter_electricity: "Contador de eletricidade", type_electricity: "Eletricidade", power: "Potência", index: "Leitura", today: "Hoje", week: "Esta semana", month: "Este mês", year: "Este ano",
@@ -305,7 +310,7 @@ const STRINGS = {
     leak_section: "Deteção de fugas", flow_entity: "Sensor de caudal", leak_entity: "Sensor de fugas", leak_start: "Início do período noturno", leak_end: "Fim do período noturno",
     leak_threshold: "Limiar (L/h para a água)", daily_limit: "Limite diário", sources_section: "Fontes de dados", statistic_id: "Estatística (em vez da do sensor)",
     today_entity: "Contador de consumo (diário)", week_entity: "Contador de consumo (semanal)", month_entity: "Contador de consumo (mensal)", year_entity: "Contador de consumo (anual)",
-    zoom: "Botão de detalhe", zoom_helper: "Muda o mini cartão para o cartão completo e vice-versa", language: "Idioma", lang_auto: "Automático (Home Assistant)",
+    zoom: "Botão de detalhe", zoom_helper: "Muda o mini cartão para o cartão completo e vice-versa", language: "Idioma", lang_auto: "Automático (Home Assistant)", illustration: "Cabeçalho ilustrado", illustration_theme: "Ambiente do cabeçalho", theme_auto: "Automático (sol ou tema escuro)", theme_day: "Dia", theme_night: "Noite",
   },
   pl: {
     meter_water: "Wodomierz", meter_gas: "Gazomierz", meter_electricity: "Licznik energii elektrycznej", type_electricity: "Energia elektryczna", power: "Moc", index: "Stan licznika", today: "Dziś", week: "Ten tydzień", month: "Ten miesiąc", year: "Ten rok",
@@ -325,7 +330,7 @@ const STRINGS = {
     leak_section: "Wykrywanie wycieków", flow_entity: "Czujnik przepływu", leak_entity: "Czujnik wycieku", leak_start: "Początek okna nocnego", leak_end: "Koniec okna nocnego",
     leak_threshold: "Próg (L/h dla wody)", daily_limit: "Dzienny limit", sources_section: "Źródła danych", statistic_id: "Statystyka (zamiast statystyki czujnika)",
     today_entity: "Licznik mediów (dzienny)", week_entity: "Licznik mediów (tygodniowy)", month_entity: "Licznik mediów (miesięczny)", year_entity: "Licznik mediów (roczny)",
-    zoom: "Przycisk szczegółów", zoom_helper: "Przełącza minikartę na pełną kartę i z powrotem", language: "Język", lang_auto: "Automatycznie (Home Assistant)",
+    zoom: "Przycisk szczegółów", zoom_helper: "Przełącza minikartę na pełną kartę i z powrotem", language: "Język", lang_auto: "Automatycznie (Home Assistant)", illustration: "Ilustrowany nagłówek", illustration_theme: "Wygląd nagłówka", theme_auto: "Automatycznie (słońce lub ciemny motyw)", theme_day: "Dzień", theme_night: "Noc",
   },
   ro: {
     meter_water: "Contor de apă", meter_gas: "Contor de gaz", meter_electricity: "Contor de energie electrică", type_electricity: "Electricitate", power: "Putere", index: "Index", today: "Azi", week: "Săptămâna aceasta", month: "Luna aceasta", year: "Anul acesta",
@@ -345,7 +350,7 @@ const STRINGS = {
     leak_section: "Detectarea scurgerilor", flow_entity: "Senzor de debit", leak_entity: "Senzor de scurgere", leak_start: "Începutul intervalului nocturn", leak_end: "Sfârșitul intervalului nocturn",
     leak_threshold: "Prag (L/h pentru apă)", daily_limit: "Limită zilnică", sources_section: "Surse de date", statistic_id: "Statistică (în locul celei a senzorului)",
     today_entity: "Contor de consum (zilnic)", week_entity: "Contor de consum (săptămânal)", month_entity: "Contor de consum (lunar)", year_entity: "Contor de consum (anual)",
-    zoom: "Buton de detalii", zoom_helper: "Comută mini cardul la cardul complet și înapoi", language: "Limbă", lang_auto: "Automat (Home Assistant)",
+    zoom: "Buton de detalii", zoom_helper: "Comută mini cardul la cardul complet și înapoi", language: "Limbă", lang_auto: "Automat (Home Assistant)", illustration: "Antet ilustrat", illustration_theme: "Aspectul antetului", theme_auto: "Automat (soare sau temă întunecată)", theme_day: "Zi", theme_night: "Noapte",
   },
   da: {
     meter_water: "Vandmåler", meter_gas: "Gasmåler", meter_electricity: "Elmåler", type_electricity: "El", power: "Effekt", index: "Målerstand", today: "I dag", week: "Denne uge", month: "Denne måned", year: "I år",
@@ -365,7 +370,7 @@ const STRINGS = {
     leak_section: "Lækagedetektion", flow_entity: "Flowsensor", leak_entity: "Lækagesensor", leak_start: "Start på natperiode", leak_end: "Slut på natperiode",
     leak_threshold: "Tærskel (L/t for vand)", daily_limit: "Dagsgrænse", sources_section: "Datakilder", statistic_id: "Statistik (i stedet for sensorens)",
     today_entity: "Forbrugsmåler (daglig)", week_entity: "Forbrugsmåler (ugentlig)", month_entity: "Forbrugsmåler (månedlig)", year_entity: "Forbrugsmåler (årlig)",
-    zoom: "Detaljeknap", zoom_helper: "Skifter minikortet til det fulde kort og tilbage", language: "Sprog", lang_auto: "Automatisk (Home Assistant)",
+    zoom: "Detaljeknap", zoom_helper: "Skifter minikortet til det fulde kort og tilbage", language: "Sprog", lang_auto: "Automatisk (Home Assistant)", illustration: "Illustreret overskrift", illustration_theme: "Overskriftens stemning", theme_auto: "Automatisk (sol eller mørkt tema)", theme_day: "Dag", theme_night: "Nat",
   },
   sv: {
     meter_water: "Vattenmätare", meter_gas: "Gasmätare", meter_electricity: "Elmätare", type_electricity: "El", power: "Effekt", index: "Mätarställning", today: "I dag", week: "Den här veckan", month: "Den här månaden", year: "I år",
@@ -385,7 +390,7 @@ const STRINGS = {
     leak_section: "Läckagedetektering", flow_entity: "Flödessensor", leak_entity: "Läckagesensor", leak_start: "Nattperiodens början", leak_end: "Nattperiodens slut",
     leak_threshold: "Tröskel (L/h för vatten)", daily_limit: "Dagsgräns", sources_section: "Datakällor", statistic_id: "Statistik (i stället för sensorns)",
     today_entity: "Förbrukningsmätare (daglig)", week_entity: "Förbrukningsmätare (veckovis)", month_entity: "Förbrukningsmätare (månadsvis)", year_entity: "Förbrukningsmätare (årlig)",
-    zoom: "Detaljknapp", zoom_helper: "Växlar minikortet till hela kortet och tillbaka", language: "Språk", lang_auto: "Automatiskt (Home Assistant)",
+    zoom: "Detaljknapp", zoom_helper: "Växlar minikortet till hela kortet och tillbaka", language: "Språk", lang_auto: "Automatiskt (Home Assistant)", illustration: "Illustrerad rubrik", illustration_theme: "Rubrikens stämning", theme_auto: "Automatiskt (sol eller mörkt tema)", theme_day: "Dag", theme_night: "Natt",
   },
   bg: {
     meter_water: "Водомер", meter_gas: "Газомер", meter_electricity: "Електромер", type_electricity: "Електричество", power: "Мощност", index: "Показание", today: "Днес", week: "Тази седмица", month: "Този месец", year: "Тази година",
@@ -405,7 +410,7 @@ const STRINGS = {
     leak_section: "Откриване на течове", flow_entity: "Сензор за дебит", leak_entity: "Сензор за теч", leak_start: "Начало на нощния период", leak_end: "Край на нощния период",
     leak_threshold: "Праг (L/ч за вода)", daily_limit: "Дневен лимит", sources_section: "Източници на данни", statistic_id: "Статистика (вместо тази на сензора)",
     today_entity: "Брояч на потребление (дневен)", week_entity: "Брояч на потребление (седмичен)", month_entity: "Брояч на потребление (месечен)", year_entity: "Брояч на потребление (годишен)",
-    zoom: "Бутон за подробности", zoom_helper: "Превключва мини картата към пълната карта и обратно", language: "Език", lang_auto: "Автоматично (Home Assistant)",
+    zoom: "Бутон за подробности", zoom_helper: "Превключва мини картата към пълната карта и обратно", language: "Език", lang_auto: "Автоматично (Home Assistant)", illustration: "Илюстрирана заглавка", illustration_theme: "Изглед на заглавката", theme_auto: "Автоматично (слънце или тъмна тема)", theme_day: "Ден", theme_night: "Нощ",
   },
   ru: {
     meter_water: "Счётчик воды", meter_gas: "Счётчик газа", meter_electricity: "Счётчик электроэнергии", type_electricity: "Электричество", power: "Мощность", index: "Показания", today: "Сегодня", week: "Эта неделя", month: "Этот месяц", year: "Этот год",
@@ -425,7 +430,7 @@ const STRINGS = {
     leak_section: "Обнаружение утечек", flow_entity: "Датчик расхода", leak_entity: "Датчик протечки", leak_start: "Начало ночного интервала", leak_end: "Конец ночного интервала",
     leak_threshold: "Порог (л/ч для воды)", daily_limit: "Дневной лимит", sources_section: "Источники данных", statistic_id: "Статистика (вместо статистики датчика)",
     today_entity: "Счётчик потребления (за день)", week_entity: "Счётчик потребления (за неделю)", month_entity: "Счётчик потребления (за месяц)", year_entity: "Счётчик потребления (за год)",
-    zoom: "Кнопка подробностей", zoom_helper: "Переключает мини-карточку на полную и обратно", language: "Язык", lang_auto: "Автоматически (Home Assistant)",
+    zoom: "Кнопка подробностей", zoom_helper: "Переключает мини-карточку на полную и обратно", language: "Язык", lang_auto: "Автоматически (Home Assistant)", illustration: "Иллюстрированный заголовок", illustration_theme: "Вид заголовка", theme_auto: "Автоматически (солнце или тёмная тема)", theme_day: "День", theme_night: "Ночь",
   },
   uk: {
     meter_water: "Лічильник води", meter_gas: "Лічильник газу", meter_electricity: "Лічильник електроенергії", type_electricity: "Електрика", power: "Потужність", index: "Показники", today: "Сьогодні", week: "Цей тиждень", month: "Цей місяць", year: "Цей рік",
@@ -445,7 +450,7 @@ const STRINGS = {
     leak_section: "Виявлення витоків", flow_entity: "Датчик витрати", leak_entity: "Датчик протікання", leak_start: "Початок нічного інтервалу", leak_end: "Кінець нічного інтервалу",
     leak_threshold: "Поріг (л/год для води)", daily_limit: "Денний ліміт", sources_section: "Джерела даних", statistic_id: "Статистика (замість статистики датчика)",
     today_entity: "Лічильник споживання (денний)", week_entity: "Лічильник споживання (тижневий)", month_entity: "Лічильник споживання (місячний)", year_entity: "Лічильник споживання (річний)",
-    zoom: "Кнопка подробиць", zoom_helper: "Перемикає міні-картку на повну й назад", language: "Мова", lang_auto: "Автоматично (Home Assistant)",
+    zoom: "Кнопка подробиць", zoom_helper: "Перемикає міні-картку на повну й назад", language: "Мова", lang_auto: "Автоматично (Home Assistant)", illustration: "Ілюстрований заголовок", illustration_theme: "Вигляд заголовка", theme_auto: "Автоматично (сонце або темна тема)", theme_day: "День", theme_night: "Ніч",
   },
   hu: {
     meter_water: "Vízóra", meter_gas: "Gázóra", meter_electricity: "Villanyóra", type_electricity: "Áram", power: "Teljesítmény", index: "Mérőállás", today: "Ma", week: "Ezen a héten", month: "Ebben a hónapban", year: "Ebben az évben",
@@ -465,7 +470,7 @@ const STRINGS = {
     leak_section: "Szivárgásérzékelés", flow_entity: "Átfolyásérzékelő", leak_entity: "Szivárgásérzékelő", leak_start: "Az éjszakai időszak kezdete", leak_end: "Az éjszakai időszak vége",
     leak_threshold: "Küszöb (L/óra víz esetén)", daily_limit: "Napi korlát", sources_section: "Adatforrások", statistic_id: "Statisztika (az érzékelőé helyett)",
     today_entity: "Fogyasztásmérő (napi)", week_entity: "Fogyasztásmérő (heti)", month_entity: "Fogyasztásmérő (havi)", year_entity: "Fogyasztásmérő (éves)",
-    zoom: "Részletek gomb", zoom_helper: "A mini kártyát a teljes kártyára váltja és vissza", language: "Nyelv", lang_auto: "Automatikus (Home Assistant)",
+    zoom: "Részletek gomb", zoom_helper: "A mini kártyát a teljes kártyára váltja és vissza", language: "Nyelv", lang_auto: "Automatikus (Home Assistant)", illustration: "Illusztrált fejléc", illustration_theme: "A fejléc hangulata", theme_auto: "Automatikus (nap vagy sötét téma)", theme_day: "Nappal", theme_night: "Éjszaka",
   },
   sk: {
     meter_water: "Vodomer", meter_gas: "Plynomer", meter_electricity: "Elektromer", type_electricity: "Elektrina", power: "Výkon", index: "Stav meradla", today: "Dnes", week: "Tento týždeň", month: "Tento mesiac", year: "Tento rok",
@@ -485,7 +490,7 @@ const STRINGS = {
     leak_section: "Detekcia únikov", flow_entity: "Senzor prietoku", leak_entity: "Senzor úniku", leak_start: "Začiatok nočného okna", leak_end: "Koniec nočného okna",
     leak_threshold: "Prah (L/h pre vodu)", daily_limit: "Denný limit", sources_section: "Zdroje údajov", statistic_id: "Štatistika (namiesto štatistiky senzora)",
     today_entity: "Merač spotreby (denný)", week_entity: "Merač spotreby (týždenný)", month_entity: "Merač spotreby (mesačný)", year_entity: "Merač spotreby (ročný)",
-    zoom: "Tlačidlo podrobností", zoom_helper: "Prepne mini kartu na úplnú kartu a späť", language: "Jazyk", lang_auto: "Automaticky (Home Assistant)",
+    zoom: "Tlačidlo podrobností", zoom_helper: "Prepne mini kartu na úplnú kartu a späť", language: "Jazyk", lang_auto: "Automaticky (Home Assistant)", illustration: "Ilustrovaná hlavička", illustration_theme: "Vzhľad hlavičky", theme_auto: "Automaticky (slnko alebo tmavá téma)", theme_day: "Deň", theme_night: "Noc",
   },
   cs: {
     meter_water: "Vodoměr", meter_gas: "Plynoměr", meter_electricity: "Elektroměr", type_electricity: "Elektřina", power: "Výkon", index: "Stav měřidla", today: "Dnes", week: "Tento týden", month: "Tento měsíc", year: "Letos",
@@ -505,7 +510,7 @@ const STRINGS = {
     leak_section: "Detekce úniků", flow_entity: "Senzor průtoku", leak_entity: "Senzor úniku", leak_start: "Začátek nočního okna", leak_end: "Konec nočního okna",
     leak_threshold: "Práh (L/h pro vodu)", daily_limit: "Denní limit", sources_section: "Zdroje dat", statistic_id: "Statistika (místo statistiky senzoru)",
     today_entity: "Měřič spotřeby (denní)", week_entity: "Měřič spotřeby (týdenní)", month_entity: "Měřič spotřeby (měsíční)", year_entity: "Měřič spotřeby (roční)",
-    zoom: "Tlačítko podrobností", zoom_helper: "Přepne mini kartu na úplnou kartu a zpět", language: "Jazyk", lang_auto: "Automaticky (Home Assistant)",
+    zoom: "Tlačítko podrobností", zoom_helper: "Přepne mini kartu na úplnou kartu a zpět", language: "Jazyk", lang_auto: "Automaticky (Home Assistant)", illustration: "Ilustrované záhlaví", illustration_theme: "Vzhled záhlaví", theme_auto: "Automaticky (slunce nebo tmavý motiv)", theme_day: "Den", theme_night: "Noc",
   },
   sl: {
     meter_water: "Vodomer", meter_gas: "Plinomer", meter_electricity: "Števec elektrike", type_electricity: "Elektrika", power: "Moč", index: "Stanje števca", today: "Danes", week: "Ta teden", month: "Ta mesec", year: "Letos",
@@ -525,7 +530,7 @@ const STRINGS = {
     leak_section: "Zaznavanje puščanja", flow_entity: "Senzor pretoka", leak_entity: "Senzor puščanja", leak_start: "Začetek nočnega okna", leak_end: "Konec nočnega okna",
     leak_threshold: "Prag (L/h za vodo)", daily_limit: "Dnevna omejitev", sources_section: "Viri podatkov", statistic_id: "Statistika (namesto statistike senzorja)",
     today_entity: "Števec porabe (dnevni)", week_entity: "Števec porabe (tedenski)", month_entity: "Števec porabe (mesečni)", year_entity: "Števec porabe (letni)",
-    zoom: "Gumb za podrobnosti", zoom_helper: "Preklopi mini kartico na polno kartico in nazaj", language: "Jezik", lang_auto: "Samodejno (Home Assistant)",
+    zoom: "Gumb za podrobnosti", zoom_helper: "Preklopi mini kartico na polno kartico in nazaj", language: "Jezik", lang_auto: "Samodejno (Home Assistant)", illustration: "Ilustrirana glava", illustration_theme: "Videz glave", theme_auto: "Samodejno (sonce ali temna tema)", theme_day: "Dan", theme_night: "Noč",
   },
   lv: {
     meter_water: "Ūdens skaitītājs", meter_gas: "Gāzes skaitītājs", meter_electricity: "Elektrības skaitītājs", type_electricity: "Elektrība", power: "Jauda", index: "Rādījums", today: "Šodien", week: "Šonedēļ", month: "Šomēnes", year: "Šogad",
@@ -545,7 +550,7 @@ const STRINGS = {
     leak_section: "Noplūžu noteikšana", flow_entity: "Plūsmas sensors", leak_entity: "Noplūdes sensors", leak_start: "Nakts perioda sākums", leak_end: "Nakts perioda beigas",
     leak_threshold: "Slieksnis (L/h ūdenim)", daily_limit: "Dienas limits", sources_section: "Datu avoti", statistic_id: "Statistika (sensora statistikas vietā)",
     today_entity: "Patēriņa skaitītājs (dienas)", week_entity: "Patēriņa skaitītājs (nedēļas)", month_entity: "Patēriņa skaitītājs (mēneša)", year_entity: "Patēriņa skaitītājs (gada)",
-    zoom: "Detaļu poga", zoom_helper: "Pārslēdz mini karti uz pilno karti un atpakaļ", language: "Valoda", lang_auto: "Automātiski (Home Assistant)",
+    zoom: "Detaļu poga", zoom_helper: "Pārslēdz mini karti uz pilno karti un atpakaļ", language: "Valoda", lang_auto: "Automātiski (Home Assistant)", illustration: "Ilustrēta galvene", illustration_theme: "Galvenes noskaņa", theme_auto: "Automātiski (saule vai tumšais motīvs)", theme_day: "Diena", theme_night: "Nakts",
   },
   el: {
     meter_water: "Μετρητής νερού", meter_gas: "Μετρητής αερίου", meter_electricity: "Μετρητής ηλεκτρικού", type_electricity: "Ηλεκτρικό", power: "Ισχύς", index: "Ένδειξη", today: "Σήμερα", week: "Αυτή την εβδομάδα", month: "Αυτόν τον μήνα", year: "Φέτος",
@@ -565,7 +570,7 @@ const STRINGS = {
     leak_section: "Ανίχνευση διαρροών", flow_entity: "Αισθητήρας ροής", leak_entity: "Αισθητήρας διαρροής", leak_start: "Αρχή νυχτερινού διαστήματος", leak_end: "Τέλος νυχτερινού διαστήματος",
     leak_threshold: "Όριο (L/ώρα για νερό)", daily_limit: "Ημερήσιο όριο", sources_section: "Πηγές δεδομένων", statistic_id: "Στατιστικό (αντί του αισθητήρα)",
     today_entity: "Μετρητής κατανάλωσης (ημερήσιος)", week_entity: "Μετρητής κατανάλωσης (εβδομαδιαίος)", month_entity: "Μετρητής κατανάλωσης (μηνιαίος)", year_entity: "Μετρητής κατανάλωσης (ετήσιος)",
-    zoom: "Κουμπί λεπτομερειών", zoom_helper: "Εναλλάσσει τη μίνι κάρτα με την πλήρη κάρτα", language: "Γλώσσα", lang_auto: "Αυτόματα (Home Assistant)",
+    zoom: "Κουμπί λεπτομερειών", zoom_helper: "Εναλλάσσει τη μίνι κάρτα με την πλήρη κάρτα", language: "Γλώσσα", lang_auto: "Αυτόματα (Home Assistant)", illustration: "Εικονογραφημένη κεφαλίδα", illustration_theme: "Ατμόσφαιρα κεφαλίδας", theme_auto: "Αυτόματα (ήλιος ή σκούρο θέμα)", theme_day: "Ημέρα", theme_night: "Νύχτα",
   },
 };
 
@@ -969,37 +974,37 @@ const watchOutside = (card, handler) => {
 
 const digitsOf = (v, n) => (v === null ? "-".repeat(n) : String(Math.floor(Math.abs(v)) % 10 ** n).padStart(n, "0"));
 
-const waterArt = (index) =>
+const waterArt = (index, uid = "") =>
   '<svg viewBox="0 0 80 88" aria-hidden="true"><defs>' +
-  '<radialGradient id="um-brass" cx=".38" cy=".32" r=".75"><stop offset="0" stop-color="#f3d58a"/><stop offset=".55" stop-color="#c9973c"/><stop offset="1" stop-color="#8a6420"/></radialGradient>' +
-  '<linearGradient id="um-pipe" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#dfe4ea"/><stop offset=".5" stop-color="#aab3bd"/><stop offset="1" stop-color="#7d8792"/></linearGradient>' +
-  '<radialGradient id="um-glass" cx=".4" cy=".3" r=".8"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#e3e9ef"/></radialGradient></defs>' +
+  `<radialGradient id="um-brass${uid}" cx=".38" cy=".32" r=".75"><stop offset="0" stop-color="#f3d58a"/><stop offset=".55" stop-color="#c9973c"/><stop offset="1" stop-color="#8a6420"/></radialGradient>` +
+  `<linearGradient id="um-pipe${uid}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#dfe4ea"/><stop offset=".5" stop-color="#aab3bd"/><stop offset="1" stop-color="#7d8792"/></linearGradient>` +
+  `<radialGradient id="um-glass${uid}" cx=".4" cy=".3" r=".8"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#e3e9ef"/></radialGradient></defs>` +
   '<ellipse class="puddle" cx="62" cy="84" rx="12" ry="2.6"/>' +
-  '<rect x="0" y="58" width="80" height="12" rx="2" fill="url(#um-pipe)"/>' +
+  `<rect x="0" y="58" width="80" height="12" rx="2" fill="url(#um-pipe${uid})"/>` +
   '<g class="ripples"><path d="M6 64h7M30 64h6M54 64h7"/></g>' +
   '<rect x="8" y="55" width="7" height="18" rx="1.5" fill="#c9973c" stroke="#8a6420" stroke-width=".6"/>' +
   '<rect x="65" y="55" width="7" height="18" rx="1.5" fill="#c9973c" stroke="#8a6420" stroke-width=".6"/>' +
   '<path class="drop" d="M62 72c0 0-2.2 3-2.2 4.4a2.2 2.2 0 0 0 4.4 0c0-1.4-2.2-4.4-2.2-4.4z"/>' +
   '<circle class="halo" cx="40" cy="34" r="30"/>' +
-  '<circle cx="40" cy="34" r="27" fill="url(#um-brass)" stroke="#7a5518" stroke-width="1"/>' +
-  '<circle cx="40" cy="34" r="21" fill="url(#um-glass)" stroke="#9aa5b1" stroke-width=".8"/>' +
+  `<circle cx="40" cy="34" r="27" fill="url(#um-brass${uid})" stroke="#7a5518" stroke-width="1"/>` +
+  `<circle cx="40" cy="34" r="21" fill="url(#um-glass${uid})" stroke="#9aa5b1" stroke-width=".8"/>` +
   '<rect x="27" y="22" width="26" height="8" rx="1.5" fill="#1d2632"/>' +
   `<text class="digits" x="40" y="28.3" text-anchor="middle">${esc(digitsOf(index, 5))}</text>` +
   '<g stroke="#9aa5b1" stroke-width=".7"><path d="M40 14.5v2.5M40 51v2.5M20.5 34H23M57 34h2.5"/></g>' +
   '<g class="star" transform="translate(40 41)"><path d="M0-6 1.4-1.4 6 0 1.4 1.4 0 6-1.4 1.4-6 0-1.4-1.4z" fill="#e53935"/><circle r="1.3" fill="#fff"/></g>' +
   "</svg>";
 
-const gasArt = (index) =>
+const gasArt = (index, uid = "") =>
   '<svg viewBox="0 0 80 88" aria-hidden="true"><defs>' +
-  '<linearGradient id="um-box" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fbf6ea"/><stop offset="1" stop-color="#ddd3bd"/></linearGradient>' +
-  '<linearGradient id="um-gpipe" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#e2c25a"/><stop offset=".5" stop-color="#fbe58a"/><stop offset="1" stop-color="#c9a332"/></linearGradient>' +
-  '<clipPath id="um-roll"><rect x="51" y="19" width="6" height="9"/></clipPath></defs>' +
-  '<rect x="24" y="66" width="7" height="22" fill="url(#um-gpipe)"/><rect x="49" y="66" width="7" height="22" fill="url(#um-gpipe)"/>' +
+  `<linearGradient id="um-box${uid}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fbf6ea"/><stop offset="1" stop-color="#ddd3bd"/></linearGradient>` +
+  `<linearGradient id="um-gpipe${uid}" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#e2c25a"/><stop offset=".5" stop-color="#fbe58a"/><stop offset="1" stop-color="#c9a332"/></linearGradient>` +
+  `<clipPath id="um-roll${uid}"><rect x="51" y="19" width="6" height="9"/></clipPath></defs>` +
+  `<rect x="24" y="66" width="7" height="22" fill="url(#um-gpipe${uid})"/><rect x="49" y="66" width="7" height="22" fill="url(#um-gpipe${uid})"/>` +
   '<rect class="halo" x="7" y="1" width="66" height="70" rx="10"/>' +
-  '<rect x="11" y="5" width="58" height="62" rx="7" fill="url(#um-box)" stroke="#bfb397" stroke-width="1"/>' +
+  `<rect x="11" y="5" width="58" height="62" rx="7" fill="url(#um-box${uid})" stroke="#bfb397" stroke-width="1"/>` +
   '<rect x="17" y="15" width="46" height="17" rx="2.5" fill="#1d2632"/>' +
   `<text class="digits" x="34" y="26.2" text-anchor="middle">${esc(digitsOf(index, 5).slice(0, 4))}</text>` +
-  `<g clip-path="url(#um-roll)"><g class="roll"><text class="digits red" x="54" y="26.2" text-anchor="middle">${esc(digitsOf(index, 1))}</text><text class="digits red" x="54" y="35.2" text-anchor="middle">${esc(String((Math.floor(Math.abs(index ?? 0)) + 1) % 10))}</text></g></g>` +
+  `<g clip-path="url(#um-roll${uid})"><g class="roll"><text class="digits red" x="54" y="26.2" text-anchor="middle">${esc(digitsOf(index, 1))}</text><text class="digits red" x="54" y="35.2" text-anchor="middle">${esc(String((Math.floor(Math.abs(index ?? 0)) + 1) % 10))}</text></g></g>` +
   '<rect x="17" y="38" width="46" height="5" rx="2.5" fill="#cfc4aa"/>' +
   '<circle cx="54" cy="55" r="7" fill="#fff" stroke="#bfb397" stroke-width=".8"/>' +
   '<path class="flame" d="M54 49.5c.5 2.2-1 3.2-2 4.5-1 1.3-1.7 2.4-1.7 3.9 0 2.1 1.6 3.6 3.7 3.6s3.7-1.5 3.7-3.6c0-1.6-.7-2.7-1.4-3.7-.2.9-.6 1.6-1.3 1.9.2-1.9-.2-4.2-1-6.6z"/>' +
@@ -1023,12 +1028,12 @@ const elecDigital = (index) =>
   '<rect x="21" y="60" width="38" height="5" rx="2.5" fill="#d3dccb"/>' +
   '<rect class="elec-bar" x="21" y="60" width="38" height="5" rx="2.5"/>';
 
-const elecDisc = (index) =>
-  '<defs><radialGradient id="um-edome" cx=".4" cy=".3" r=".8"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#dfe6ee"/></radialGradient></defs>' +
+const elecDisc = (index, uid = "") =>
+  `<defs><radialGradient id="um-edome${uid}" cx=".4" cy=".3" r=".8"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#dfe6ee"/></radialGradient></defs>` +
   '<rect x="34" y="66" width="12" height="22" fill="#9aa5b1"/>' +
   '<circle class="halo" cx="40" cy="36" r="31"/>' +
   '<circle cx="40" cy="36" r="30" fill="#e9eef3" stroke="#b7c0ca" stroke-width="1.5"/>' +
-  '<circle cx="40" cy="36" r="24.5" fill="url(#um-edome)" stroke="#c3ccd6" stroke-width="1"/>' +
+  `<circle cx="40" cy="36" r="24.5" fill="url(#um-edome${uid})" stroke="#c3ccd6" stroke-width="1"/>` +
   '<rect x="26" y="19" width="28" height="9" rx="1.5" fill="#1d2632"/>' +
   `<text class="digits" x="40" y="26" text-anchor="middle">${esc(digitsOf(index, 5))}</text>` +
   '<ellipse cx="40" cy="45" rx="17" ry="6.5" fill="#cdd5dd" stroke="#aeb7c1" stroke-width=".8"/>' +
@@ -1049,8 +1054,8 @@ const elecSubmeter = (power) =>
   '<circle class="elec-led" cx="22" cy="40" r="2.3"/>';
 
 const ELEC_ARTS = { digital: elecDigital, disc: elecDisc, submeter: elecSubmeter };
-const electricArt = (index, style, power) =>
-  `<svg viewBox="0 0 80 88" aria-hidden="true">${(ELEC_ARTS[style] || elecDigital)(style === "submeter" ? power : index)}</svg>`;
+const electricArt = (index, style, power, uid = "") =>
+  `<svg viewBox="0 0 80 88" aria-hidden="true">${(ELEC_ARTS[style] || elecDigital)(style === "submeter" ? power : index, uid)}</svg>`;
 
 const ART_STYLE = `
   .picture { flex: none; display: flex; align-items: center; justify-content: center; }
@@ -1104,6 +1109,143 @@ const ART_STYLE = `
 `;
 
 // ---------------------------------------------------------------------------
+// Illustrated header: a 200 × 80 scene at the right of a 90 px banner, over a 10 px ground strip edge to edge, with
+// the card's own meter drawn big at its right (the same picture and animations as in the body before). Each kind of
+// meter has its own place: water in a cellar (concrete floor, the blue pipe and its valve), electricity by the
+// breaker panel (tiled floor, the cable down to the meter), gas on the house front (lawn, the yellow gas pipe).
+// `night`: the night version (sun.sun, else the dark theme; `illustration_theme` forces one).
+// ---------------------------------------------------------------------------
+
+const umStars = (night) =>
+  night ? `<g fill="#fff" opacity=".8">${[[12, 8], [44, 18], [96, 6], [132, 24], [168, 10], [188, 30], [70, 30]].map(([x, y]) => `<circle cx="${x}" cy="${y}" r=".6"/>`).join("")}</g>` : "";
+const umSunMoon = (x, y, night) =>
+  night
+    ? `<path d="M${x} ${y - 6}a6.4 6.4 0 1 0 5.6 9.6 5.2 5.2 0 1 1-5.6-9.6Z" fill="#f4f1dc"/>`
+    : `<circle cx="${x}" cy="${y}" r="9" fill="#ffd65a" opacity=".28"/><circle cx="${x}" cy="${y}" r="6" fill="#ffd65a"/>`;
+const umLines = (x1, n, step, color, width) =>
+  `<g stroke="${color}" stroke-width="${width}">${Array.from({ length: n }, (_, i) => `<line x1="${x1}" y1="${i * step}" x2="240" y2="${i * step}"/>`).join("")}</g>`;
+
+// The room behind each meter, in a 200 × 80 view. Its wall, lines and pipes run on to x 240, past the view's right
+// edge: when the mini card's scene steps left of the corner button, they continue under the button to the banner's edge.
+const UM_SCENES = {
+  // With the corner button (`zoom`), the upper pipe rises through the ceiling before the button instead of running
+  // on under it.
+  water: (n, zoom) =>
+    `<rect width="240" height="80" fill="${n ? "#26241f" : "#e9e3da"}"/>${umLines(0, 10, 9, n ? "#33302a" : "#d8cfc1", 1)}` +
+    `<path d="M40 68 H240 M100 68 V14 ${zoom ? "H192 V0" : "H240"}" stroke="#2f80ed" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>` +
+    '<path class="um-pulse" d="M40 68 H240" stroke="#bfe6ff" stroke-width="2" fill="none"/>' +
+    '<rect x="118" y="62" width="8" height="12" rx="1" fill="#e5484d"/><circle cx="122" cy="60" r="4" fill="#e5484d"/>' +
+    `<path d="M180 0 v20" stroke="#5f5e5a" stroke-width=".6"/><circle cx="180" cy="22" r="3" fill="${n ? "#ffcf6e" : "#f3e6d3"}"/>` +
+    '<ellipse class="um-puddle" cx="170" cy="79.2" rx="20" ry="2.4"/>',
+  electricity: (n) =>
+    `<rect width="240" height="80" fill="${n ? "#24272e" : "#f1f2f4"}"/>` +
+    `<g transform="translate(96 8)"><rect width="64" height="58" rx="3" fill="${n ? "#3a4050" : "#fff"}" stroke="${n ? "#4a5568" : "#c9ced6"}"/>${[0, 1, 2]
+      .map(
+        (r) =>
+          `<rect x="4" y="${6 + r * 16}" width="56" height="12" rx="1.5" fill="${n ? "#2e3442" : "#eef1f5"}"/>${Array.from(
+            { length: 7 },
+            (_, i) => `<rect x="${(7 + i * 7.6).toFixed(1)}" y="${8 + r * 16}" width="5" height="8" rx="1" fill="${i === 3 && r === 1 ? "#e5484d" : n ? "#55617a" : "#fff"}" stroke="#9aa3ae" stroke-width=".5"/>`,
+          ).join("")}`,
+      )
+      .join("")}</g>` +
+    '<path d="M128 66 V80" stroke="#5f6b7a" stroke-width="3"/><path class="um-flow" d="M128 66 V80" stroke="#f5b400" stroke-width="1.4"/>',
+  gas: (n) =>
+    `${umStars(n)}${umSunMoon(30, 14, n)}<rect x="60" y="0" width="180" height="80" fill="${n ? "#3a3530" : "#efe3cf"}"/>${umLines(60, 9, 10, n ? "#4a443c" : "#e2d3b8", 0.8)}` +
+    `<rect x="150" y="8" width="26" height="22" rx="1.5" fill="${n ? "#1b2f52" : "#bfe0f7"}" stroke="${n ? "#4a5568" : "#fff"}" stroke-width="1.4"/>` +
+    `<rect x="104" y="30" width="56" height="46" rx="2" fill="${n ? "#4a443c" : "#d9c9ab"}" stroke="${n ? "#5a5246" : "#b9a684"}"/>` +
+    '<path d="M86 80 V60 H104" stroke="#f5b400" stroke-width="4" fill="none" stroke-linejoin="round"/>' +
+    '<path class="um-flow" d="M86 80 V60 H104" stroke="#fff3b0" stroke-width="1.4" fill="none" stroke-linejoin="round"/>',
+};
+const UM_GROUND = { water: "concrete", electricity: "tiles", gas: "lawn" };
+
+// The part of each meter picture (its 80 × 88 drawing) shown in the banner, 72 units high with its right edge at x 196
+// of the scene and its foot on the ground strip.
+const UM_ART_VIEW = {
+  water: "-2.4 4.06 84.73 71.68",
+  gas: "7.91 2.04 64.11 88.46",
+  digital: "11.9 2.95 56.14 87.53",
+  disc: "7 3 66 87.5",
+  submeter: "-2 4 84 63",
+};
+
+const umScene = (type, night, zoom) =>
+  `<svg class="um-bg" viewBox="0 0 200 80" preserveAspectRatio="xMaxYMax meet" aria-hidden="true">${UM_SCENES[type](night, zoom)}</svg>`;
+
+// Night picture: forced by illustration_theme, else the sun below the horizon or Home Assistant's dark theme
+// (an unknown or unavailable sun leaves the theme alone to decide).
+const umIsNight = (hass, config) => {
+  const theme = config?.illustration_theme;
+  if (theme === "night") return true;
+  if (theme === "day") return false;
+  return hass?.states?.["sun.sun"]?.state === "below_horizon" || !!hass?.themes?.darkMode;
+};
+
+const BANNER_STYLE = `
+  /* The banner's own text colours (its background stays light by day, dark by night, whatever the theme). */
+  .banner { position: relative; overflow: hidden; height: 90px; --primary-text-color: #0d2a45; color: var(--primary-text-color); --um-sky-muted: #3b5b78;
+            background: linear-gradient(90deg, #f1f8ff 0%, #e2f1fd 34%, #b9def8 70%, #9fd0f3 100%); }
+  .banner.night { --primary-text-color: #fff; --um-sky-muted: rgba(255,255,255,.78);
+                  background: linear-gradient(90deg, #1b2f52 0%, #15284a 36%, #0f1f3d 72%, #0a1830 100%); }
+  .banner.t-water { background: #e9e3da; } .banner.t-water.night { background: #26241f; }
+  .banner.t-electricity { background: #f1f2f4; } .banner.t-electricity.night { background: #24272e; }
+  .um-scene { position: absolute; right: 0; bottom: 10px; width: min(200px, 56cqw); aspect-ratio: 5 / 2; }
+  .um-bg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; overflow: visible; }
+  .um-scene .picture { position: absolute; right: 2%; bottom: 0; height: 90%; }
+  .um-scene .picture .puddle { display: none; }
+  /* The mini card's detail button sits at the top right (5 + 24 px): the whole scene, meter and background, steps
+     left of it at full size. */
+  .banner.has-zoom .um-scene { right: 34px; }
+  .um-pulse { stroke-dasharray: 4 26; opacity: 0; }
+  .um-flow { stroke-dasharray: 3 4; opacity: 0; }
+  .banner.active .um-pulse { opacity: 1; animation: um-pl 1.4s linear infinite; }
+  .banner.active .um-flow { opacity: 1; animation: um-fl 1s linear infinite; }
+  .um-puddle { fill: #4fc3f7; opacity: 0; transform-box: fill-box; transform-origin: 50% 50%; }
+  .banner.leak .um-puddle { animation: um-puddle 3s ease-in-out infinite; }
+  @keyframes um-pl { to { stroke-dashoffset: -30; } }
+  @keyframes um-fl { to { stroke-dashoffset: -7; } }
+  /* The 10 px ground strip, edge to edge, themed to the meter's place. */
+  .ground { position: absolute; left: 0; right: 0; bottom: 0; height: 10px; }
+  .g-concrete { background: #9aa1a9; box-shadow: inset 0 2px 0 #b5bbc2; } .night .g-concrete { background: #2c323b; box-shadow: inset 0 2px 0 #3a414c; }
+  .g-tiles { background: repeating-linear-gradient(90deg, #d9dfe3 0 18px, #c6cdd2 18px 19px); box-shadow: inset 0 2px 0 #b8c0c6; }
+  .night .g-tiles { background: repeating-linear-gradient(90deg, #3a4250 0 18px, #2e3542 18px 19px); box-shadow: none; }
+  .g-lawn { background: repeating-linear-gradient(90deg, #5aa83d 0 22px, #6cbb4c 22px 44px); }
+  .night .g-lawn { background: repeating-linear-gradient(90deg, #1f4a2a 0 22px, #245433 22px 44px); }
+  /* The round icon and the titles on the left, over the background. */
+  .htext { position: absolute; z-index: 1; left: 0; top: 0; bottom: 10px; right: min(200px, 56cqw); display: flex; align-items: center; gap: 10px;
+           padding: 8px 8px 8px 14px; min-width: 0; }
+  .htext .titles { display: flex; flex-direction: column; min-width: 0; }
+  .htext .sub { font-size: 13px; color: var(--um-sky-muted); }
+  .banner .type-icon { background: rgba(255,255,255,.62); box-shadow: inset 0 0 0 1px rgba(47,128,237,.18); }
+  .banner.night .type-icon { background: rgba(255,255,255,.12); box-shadow: inset 0 0 0 1px rgba(255,255,255,.14); }
+  .banner .type-icon.idle .icon { fill: #7d8792; }
+  .banner.night .type-icon.on .icon { fill: var(--um-accent-hi); }
+  .banner.night .type-icon.idle .icon { fill: #9aa3ae; }
+  .banner .type-icon.warn .icon { fill: var(--um-warn); }
+  .banner .type-icon.crit .icon { fill: var(--um-crit); animation: um-pulse 1.5s ease-in-out infinite; }
+  /* The mini card's detail button: a frosted round button in the banner's top-right corner. */
+  .banner .zoom { all: unset; position: absolute; z-index: 2; top: 5px; right: 5px; margin: 0; cursor: pointer; width: 24px; height: 24px;
+                  border-radius: 50%; display: grid; place-items: center; box-sizing: border-box; color: #33506b; background: rgba(255,255,255,.55);
+                  box-shadow: inset 0 0 0 1px rgba(255,255,255,.7); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); }
+  .banner .zoom .icon { width: 16px; height: 16px; }
+  .banner .zoom:hover { background: rgba(255,255,255,.75); color: #33506b; }
+  .banner.night .zoom { color: #ffffff; background: rgba(255,255,255,.12); box-shadow: inset 0 0 0 1px rgba(255,255,255,.2); }
+  .banner.night .zoom:hover { background: rgba(255,255,255,.22); color: #ffffff; }
+  .banner .zoom:focus-visible { outline: 2px solid var(--primary-color, #03a9f4); outline-offset: 2px; }
+  .htext .titles { flex: 1 1 0; min-width: 0; align-self: stretch; display: flex; flex-direction: column; justify-content: center; }
+  /* The status pill on the banner: the status colour on frosted glass. */
+  .banner .chip { display: inline-flex; align-items: center; gap: 4px; flex: 0 0 auto; margin: 0; max-width: 51%; padding: 1px 8px; border-radius: 12px;
+                  font-size: 11px; font-weight: 500; line-height: 16px; white-space: nowrap; overflow: hidden; box-sizing: border-box;
+                  background: color-mix(in srgb, var(--c, var(--um-accent)) 18%, rgba(255,255,255,.78)); color: color-mix(in srgb, var(--c, var(--um-accent)) 45%, #0d2a45); }
+  .banner.night .chip { background: color-mix(in srgb, var(--c, var(--um-accent)) 30%, rgba(8,18,38,.55)); color: color-mix(in srgb, var(--c, var(--um-accent)) 35%, #ffffff); }
+  .banner .chip .dot { width: 7px; height: 7px; border-radius: 50%; flex: none; background: var(--c, var(--um-accent)); }
+  .banner .chip .chip-text { display: inline; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+  .banner .chip.on { --c: var(--um-accent); }
+  .banner + .content { padding-top: 12px; }
+  /* Narrow card: no room for the scene beside the text, the background alone stays. */
+  @container um-card (max-width: 320px) { .um-scene { display: none; } .htext { right: 32px; } }
+`;
+
+// ---------------------------------------------------------------------------
 // Styles
 // ---------------------------------------------------------------------------
 
@@ -1112,7 +1254,7 @@ const BASE_STYLE = `
           --um-crit: var(--error-color, #db4437); --um-idle: var(--disabled-text-color, #9e9e9e);
           /* Text in a state or accent color is mixed with the text color so that it reads at 4.5:1 at least. */
           --um-accent-text: color-mix(in srgb, var(--um-accent) 55%, var(--primary-text-color)); }
-  ha-card { overflow: hidden; container-type: inline-size; }
+  ha-card { overflow: hidden; container: um-card / inline-size; }
   /* A size container has no width of its own content: this empty, zero-height grid gives the card a natural width
      without any minimum, so it neither falls to its borders in a shrink-to-fit parent nor overflows a narrow track. */
   :host { display: block; min-width: 0; --um-natural-width: 360px; }
@@ -1127,8 +1269,27 @@ const BASE_STYLE = `
                --um-tint: var(--c, var(--um-accent)); background: color-mix(in srgb, var(--um-tint) 16%, transparent); transition: background-color .3s ease; }
   .type-icon .icon { width: 24px; height: 24px; fill: var(--um-accent); transition: fill .3s ease; }
   .type-icon:is(.warn, .crit) .icon { fill: color-mix(in srgb, var(--um-tint) 65%, var(--primary-text-color)); }
-  .titles { flex: 1 1 0; min-width: 5ch; align-self: center; }
-  :host([hide-title]) .titles > .name, :host([hide-subtitle]) .titles > .sub { display: none; }
+  .type-icon.idle .icon { fill: var(--um-idle); }
+  .titles { flex: 1 1 0; min-width: 0; align-self: center; }
+  :host([hide-title]) .titles .name, :host([hide-subtitle]) .titles .sub { display: none; }
+  /* The status pill, in every header: on the title row right after the title only when the whole title and the pill's
+     whole label fit there; otherwise on its own line under the subtitle, cut to one line; its dot alone, beside the
+     title, when the banner has no room left above its ground strip, or on a card of 200 px or less. Decided by
+     measurement (see _fitPill), so that every language and every width gets it right. */
+  .tstack { display: flex; flex-direction: column; gap: 1px; align-items: flex-start; min-width: 0; width: 100%; }
+  .tstack > * { max-width: 100%; }
+  .trow { display: flex; align-items: center; gap: 8px; min-width: 0; width: 100%; }
+  .trow .name { flex: 0 1 auto; min-width: 0; }
+  .titles .trow .chip { flex: none; max-width: none; margin: 0; align-self: center; }
+  .titles.below .tstack { display: grid; justify-items: start; row-gap: 1px; }
+  .titles.below .trow { display: contents; }
+  .titles.below .name { max-width: 100%; }
+  .titles.below .chip { order: 3; max-width: 100%; }
+  /* In the banner, a pill on its own line may run over the picture, up to the banner's edge. */
+  .banner .titles.below .chip { max-width: none; }
+  .titles.below .sub { max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .titles.dotonly .trow .chip { padding: 4px; } .titles.dotonly .trow .chip .chip-text { display: none; }
+  @container um-card (max-width: 200px) { .titles .tstack .chip { padding: 4px; } .titles .tstack .chip .chip-text { display: none; } }
   .name { font-size: 16px; font-weight: 500; line-height: 1.25; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .sub { font-size: 12px; color: var(--secondary-text-color); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   /* Status pill, at the right of the header, on the line of the title. */
@@ -1162,12 +1323,7 @@ const BASE_STYLE = `
   .zoom .icon { width: 16px; height: 16px; }
   .zoom:hover { background: color-mix(in srgb, var(--um-idle) 16%, transparent); color: var(--primary-text-color); }
   @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; animation: none !important; } }
-  /* Narrow card: the status pill keeps only its dot (its text stays in title and aria-label). */
-  @container (max-width: 230px) {
-    .chip { padding: 4px; flex: none; }
-    .chip-text { display: none; }
-    .header { gap: 6px; }
-  }
+  @container um-card (max-width: 230px) { .header { gap: 6px; } }
 `;
 
 // In-card popup: a backdrop over the card with a small dialog at the top of the card, so that it stays in view.
@@ -1239,18 +1395,18 @@ const FULL_STYLE = `
   .legend .l-prev { background: color-mix(in srgb, var(--secondary-text-color) 30%, transparent); }
   .legend .l-avg { height: 0; border-top: 1px dashed var(--secondary-text-color); vertical-align: 3px; }
   .empty { font-size: 13px; color: var(--secondary-text-color); padding: 8px 0; }
-  @container (max-width: 300px) {
+  @container um-card (max-width: 300px) {
     .hero .picture { width: 72px; height: 80px; }
     .hero { gap: 10px; }
     .index .v { font-size: 22px; }
     .tile .v { font-size: 15px; }
   }
-  @container (max-width: 240px) {
+  @container um-card (max-width: 240px) {
     .hero .picture { width: 52px; height: 58px; }
     .tiles { grid-template-columns: minmax(0, 1fr); }
   }
   /* Below 6 columns of a phone (a "1fr 1fr" grid): the index takes the whole width. */
-  @container (max-width: 200px) {
+  @container um-card (max-width: 200px) {
     .hero .picture { display: none; }
     .index .v { font-size: 19px; }
   }
@@ -1273,10 +1429,10 @@ const MINI_STYLE = `
   .flowline .icon { width: 16px; height: 16px; }
   .flowline.flowing { color: var(--um-accent-text); }
   .flowline.flowing .icon { color: var(--um-accent); }
-  @container (max-width: 270px) {
+  @container um-card (max-width: 270px) {
     .spark { display: none; }
   }
-  @container (max-width: 210px) {
+  @container um-card (max-width: 210px) {
     .mini { flex-wrap: wrap; gap: 4px 10px; }
     .mini .picture { width: 40px; height: 44px; }
     .mini .ms { flex-basis: calc(100% - 50px); }
@@ -1287,12 +1443,16 @@ const MINI_STYLE = `
 // Cards
 // ---------------------------------------------------------------------------
 
+let _umUid = 0;
+
 class UtilityMeterCard extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
     this._html = "";
     this._statsVersion = 0;
+    // Keeps the ids of each card's drawings apart on a page with several cards.
+    this._uid = `-${++_umUid}`;
     this.shadowRoot.addEventListener("click", (ev) => this._onClick(ev));
     // No rewrite of the card between the press and the release: Home Assistant updates the card several times a
     // second, and a rewrite under the pointer replaces the element pressed, so that the click lands on the card itself
@@ -1379,6 +1539,18 @@ class UtilityMeterCard extends HTMLElement {
       else this._update();
     };
     (this._outside ??= watchOutside(this, (ev) => this._onOutside(ev))).on();
+    // A new width (or the web font loaded): the status pill is fitted again, in the next frame.
+    if (typeof ResizeObserver === "function") {
+      this._resize ??= new ResizeObserver((entries) => {
+        const w = Math.round(entries.at(-1).contentRect.width);
+        if (w === this._fitWidth) return;
+        this._fitWidth = w;
+        cancelAnimationFrame(this._fitFrame);
+        this._fitFrame = requestAnimationFrame(() => this._fitPill());
+      });
+      this._resize.observe(this);
+    }
+    document.fonts?.ready?.then(() => this._fitPill());
     // Back on the page after leaving it: rendered again in its default state.
     if (this._hass && this._config) this._update();
     if (this._popup) window.addEventListener("keydown", this._onKey);
@@ -1389,9 +1561,50 @@ class UtilityMeterCard extends HTMLElement {
     }, 60000);
   }
 
+  // The status pill goes right after the title only when the whole title and the pill's whole label fit on that row;
+  // otherwise it takes a line of its own under the subtitle (.titles.below, the subtitle cut to one line). In the
+  // banner (where that line may run over the picture), when the titles still run below the top of the ground strip or
+  // out of the banner, and in the classic header when the label does not fit even alone, the pill keeps its dot alone,
+  // beside the title (.titles.dotonly). Measured in fractional pixels.
+  _fitPill() {
+    for (const t of this.shadowRoot?.querySelectorAll?.(".titles") || []) {
+      const row = t.querySelector(".trow");
+      const chips = row ? [...row.querySelectorAll(":scope > .chip")] : [];
+      if (!chips.length || !row.getBoundingClientRect) continue;
+      t.classList.remove("below", "dotonly");
+      const name = row.querySelector(":scope > .name");
+      const gap = parseFloat(getComputedStyle(row).columnGap) || 0;
+      const widths = chips.map((c) => c.getBoundingClientRect().width);
+      let need = -gap;
+      if (name && getComputedStyle(name).display !== "none") {
+        name.style.flex = "none";
+        need = name.getBoundingClientRect().width;
+        name.style.flex = "";
+      }
+      for (const w of widths) need += gap + w;
+      const room = row.getBoundingClientRect().width + 0.01;
+      if (need <= room) continue;
+      t.classList.add("below");
+      const banner = t.closest(".banner");
+      const cut = !banner && widths.some((w) => w > room);
+      let out = false;
+      if (banner) {
+        const b = banner.getBoundingClientRect();
+        const floor = b.bottom - (banner.querySelector(".ground")?.getBoundingClientRect().height ?? 10) + 0.5;
+        out = [...t.querySelectorAll(".name, .sub, .chip")].some((e) => {
+          const r = e.getBoundingClientRect();
+          return r.height && (r.bottom > floor || r.top < b.top - 0.5 || r.right > b.right + 0.5);
+        });
+      }
+      if (cut || out) t.classList.replace("below", "dotonly");
+    }
+  }
+
   disconnectedCallback() {
     clearInterval(this._tick);
     this._tick = null;
+    this._resize?.disconnect();
+    this._fitWidth = null;
     this._outside?.off();
     this._pressing = false;
     window.removeEventListener("pointerup", this._onPressEnd, true);
@@ -1448,7 +1661,7 @@ class UtilityMeterCard extends HTMLElement {
     if (!h || !this._config) return null;
     const c = this._config;
     const ids = [this._entity(), c.flow_entity, c.leak_entity, c.price_entity, c.conversion_factor_entity, ...Object.values(this._utility())];
-    return [h.language, h.locale, h.themes?.darkMode, h.config?.currency, this._statsVersion, startOfDay(Date.now()), ...ids.map((id) => h.states[id])];
+    return [h.language, h.locale, h.themes?.darkMode, h.states["sun.sun"], h.config?.currency, this._statsVersion, startOfDay(Date.now()), ...ids.map((id) => h.states[id])];
   }
 
   // Long-term statistics: hourly from two days back (today, yesterday, last night) and daily from the 1st of January of
@@ -1529,6 +1742,7 @@ class UtilityMeterCard extends HTMLElement {
     const kept = !this._byPointer && active?.dataset && Object.keys(active.dataset).length ? JSON.stringify({ ...active.dataset }) : null;
     this._html = html;
     this.shadowRoot.innerHTML = html;
+    this._fitPill();
     if (this._popup) this.shadowRoot.querySelector('[data-action="popup_close"]')?.focus?.({ preventScroll: true });
     else if (kept) {
       for (const el of this.shadowRoot.querySelectorAll("[data-action], [data-entity]")) {
@@ -1709,23 +1923,47 @@ class UtilityMeterCard extends HTMLElement {
   }
 
   _accent(type) {
-    return `:host { --um-accent: ${TYPES[type].accent[this._hass?.themes?.darkMode ? 1 : 0]}; }`;
+    return `:host { --um-accent: ${TYPES[type].accent[this._hass?.themes?.darkMode ? 1 : 0]}; --um-accent-hi: ${TYPES[type].accent[1]}; }`;
+  }
+
+  _illustrated() {
+    return this._config.illustration !== false;
+  }
+
+  // State of the header icon, whose colour always shows the status: the meter's colour while it is flowing (or drawing
+  // power), grey when still or unavailable, amber above the daily limit, red on a leak.
+  _iconState(m) {
+    const cls = m.status.cls;
+    if (cls === "crit" || cls === "warn" || cls === "idle") return cls;
+    return m.active ? "on" : "idle";
   }
 
   _header(m, sub) {
     const c = this._config;
     const text = this._t(m.status.key);
-    const tint = m.status.cls === "crit" || m.status.cls === "warn" ? ` ${m.status.cls}` : "";
     const chipEntity = m.sensorWet ? c.leak_entity : m.id;
-    return `
+    const chip = `<span class="chip clickable ${m.status.cls}" role="button" tabindex="0" data-entity="${esc(chipEntity)}" title="${esc(text)}" aria-label="${esc(text)}"><span class="dot"></span><span class="chip-text">${esc(text)}</span></span>`;
+    const icon = `<div class="type-icon ${this._iconState(m)}">${svgIcon(ICONS[m.type])}</div>`;
+    const name = `<div class="name">${esc(c.title || m.st.attributes.friendly_name || m.id)}</div>`;
+    if (!this._illustrated()) {
+      return `
       <div class="header">
-        <div class="type-icon${tint}">${svgIcon(ICONS[m.type])}</div>
-        <div class="titles">
-          <div class="name">${esc(c.title || m.st.attributes.friendly_name || m.id)}</div>
-          ${sub ? `<div class="sub">${esc(sub)}</div>` : ""}
-        </div>
-        <span class="chip clickable ${m.status.cls}" role="button" tabindex="0" data-entity="${esc(chipEntity)}" title="${esc(text)}" aria-label="${esc(text)}"><span class="dot"></span><span class="chip-text">${esc(text)}</span></span>
+        ${icon}
+        <div class="titles"><div class="tstack"><div class="trow">${name}${chip}</div>${sub ? `<div class="sub" title="${esc(sub)}">${esc(sub)}</div>` : ""}</div></div>
         ${this._zoomButton()}
+      </div>`;
+    }
+    // The illustrated header: the scene and the meter on the right, the icon and the titles on the left, the status
+    // pill on the title row in the round icon's colour.
+    const zoom = this._zoomButton();
+    const pill = chip.replace(`chip clickable ${m.status.cls}"`, `chip clickable ${this._iconState(m)}"`);
+    const cls = `banner t-${m.type}${zoom ? " has-zoom" : ""}${umIsNight(this._hass, c) ? " night" : ""}${m.active ? " active" : ""}${m.leak ? " leak" : ""}`;
+    return `
+      <div class="${cls}">
+        <div class="um-scene">${umScene(m.type, umIsNight(this._hass, c), !!zoom)}${this._picture(m, true)}</div>
+        <div class="ground g-${UM_GROUND[m.type]}"></div>
+        <div class="htext">${icon}<div class="titles"><div class="tstack"><div class="trow">${name}${pill}</div>${sub ? `<div class="sub" title="${esc(sub)}">${esc(sub)}</div>` : ""}</div></div></div>
+        ${zoom}
       </div>`;
   }
 
@@ -1771,18 +2009,29 @@ class UtilityMeterCard extends HTMLElement {
   }
 
   _art(m) {
-    if (m.type === "water") return waterArt(num(m.st));
-    if (m.type === "gas") return gasArt(num(m.st));
+    const uid = this._uid;
+    if (m.type === "water") return waterArt(num(m.st), uid);
+    if (m.type === "gas") return gasArt(num(m.st), uid);
     const power = m.flow?.v != null ? fmtNum(Math.round(Math.abs(m.flow.v)), this._locale(), 0) : "———";
-    return electricArt(num(m.st), this._pictureStyle(m), power);
+    return electricArt(num(m.st), this._pictureStyle(m), power, uid);
   }
 
-  _picture(m) {
+  // The meter picture: in the body (classic header), or big at the right of the illustrated header (`banner`),
+  // cropped to the drawing so that it stands on the ground strip.
+  _picture(m, banner = false) {
     if (this._config.show_picture === false) return "";
     const high = m.type === "electricity" && m.high ? " high" : "";
     const cls = `${m.active ? " active" : ""}${m.leak ? " leak" : ""}${high}`;
     const label = `${this._t(`meter_${m.type}`)} · ${this._t(m.status.key)}`;
-    return `<div class="picture clickable${cls}" role="button" tabindex="0" aria-label="${esc(label)}" data-entity="${esc(m.id)}">${this._art(m)}</div>`;
+    let art = this._art(m);
+    let style = "";
+    if (banner) {
+      const view = UM_ART_VIEW[m.type === "electricity" ? this._pictureStyle(m) : m.type];
+      const [, , w, h] = view.split(" ").map(Number);
+      art = art.replace('viewBox="0 0 80 88"', `viewBox="${view}"`);
+      style = ` style="aspect-ratio: ${w} / ${h}"`;
+    }
+    return `<div class="picture clickable${cls}" role="button" tabindex="0" aria-label="${esc(label)}" data-entity="${esc(m.id)}"${style}>${art}</div>`;
   }
 
   _hero(m) {
@@ -1804,7 +2053,7 @@ class UtilityMeterCard extends HTMLElement {
         `<div class="line${m.night.leak ? " crit" : ""}">${svgIcon(ICONS.night)}<span>${esc(`${this._t("night_lowest")}: ${this._t("per_hour", { value: this._amount(m, m.night.lowest) })}`)}</span></div>`,
       );
     }
-    const pic = this._picture(m);
+    const pic = this._illustrated() ? "" : this._picture(m);
     if (!pic && !info.length) return "";
     return `<div class="hero">${pic}<div class="info">${info.join("")}</div></div>`;
   }
@@ -1906,7 +2155,7 @@ class UtilityMeterCard extends HTMLElement {
 
   _style(m, extra) {
     this.setAttribute?.("meter", m.type);
-    return `<style>${BASE_STYLE}${ART_STYLE}${extra}${this._accent(m.type)}</style>`;
+    return `<style>${BASE_STYLE}${ART_STYLE}${extra}${this._illustrated() ? BANNER_STYLE : ""}${this._accent(m.type)}</style>`;
   }
 
   _render() {
@@ -2034,7 +2283,7 @@ class UtilityMeterMiniCard extends UtilityMeterCard {
         ${this._header(m, index)}
         <div class="content">
           ${this._alerts(m)}
-          <div class="mini">${this._picture(m)}${stat("day", "today")}${stat("month", "month")}${spark}</div>
+          <div class="mini">${this._illustrated() ? "" : this._picture(m)}${stat("day", "today")}${stat("month", "month")}${spark}</div>
           ${flow}
         </div>
       </ha-card>`;
@@ -2067,6 +2316,8 @@ class UtilityMeterEditorBase extends HTMLElement {
     const dc = st?.attributes?.device_class;
     const type = ["water", "gas", "electricity"].includes(cfgType) ? cfgType : dc === "gas" ? "gas" : dc === "energy" ? "electricity" : "water";
     const d = {
+      illustration: true,
+      illustration_theme: "auto",
       show_title: true,
       show_subtitle: true,
       show_picture: true,
@@ -2092,7 +2343,7 @@ class UtilityMeterEditorBase extends HTMLElement {
   _schema() {
     const tr = (k) => t(this._hass, this._config, k);
     const sensor = (device_class) => ({ entity: { domain: "sensor", ...(device_class ? { device_class } : {}) } });
-    const toggles = ["show_title", "show_subtitle", "show_picture", "show_index", "show_consumption", "show_comparison", "show_chart", "show_cost", "leak_detection", "liters"];
+    const toggles = ["illustration", "show_title", "show_subtitle", "show_picture", "show_index", "show_consumption", "show_comparison", "show_chart", "show_cost", "leak_detection", "liters"];
     if (this.constructor.mini) toggles.push("zoom");
     return [
       { name: "entity", selector: { entity: { filter: [{ domain: "sensor", device_class: "water" }, { domain: "sensor", device_class: "gas" }, { domain: "sensor", device_class: "energy" }] } } },
@@ -2104,6 +2355,7 @@ class UtilityMeterEditorBase extends HTMLElement {
           { name: "meter_type", selector: { select: { mode: "dropdown", options: ["auto", "water", "gas", "electricity"].map((v) => ({ value: v, label: tr(`type_${v}`) })) } } },
           { name: "chart_period", selector: { select: { mode: "dropdown", options: PERIODS.map((v) => ({ value: v, label: tr(`tab_${v}`) })) } } },
           { name: "picture_style", selector: { select: { mode: "dropdown", options: ["auto", "digital", "disc", "submeter"].map((v) => ({ value: v, label: tr(`style_${v}`) })) } } },
+          { name: "illustration_theme", selector: { select: { mode: "dropdown", options: ["auto", "day", "night"].map((v) => ({ value: v, label: tr(`theme_${v}`) })) } } },
         ],
       },
       { type: "grid", name: "", schema: toggles.map((name) => ({ name, selector: { boolean: {} } })) },

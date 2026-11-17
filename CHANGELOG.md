@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.2.0 - 2026-11-17
+
+### Features
+- **Illustrated header** on the full and the mini card (90 px): the card's own meter drawn big at the right, in a place matching the kind of meter — water in a cellar on its blue pipe (concrete floor), electricity by the breaker panel (tiled floor), gas on the house front (lawn) — over a 10 px ground strip, edge to edge. It follows the meter's state: water running along the pipe, current down the cable and gas along its pipe while flowing; a puddle spreading under the meter, the meter pulsing red and the status pill on a leak.
+- Night version of the header when `sun.sun` is below the horizon or with the dark theme (even while the sun is up), forced with `illustration_theme: day | night`; `illustration: false` keeps the classic header. Both options are in the visual editor of both cards.
+- The header icon's colour always shows the status: the meter's colour while flowing, grey when still or unavailable, amber above the daily limit, red (pulsing) on a leak.
+- The meter drawings' ids are unique per card, so several cards on a page never share a gradient.
+- The status pill is back in the illustrated header in every state (Normal included), in the round icon's colour. In every header (illustrated or classic, full and mini card) it is placed by measurement, in every language: on the title row right after the title only when the whole title and its whole label fit there, otherwise on its own line under the subtitle (cut to one line); only its dot when the banner has no room left above its ground strip, and on a card of 200 px or less. The picture gives way below 320 px so the title stays readable. The mini card's detail button sits in the banner's top-right corner, in the frosted style of the other cards.
+- On the mini card, the whole scene (meter, wall and pipes) steps left of the corner expand / collapse button at full size, the wall running on under the button: the water pipe, the gas window and the meters no longer sit under it.
+
 ## 1.1.1 - 2026-11-15
 
 ### Docs

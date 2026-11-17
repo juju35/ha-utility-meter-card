@@ -87,4 +87,73 @@ for (const type of ["utility-meter-card", "utility-meter-mini-card"]) {
   });
 }
 
+// The status pill of the illustrated header: its whole label, on the title row or under the subtitle (the full rule in
+// every language is checked by pill-layout.test.mjs), the title kept readable; the mini card's detail button in the
+// banner's top-right corner. A normal meter and a leak ("Leak suspected", the longest).
+const PILL_CONFIGS = [
+  { entity: "sensor.water_meter", price: 4 },
+  { entity: "sensor.cottage_water_meter", leak_entity: "binary_sensor.cottage_leak", price: 3.9 },
+];
+for (const type of ["utility-meter-card", "utility-meter-mini-card"]) {
+  test(`${type}: the status pill shows its whole label, the title stays readable`, { skip: !browser && "no Chromium" }, async () => {
+    const page = await browser.newPage({ viewport: { width: 1000, height: 800 }, timezoneId: "UTC" });
+    try {
+      await page.clock.setFixedTime(new Date(NOW));
+      await page.setContent('<!doctype html><body style="margin:0;font-family:Arial,sans-serif"></body>');
+      await page.addScriptTag({ content: HA_CARD });
+      await page.addScriptTag({ content: `window.mockStatistics = ${mockStatistics};` });
+      await page.addScriptTag({ content: source });
+      const results = await page.evaluate(
+        async ({ type, states, PILL_CONFIGS }) => {
+          const hass = { states, language: "en", locale: { language: "en" }, config: { currency: "EUR" }, themes: {}, callWS: async (m) => window.mockStatistics(m) };
+          const cards = [];
+          for (const config of PILL_CONFIGS) {
+            for (const w of [245, 300, 400, 460, 500]) {
+              const outer = document.body.appendChild(document.createElement("div"));
+              outer.style.width = `${w}px`;
+              const card = outer.appendChild(document.createElement(type));
+              card.setConfig({ type: `custom:${type}`, ...config });
+              card.hass = hass;
+              cards.push([`${config.entity} ${w}`, card]);
+            }
+          }
+          await new Promise((r) => setTimeout(r, 50));
+          await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)));
+          return cards.map(([name, card]) => {
+            const q = (s) => card.shadowRoot.querySelector(s);
+            const box = (e) => e?.getBoundingClientRect();
+            const chip = q(".banner .chip");
+            const text = chip.querySelector(".chip-text");
+            const title = q(".banner .name");
+            const titles = box(q(".banner .titles"));
+            const banner = box(q(".banner"));
+            const zoom = box(q(".banner .zoom"));
+            const mid = (b) => b.top + b.height / 2;
+            return {
+              width: Number(name.split(" ").at(-1)),
+              name,
+              whole: text.scrollWidth <= text.clientWidth + 1,
+              inline: Math.abs(mid(box(chip)) - mid(box(title))) <= 2,
+              below: box(chip).top >= box(title).bottom,
+              inside: box(chip).right <= titles.right + 1,
+              title: title.scrollWidth <= title.clientWidth + 1 || title.clientWidth >= 40,
+              zoom: zoom && { top: Math.round(zoom.top - banner.top), right: Math.round(banner.right - zoom.right), w: Math.round(zoom.width) },
+            };
+          });
+        },
+        { type, states, PILL_CONFIGS },
+      );
+      for (const r of results) {
+        assert.ok(r.whole, `${r.name}: the pill's label is cut`);
+        assert.ok(r.inline || r.below, `${r.name}: the pill is neither on the title row nor under the subtitle`);
+        assert.ok(r.inside, `${r.name}: the pill runs out of the title block`);
+        assert.ok(r.title, `${r.name}: the title is cut to nothing`);
+        if (type === "utility-meter-mini-card") assert.deepEqual(r.zoom, { top: 5, right: 5, w: 24 }, `${r.name}: the detail button is out of its corner`);
+      }
+    } finally {
+      await page.close();
+    }
+  });
+}
+
 test.after(() => browser?.close());
