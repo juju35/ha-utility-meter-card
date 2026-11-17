@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.2.0 - 2026-11-17
+
+### Features
+- **Illustrated header** on the full and the mini card (90 px): the card's own meter drawn big at the right, in a place matching the kind of meter — water in a cellar on its blue pipe (concrete floor), electricity by the breaker panel (tiled floor), gas on the house front (lawn) — over a 10 px ground strip, edge to edge. It follows the meter's state: water running along the pipe, current down the cable and gas along its pipe while flowing; a puddle spreading under the meter, the meter pulsing red and the status pill on a leak.
+- Night version of the header, following `sun.sun` (else the dark theme), forced with `illustration_theme: day | night`; `illustration: false` keeps the classic header. Both options are in the visual editor of both cards.
+- The header icon's colour always shows the status: the meter's colour while flowing, grey when still or unavailable, amber above the daily limit, red (pulsing) on a leak.
+- The meter drawings' ids are unique per card, so several cards on a page never share a gradient.
+
 ## 1.1.1 - 2026-11-15
 
 ### Docs
