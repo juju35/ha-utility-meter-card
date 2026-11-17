@@ -33,7 +33,7 @@ The cards work on top of the meters you already have — a pulse counter, [Linky
 ## Features
 
 - Two cards: a full **Utility Meter Card** (`custom:utility-meter-card`) and a compact **Utility Meter Mini Card** (`custom:utility-meter-mini-card`)
-- **Illustrated header**: the meter drawn big in its place — water in a cellar on its blue pipe, electricity by the breaker panel, gas on the house front — over a ground strip, animated by its state (flowing, leak, above the limit), with a night version (sun down or dark theme; `illustration_theme` forces one). The round icon's colour always shows the status: the meter's colour while flowing, grey when still, amber above the daily limit, red on a leak. `illustration: false` keeps the classic header
+- **Illustrated header**: the meter drawn big in its place — water in a cellar on its blue pipe, electricity by the breaker panel, gas on the house front — over a ground strip, animated by its state (flowing, leak, above the limit), with a night version (dark theme; `illustration_theme` forces one). The round icon's colour always shows the status: the meter's colour while flowing, grey when still, amber above the daily limit, red on a leak. `illustration: false` keeps the classic header
 - Water, gas and electricity meters, the kind of meter read from the sensor's device class (or forced with `meter_type`)
 - **Electricity meter** drawn three ways (`picture_style`): a `digital` smart meter (its mains LED and a live power bar), the classic `disc` meter (an aluminium disc that spins the faster the more is drawn), or a `submeter` clamped on a wire (the current runs along the wire) — `auto` picks the sub-meter when a power sensor is set, else the digital meter. Live power (W) shows next to the index; above the `daily_limit` the meter pulses red
 - **Index** of the meter, in its unit, with the meter's usual digits (three decimals for m³)
@@ -194,7 +194,7 @@ daily_limit: 5                       # kWh today above this → "High usage", th
 | `show_subtitle` | both | `true` | Show the subtitle (the kind of meter; the index on the mini card) |
 | `meter_type` | both | `auto` | `auto` (from the device class), `water`, `gas` or `electricity`: icon, colors, drawing, liters and leak detection default |
 | `illustration` | both | `true` | Illustrated header (the meter drawn big in its place, 90 px); `false` for the classic header with the meter in the card |
-| `illustration_theme` | both | `auto` | Illustrated header: `auto` (night when the sun is below the horizon or with the dark theme, even while the sun is up), `day` or `night` |
+| `illustration_theme` | both | `auto` | Illustrated header: `auto` (follows the Home Assistant theme: night with a dark theme, day with a light theme), `day` or `night` |
 | `show_picture` | both | `true` | Show the drawn meter, animated by its state |
 | `picture_style` | both | `auto` | Electricity drawing: `auto` (submeter when a power sensor is set, else digital), `digital`, `disc` or `submeter` |
 | `show_index` | both | `true` | Show the index |
