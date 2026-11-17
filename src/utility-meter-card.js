@@ -924,6 +924,16 @@ const utilityMeters = (hass, entity) => {
   return out;
 };
 
+// The width of an element's first four characters and an ellipsis, in its own font: the least a cut title keeps.
+let fourCtx;
+const fourChars = (el) => {
+  const cs = getComputedStyle(el);
+  fourCtx ??= document.createElement("canvas").getContext?.("2d");
+  if (!fourCtx) return 0;
+  fourCtx.font = `${cs.fontStyle} ${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`;
+  return fourCtx.measureText(`${[...el.textContent.trim()].slice(0, 4).join("")}\u2026`).width;
+};
+
 const isOutside = (card, ev) => {
   const path = ev.composedPath();
   return !path.includes(card) && !path.some((n) => ["HA-MORE-INFO-DIALOG", "HA-DIALOG", "DIALOG"].includes(n.tagName));
@@ -1245,12 +1255,13 @@ const BANNER_STYLE = `
   .banner.night .chip { background: color-mix(in srgb, var(--c, var(--um-accent)) 30%, rgba(8,18,38,.55)); color: color-mix(in srgb, var(--c, var(--um-accent)) 35%, #ffffff); }
   .banner .chip .dot { width: 7px; height: 7px; border-radius: 50%; flex: none; background: var(--c, var(--um-accent)); }
   .banner .chip .chip-text { display: inline; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
-  @container um-titles (max-width: 220px) {
-    .tstack { display: grid; justify-items: start; row-gap: 1px; }
-    .trow { display: contents; }
-    .trow .name { max-width: 100%; }
-    .banner .chip { order: 3; max-width: 100%; }
-  }
+  /* Beside the title the pill keeps its whole label (the title gives way); when it does not fit there (measured by
+     the card, see _fitPill) it drops under the subtitle. */
+  .trow .chip { max-width: none; }
+  .titles.below .tstack { display: grid; justify-items: start; row-gap: 1px; }
+  .titles.below .trow { display: contents; }
+  .titles.below .trow .name { max-width: 100%; }
+  .banner .titles.below .chip { order: 3; max-width: 100%; }
   @container um-card (max-width: 200px) { .banner .chip { padding: 4px; } .banner .chip .chip-text { display: none; } }
   .banner .chip.on { --c: var(--um-accent); }
   .banner + .content { padding-top: 12px; }
@@ -1539,6 +1550,18 @@ class UtilityMeterCard extends HTMLElement {
       else this._update();
     };
     (this._outside ??= watchOutside(this, (ev) => this._onOutside(ev))).on();
+    // A new width (or the web font loaded): the status pill is fitted again, in the next frame.
+    if (typeof ResizeObserver === "function") {
+      this._resize ??= new ResizeObserver((entries) => {
+        const w = Math.round(entries.at(-1).contentRect.width);
+        if (w === this._fitWidth) return;
+        this._fitWidth = w;
+        cancelAnimationFrame(this._fitFrame);
+        this._fitFrame = requestAnimationFrame(() => this._fitPill());
+      });
+      this._resize.observe(this);
+    }
+    document.fonts?.ready?.then(() => this._fitPill());
     // Back on the page after leaving it: rendered again in its default state.
     if (this._hass && this._config) this._update();
     if (this._popup) window.addEventListener("keydown", this._onKey);
@@ -1549,9 +1572,28 @@ class UtilityMeterCard extends HTMLElement {
     }, 60000);
   }
 
+  // The banner's status pill goes right after the title when its whole label fits there beside a title cut down to
+  // four characters; otherwise it takes a line of its own under the subtitle (.titles.below). Measured (in fractional
+  // pixels), so that a short title keeps its pill beside it whatever room the picture leaves.
+  _fitPill() {
+    for (const t of this.shadowRoot?.querySelectorAll?.(".banner .titles") || []) {
+      const chip = t.querySelector(".trow > .chip");
+      if (!chip?.getBoundingClientRect) continue;
+      t.classList.remove("below");
+      const row = chip.parentElement;
+      const name = row.querySelector(".name");
+      const shown = name && getComputedStyle(name).display !== "none";
+      const gap = parseFloat(getComputedStyle(row).columnGap) || 0;
+      const title = shown ? Math.min(name.scrollWidth, Math.max(parseFloat(getComputedStyle(name).minWidth) || 0, fourChars(name))) + gap : 0;
+      if (title + chip.getBoundingClientRect().width > row.getBoundingClientRect().width + 0.5) t.classList.add("below");
+    }
+  }
+
   disconnectedCallback() {
     clearInterval(this._tick);
     this._tick = null;
+    this._resize?.disconnect();
+    this._fitWidth = null;
     this._outside?.off();
     this._pressing = false;
     window.removeEventListener("pointerup", this._onPressEnd, true);
@@ -1689,6 +1731,7 @@ class UtilityMeterCard extends HTMLElement {
     const kept = !this._byPointer && active?.dataset && Object.keys(active.dataset).length ? JSON.stringify({ ...active.dataset }) : null;
     this._html = html;
     this.shadowRoot.innerHTML = html;
+    this._fitPill();
     if (this._popup) this.shadowRoot.querySelector('[data-action="popup_close"]')?.focus?.({ preventScroll: true });
     else if (kept) {
       for (const el of this.shadowRoot.querySelectorAll("[data-action], [data-entity]")) {
