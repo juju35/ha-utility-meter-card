@@ -1210,8 +1210,6 @@ const BANNER_STYLE = `
            padding: 8px 8px 8px 14px; min-width: 0; }
   .htext .titles { display: flex; flex-direction: column; min-width: 0; }
   .htext .sub { font-size: 13px; color: var(--um-sky-muted); }
-  .htext .chip { margin-top: 3px; max-width: 100%; background: rgba(255,255,255,.7); }
-  .night .htext .chip { background: rgba(10,20,40,.5); }
   .banner .type-icon { background: rgba(255,255,255,.62); box-shadow: inset 0 0 0 1px rgba(47,128,237,.18); }
   .banner.night .type-icon { background: rgba(255,255,255,.12); box-shadow: inset 0 0 0 1px rgba(255,255,255,.14); }
   .banner .type-icon.idle .icon { fill: #7d8792; }
@@ -1219,11 +1217,40 @@ const BANNER_STYLE = `
   .banner.night .type-icon.idle .icon { fill: #9aa3ae; }
   .banner .type-icon.warn .icon { fill: var(--um-warn); }
   .banner .type-icon.crit .icon { fill: var(--um-crit); animation: um-pulse 1.5s ease-in-out infinite; }
-  .banner .zoom { position: absolute; z-index: 2; top: 6px; right: 6px; margin: 0; color: #10283f; background: rgba(255,255,255,.55); }
-  .banner.night .zoom { color: #fff; background: rgba(10,20,40,.45); }
+  /* The mini card's detail button: a frosted round button in the banner's top-right corner. */
+  .banner .zoom { all: unset; position: absolute; z-index: 2; top: 5px; right: 5px; margin: 0; cursor: pointer; width: 24px; height: 24px;
+                  border-radius: 50%; display: grid; place-items: center; box-sizing: border-box; color: #33506b; background: rgba(255,255,255,.55);
+                  box-shadow: inset 0 0 0 1px rgba(255,255,255,.7); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); }
+  .banner .zoom .icon { width: 16px; height: 16px; }
+  .banner .zoom:hover { background: rgba(255,255,255,.75); color: #33506b; }
+  .banner.night .zoom { color: #ffffff; background: rgba(255,255,255,.12); box-shadow: inset 0 0 0 1px rgba(255,255,255,.2); }
+  .banner.night .zoom:hover { background: rgba(255,255,255,.22); color: #ffffff; }
+  .banner .zoom:focus-visible { outline: 2px solid var(--primary-color, #03a9f4); outline-offset: 2px; }
+  /* The title row: the title gives way first (down to 4 characters), the status pill keeps its whole label. The titles
+     are their own container: when the row runs out of room, the pill drops under the subtitle. */
+  .htext .titles { container: um-titles / inline-size; flex: 1 1 0; min-width: 0; align-self: stretch; display: flex; flex-direction: column; justify-content: center; }
+  .tstack { display: flex; flex-direction: column; gap: 1px; align-items: flex-start; min-width: 0; width: 100%; }
+  .tstack > * { max-width: 100%; }
+  .trow { display: flex; align-items: center; gap: 8px; min-width: 0; width: 100%; }
+  .trow .name { flex: 0 1 auto; min-width: 4ch; }
+  /* The status pill on the banner: the status colour on frosted glass. */
+  .banner .chip { display: inline-flex; align-items: center; gap: 4px; flex: 0 0 auto; margin: 0; max-width: 51%; padding: 1px 8px; border-radius: 12px;
+                  font-size: 11px; font-weight: 500; line-height: 16px; white-space: nowrap; overflow: hidden; box-sizing: border-box;
+                  background: color-mix(in srgb, var(--c, var(--um-accent)) 18%, rgba(255,255,255,.78)); color: color-mix(in srgb, var(--c, var(--um-accent)) 45%, #0d2a45); }
+  .banner.night .chip { background: color-mix(in srgb, var(--c, var(--um-accent)) 30%, rgba(8,18,38,.55)); color: color-mix(in srgb, var(--c, var(--um-accent)) 35%, #ffffff); }
+  .banner .chip .dot { width: 7px; height: 7px; border-radius: 50%; flex: none; background: var(--c, var(--um-accent)); }
+  .banner .chip .chip-text { display: inline; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+  @container um-titles (max-width: 220px) {
+    .tstack { display: grid; justify-items: start; row-gap: 1px; }
+    .trow { display: contents; }
+    .trow .name { max-width: 100%; }
+    .banner .chip { order: 3; max-width: 100%; }
+  }
+  @container um-card (max-width: 200px) { .banner .chip { padding: 4px; } .banner .chip .chip-text { display: none; } }
+  .banner .chip.on { --c: var(--um-accent); }
   .banner + .content { padding-top: 12px; }
   /* Narrow card: no room for the scene beside the text, the background alone stays. */
-  @container (max-width: 280px) { .um-scene { display: none; } .htext { right: 32px; } }
+  @container um-card (max-width: 320px) { .um-scene { display: none; } .htext { right: 32px; } }
 `;
 
 // ---------------------------------------------------------------------------
@@ -1235,7 +1262,7 @@ const BASE_STYLE = `
           --um-crit: var(--error-color, #db4437); --um-idle: var(--disabled-text-color, #9e9e9e);
           /* Text in a state or accent color is mixed with the text color so that it reads at 4.5:1 at least. */
           --um-accent-text: color-mix(in srgb, var(--um-accent) 55%, var(--primary-text-color)); }
-  ha-card { overflow: hidden; container-type: inline-size; }
+  ha-card { overflow: hidden; container: um-card / inline-size; }
   /* A size container has no width of its own content: this empty, zero-height grid gives the card a natural width
      without any minimum, so it neither falls to its borders in a shrink-to-fit parent nor overflows a narrow track. */
   :host { display: block; min-width: 0; --um-natural-width: 360px; }
@@ -1287,7 +1314,7 @@ const BASE_STYLE = `
   .zoom:hover { background: color-mix(in srgb, var(--um-idle) 16%, transparent); color: var(--primary-text-color); }
   @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; animation: none !important; } }
   /* Narrow card: the status pill keeps only its dot (its text stays in title and aria-label). */
-  @container (max-width: 230px) {
+  @container um-card (max-width: 230px) {
     .chip { padding: 4px; flex: none; }
     .chip-text { display: none; }
     .header { gap: 6px; }
@@ -1363,18 +1390,18 @@ const FULL_STYLE = `
   .legend .l-prev { background: color-mix(in srgb, var(--secondary-text-color) 30%, transparent); }
   .legend .l-avg { height: 0; border-top: 1px dashed var(--secondary-text-color); vertical-align: 3px; }
   .empty { font-size: 13px; color: var(--secondary-text-color); padding: 8px 0; }
-  @container (max-width: 300px) {
+  @container um-card (max-width: 300px) {
     .hero .picture { width: 72px; height: 80px; }
     .hero { gap: 10px; }
     .index .v { font-size: 22px; }
     .tile .v { font-size: 15px; }
   }
-  @container (max-width: 240px) {
+  @container um-card (max-width: 240px) {
     .hero .picture { width: 52px; height: 58px; }
     .tiles { grid-template-columns: minmax(0, 1fr); }
   }
   /* Below 6 columns of a phone (a "1fr 1fr" grid): the index takes the whole width. */
-  @container (max-width: 200px) {
+  @container um-card (max-width: 200px) {
     .hero .picture { display: none; }
     .index .v { font-size: 19px; }
   }
@@ -1397,10 +1424,10 @@ const MINI_STYLE = `
   .flowline .icon { width: 16px; height: 16px; }
   .flowline.flowing { color: var(--um-accent-text); }
   .flowline.flowing .icon { color: var(--um-accent); }
-  @container (max-width: 270px) {
+  @container um-card (max-width: 270px) {
     .spark { display: none; }
   }
-  @container (max-width: 210px) {
+  @container um-card (max-width: 210px) {
     .mini { flex-wrap: wrap; gap: 4px 10px; }
     .mini .picture { width: 40px; height: 44px; }
     .mini .ms { flex-basis: calc(100% - 50px); }
@@ -1858,7 +1885,8 @@ class UtilityMeterCard extends HTMLElement {
     const chipEntity = m.sensorWet ? c.leak_entity : m.id;
     const chip = `<span class="chip clickable ${m.status.cls}" role="button" tabindex="0" data-entity="${esc(chipEntity)}" title="${esc(text)}" aria-label="${esc(text)}"><span class="dot"></span><span class="chip-text">${esc(text)}</span></span>`;
     const icon = `<div class="type-icon ${this._iconState(m)}">${svgIcon(ICONS[m.type])}</div>`;
-    const titles = `<div class="name">${esc(c.title || m.st.attributes.friendly_name || m.id)}</div>${sub ? `<div class="sub">${esc(sub)}</div>` : ""}`;
+    const name = `<div class="name">${esc(c.title || m.st.attributes.friendly_name || m.id)}</div>`;
+    const titles = `${name}${sub ? `<div class="sub">${esc(sub)}</div>` : ""}`;
     if (!this._illustrated()) {
       return `
       <div class="header">
@@ -1868,15 +1896,16 @@ class UtilityMeterCard extends HTMLElement {
         ${this._zoomButton()}
       </div>`;
     }
-    // The illustrated header: the scene and the meter on the right, the icon and the titles on the left (the status
-    // pill under them when the meter is not in its normal state).
+    // The illustrated header: the scene and the meter on the right, the icon and the titles on the left, the status
+    // pill on the title row in the round icon's colour.
     const zoom = this._zoomButton();
+    const pill = chip.replace(`chip clickable ${m.status.cls}"`, `chip clickable ${this._iconState(m)}"`);
     const cls = `banner t-${m.type}${zoom ? " has-zoom" : ""}${umIsNight(this._hass, c) ? " night" : ""}${m.active ? " active" : ""}${m.leak ? " leak" : ""}`;
     return `
       <div class="${cls}">
         <div class="um-scene">${umScene(m.type, umIsNight(this._hass, c))}${this._picture(m, true)}</div>
         <div class="ground g-${UM_GROUND[m.type]}"></div>
-        <div class="htext">${icon}<div class="titles">${titles}${m.status.cls === "ok" ? "" : chip}</div></div>
+        <div class="htext">${icon}<div class="titles"><div class="tstack"><div class="trow">${name}${pill}</div>${sub ? `<div class="sub">${esc(sub)}</div>` : ""}</div></div></div>
         ${zoom}
       </div>`;
   }

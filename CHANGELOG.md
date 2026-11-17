@@ -7,6 +7,7 @@
 - Night version of the header, following `sun.sun` (else the dark theme), forced with `illustration_theme: day | night`; `illustration: false` keeps the classic header. Both options are in the visual editor of both cards.
 - The header icon's colour always shows the status: the meter's colour while flowing, grey when still or unavailable, amber above the daily limit, red (pulsing) on a leak.
 - The meter drawings' ids are unique per card, so several cards on a page never share a gradient.
+- The status pill is back in the illustrated header in every state (Normal included), on the title row right after the title, in the round icon's colour; it drops under the subtitle when room runs short and keeps only its dot on a very narrow card. The picture gives way below 320 px so the title stays readable. The mini card's detail button sits in the banner's top-right corner, in the frosted style of the other cards.
 
 ## 1.1.1 - 2026-11-15
 
