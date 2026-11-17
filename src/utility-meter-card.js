@@ -147,7 +147,7 @@ const STRINGS = {
     lang_auto: "Automatic (Home Assistant)",
     illustration: "Illustrated header",
     illustration_theme: "Header picture",
-    theme_auto: "Automatic (sun, theme)",
+    theme_auto: "Automatic (sun or dark theme)",
     theme_day: "Day",
     theme_night: "Night",
   },
@@ -170,7 +170,7 @@ const STRINGS = {
     leak_section: "Détection de fuite", flow_entity: "Capteur de débit", leak_entity: "Détecteur de fuite", leak_start: "Début de la plage nocturne", leak_end: "Fin de la plage nocturne",
     leak_threshold: "Seuil (L/h pour l'eau)", daily_limit: "Limite journalière", sources_section: "Sources de données", statistic_id: "Statistique (au lieu de celle du capteur)",
     today_entity: "Compteur de services (journalier)", week_entity: "Compteur de services (hebdomadaire)", month_entity: "Compteur de services (mensuel)", year_entity: "Compteur de services (annuel)",
-    zoom: "Bouton détail", zoom_helper: "Bascule la mini-carte vers la carte complète et inversement", language: "Langue", lang_auto: "Automatique (Home Assistant)", illustration: "En-tête illustré", illustration_theme: "Ambiance de l'en-tête", theme_auto: "Automatique (soleil, thème)", theme_day: "Jour", theme_night: "Nuit",
+    zoom: "Bouton détail", zoom_helper: "Bascule la mini-carte vers la carte complète et inversement", language: "Langue", lang_auto: "Automatique (Home Assistant)", illustration: "En-tête illustré", illustration_theme: "Ambiance de l'en-tête", theme_auto: "Automatique (soleil ou thème sombre)", theme_day: "Jour", theme_night: "Nuit",
   },
   de: {
     meter_water: "Wasserzähler", meter_gas: "Gaszähler", meter_electricity: "Stromzähler", type_electricity: "Strom", power: "Leistung", index: "Zählerstand", today: "Heute", week: "Diese Woche", month: "Dieser Monat", year: "Dieses Jahr",
@@ -190,7 +190,7 @@ const STRINGS = {
     leak_section: "Leckerkennung", flow_entity: "Durchflusssensor", leak_entity: "Lecksensor", leak_start: "Beginn des Nachtzeitraums", leak_end: "Ende des Nachtzeitraums",
     leak_threshold: "Schwelle (L/h für Wasser)", daily_limit: "Tageslimit", sources_section: "Datenquellen", statistic_id: "Statistik (statt der des Sensors)",
     today_entity: "Verbrauchszähler (täglich)", week_entity: "Verbrauchszähler (wöchentlich)", month_entity: "Verbrauchszähler (monatlich)", year_entity: "Verbrauchszähler (jährlich)",
-    zoom: "Detail-Schaltfläche", zoom_helper: "Schaltet die Mini-Karte auf die vollständige Karte um und zurück", language: "Sprache", lang_auto: "Automatisch (Home Assistant)", illustration: "Illustrierte Kopfzeile", illustration_theme: "Bild der Kopfzeile", theme_auto: "Automatisch (Sonne, Design)", theme_day: "Tag", theme_night: "Nacht",
+    zoom: "Detail-Schaltfläche", zoom_helper: "Schaltet die Mini-Karte auf die vollständige Karte um und zurück", language: "Sprache", lang_auto: "Automatisch (Home Assistant)", illustration: "Illustrierte Kopfzeile", illustration_theme: "Bild der Kopfzeile", theme_auto: "Automatisch (Sonne oder dunkles Design)", theme_day: "Tag", theme_night: "Nacht",
   },
   es: {
     meter_water: "Contador de agua", meter_gas: "Contador de gas", meter_electricity: "Contador de electricidad", type_electricity: "Electricidad", power: "Potencia", index: "Lectura", today: "Hoy", week: "Esta semana", month: "Este mes", year: "Este año",
@@ -210,7 +210,7 @@ const STRINGS = {
     leak_section: "Detección de fugas", flow_entity: "Sensor de caudal", leak_entity: "Sensor de fugas", leak_start: "Inicio de la franja nocturna", leak_end: "Fin de la franja nocturna",
     leak_threshold: "Umbral (L/h para el agua)", daily_limit: "Límite diario", sources_section: "Fuentes de datos", statistic_id: "Estadística (en lugar de la del sensor)",
     today_entity: "Contador de consumo (diario)", week_entity: "Contador de consumo (semanal)", month_entity: "Contador de consumo (mensual)", year_entity: "Contador de consumo (anual)",
-    zoom: "Botón de detalle", zoom_helper: "Cambia la minitarjeta a la tarjeta completa y viceversa", language: "Idioma", lang_auto: "Automático (Home Assistant)", illustration: "Cabecera ilustrada", illustration_theme: "Ambiente de la cabecera", theme_auto: "Automático (sol, tema)", theme_day: "Día", theme_night: "Noche",
+    zoom: "Botón de detalle", zoom_helper: "Cambia la minitarjeta a la tarjeta completa y viceversa", language: "Idioma", lang_auto: "Automático (Home Assistant)", illustration: "Cabecera ilustrada", illustration_theme: "Ambiente de la cabecera", theme_auto: "Automático (sol o tema oscuro)", theme_day: "Día", theme_night: "Noche",
   },
   sr: {
     meter_water: "Водомер", meter_gas: "Гасомер", meter_electricity: "Бројило струје", type_electricity: "Струја", power: "Снага", index: "Стање бројила", today: "Данас", week: "Ове недеље", month: "Овог месеца", year: "Ове године",
@@ -230,7 +230,7 @@ const STRINGS = {
     leak_section: "Откривање цурења", flow_entity: "Сензор протока", leak_entity: "Сензор цурења", leak_start: "Почетак ноћног периода", leak_end: "Крај ноћног периода",
     leak_threshold: "Праг (L/h за воду)", daily_limit: "Дневно ограничење", sources_section: "Извори података", statistic_id: "Статистика (уместо статистике сензора)",
     today_entity: "Бројач потрошње (дневни)", week_entity: "Бројач потрошње (недељни)", month_entity: "Бројач потрошње (месечни)", year_entity: "Бројач потрошње (годишњи)",
-    zoom: "Дугме за детаље", zoom_helper: "Пребацује мини картицу на пуну картицу и назад", language: "Језик", lang_auto: "Аутоматски (Home Assistant)", illustration: "Илустровано заглавље", illustration_theme: "Слика заглавља", theme_auto: "Аутоматски (сунце, тема)", theme_day: "Дан", theme_night: "Ноћ",
+    zoom: "Дугме за детаље", zoom_helper: "Пребацује мини картицу на пуну картицу и назад", language: "Језик", lang_auto: "Аутоматски (Home Assistant)", illustration: "Илустровано заглавље", illustration_theme: "Слика заглавља", theme_auto: "Аутоматски (сунце или тамна тема)", theme_day: "Дан", theme_night: "Ноћ",
   },
   "sr-Latn": {
     meter_water: "Vodomer", meter_gas: "Gasomer", meter_electricity: "Brojilo struje", type_electricity: "Struja", power: "Snaga", index: "Stanje brojila", today: "Danas", week: "Ove nedelje", month: "Ovog meseca", year: "Ove godine",
@@ -250,7 +250,7 @@ const STRINGS = {
     leak_section: "Otkrivanje curenja", flow_entity: "Senzor protoka", leak_entity: "Senzor curenja", leak_start: "Početak noćnog perioda", leak_end: "Kraj noćnog perioda",
     leak_threshold: "Prag (L/h za vodu)", daily_limit: "Dnevno ograničenje", sources_section: "Izvori podataka", statistic_id: "Statistika (umesto statistike senzora)",
     today_entity: "Brojač potrošnje (dnevni)", week_entity: "Brojač potrošnje (nedeljni)", month_entity: "Brojač potrošnje (mesečni)", year_entity: "Brojač potrošnje (godišnji)",
-    zoom: "Dugme za detalje", zoom_helper: "Prebacuje mini karticu na punu karticu i nazad", language: "Jezik", lang_auto: "Automatski (Home Assistant)", illustration: "Ilustrovano zaglavlje", illustration_theme: "Slika zaglavlja", theme_auto: "Automatski (sunce, tema)", theme_day: "Dan", theme_night: "Noć",
+    zoom: "Dugme za detalje", zoom_helper: "Prebacuje mini karticu na punu karticu i nazad", language: "Jezik", lang_auto: "Automatski (Home Assistant)", illustration: "Ilustrovano zaglavlje", illustration_theme: "Slika zaglavlja", theme_auto: "Automatski (sunce ili tamna tema)", theme_day: "Dan", theme_night: "Noć",
   },
   it: {
     meter_water: "Contatore dell'acqua", meter_gas: "Contatore del gas", meter_electricity: "Contatore elettrico", type_electricity: "Elettricità", power: "Potenza", index: "Lettura", today: "Oggi", week: "Questa settimana", month: "Questo mese", year: "Quest'anno",
@@ -270,7 +270,7 @@ const STRINGS = {
     leak_section: "Rilevamento perdite", flow_entity: "Sensore di portata", leak_entity: "Sensore di perdite", leak_start: "Inizio della fascia notturna", leak_end: "Fine della fascia notturna",
     leak_threshold: "Soglia (L/h per l'acqua)", daily_limit: "Limite giornaliero", sources_section: "Fonti dei dati", statistic_id: "Statistica (al posto di quella del sensore)",
     today_entity: "Contatore dei consumi (giornaliero)", week_entity: "Contatore dei consumi (settimanale)", month_entity: "Contatore dei consumi (mensile)", year_entity: "Contatore dei consumi (annuale)",
-    zoom: "Pulsante dettagli", zoom_helper: "Passa dalla mini scheda alla scheda completa e viceversa", language: "Lingua", lang_auto: "Automatica (Home Assistant)", illustration: "Intestazione illustrata", illustration_theme: "Atmosfera dell'intestazione", theme_auto: "Automatica (sole, tema)", theme_day: "Giorno", theme_night: "Notte",
+    zoom: "Pulsante dettagli", zoom_helper: "Passa dalla mini scheda alla scheda completa e viceversa", language: "Lingua", lang_auto: "Automatica (Home Assistant)", illustration: "Intestazione illustrata", illustration_theme: "Atmosfera dell'intestazione", theme_auto: "Automatica (sole o tema scuro)", theme_day: "Giorno", theme_night: "Notte",
   },
   nl: {
     meter_water: "Watermeter", meter_gas: "Gasmeter", meter_electricity: "Elektriciteitsmeter", type_electricity: "Elektriciteit", power: "Vermogen", index: "Meterstand", today: "Vandaag", week: "Deze week", month: "Deze maand", year: "Dit jaar",
@@ -290,7 +290,7 @@ const STRINGS = {
     leak_section: "Lekdetectie", flow_entity: "Debietsensor", leak_entity: "Leksensor", leak_start: "Begin van de nachtperiode", leak_end: "Einde van de nachtperiode",
     leak_threshold: "Drempel (L/u voor water)", daily_limit: "Daglimiet", sources_section: "Gegevensbronnen", statistic_id: "Statistiek (in plaats van die van de sensor)",
     today_entity: "Verbruiksmeter (dagelijks)", week_entity: "Verbruiksmeter (wekelijks)", month_entity: "Verbruiksmeter (maandelijks)", year_entity: "Verbruiksmeter (jaarlijks)",
-    zoom: "Detailknop", zoom_helper: "Schakelt de minikaart naar de volledige kaart en terug", language: "Taal", lang_auto: "Automatisch (Home Assistant)", illustration: "Geïllustreerde koptekst", illustration_theme: "Sfeer van de koptekst", theme_auto: "Automatisch (zon, thema)", theme_day: "Dag", theme_night: "Nacht",
+    zoom: "Detailknop", zoom_helper: "Schakelt de minikaart naar de volledige kaart en terug", language: "Taal", lang_auto: "Automatisch (Home Assistant)", illustration: "Geïllustreerde koptekst", illustration_theme: "Sfeer van de koptekst", theme_auto: "Automatisch (zon of donker thema)", theme_day: "Dag", theme_night: "Nacht",
   },
   pt: {
     meter_water: "Contador de água", meter_gas: "Contador de gás", meter_electricity: "Contador de eletricidade", type_electricity: "Eletricidade", power: "Potência", index: "Leitura", today: "Hoje", week: "Esta semana", month: "Este mês", year: "Este ano",
@@ -310,7 +310,7 @@ const STRINGS = {
     leak_section: "Deteção de fugas", flow_entity: "Sensor de caudal", leak_entity: "Sensor de fugas", leak_start: "Início do período noturno", leak_end: "Fim do período noturno",
     leak_threshold: "Limiar (L/h para a água)", daily_limit: "Limite diário", sources_section: "Fontes de dados", statistic_id: "Estatística (em vez da do sensor)",
     today_entity: "Contador de consumo (diário)", week_entity: "Contador de consumo (semanal)", month_entity: "Contador de consumo (mensal)", year_entity: "Contador de consumo (anual)",
-    zoom: "Botão de detalhe", zoom_helper: "Muda o mini cartão para o cartão completo e vice-versa", language: "Idioma", lang_auto: "Automático (Home Assistant)", illustration: "Cabeçalho ilustrado", illustration_theme: "Ambiente do cabeçalho", theme_auto: "Automático (sol, tema)", theme_day: "Dia", theme_night: "Noite",
+    zoom: "Botão de detalhe", zoom_helper: "Muda o mini cartão para o cartão completo e vice-versa", language: "Idioma", lang_auto: "Automático (Home Assistant)", illustration: "Cabeçalho ilustrado", illustration_theme: "Ambiente do cabeçalho", theme_auto: "Automático (sol ou tema escuro)", theme_day: "Dia", theme_night: "Noite",
   },
   pl: {
     meter_water: "Wodomierz", meter_gas: "Gazomierz", meter_electricity: "Licznik energii elektrycznej", type_electricity: "Energia elektryczna", power: "Moc", index: "Stan licznika", today: "Dziś", week: "Ten tydzień", month: "Ten miesiąc", year: "Ten rok",
@@ -330,7 +330,7 @@ const STRINGS = {
     leak_section: "Wykrywanie wycieków", flow_entity: "Czujnik przepływu", leak_entity: "Czujnik wycieku", leak_start: "Początek okna nocnego", leak_end: "Koniec okna nocnego",
     leak_threshold: "Próg (L/h dla wody)", daily_limit: "Dzienny limit", sources_section: "Źródła danych", statistic_id: "Statystyka (zamiast statystyki czujnika)",
     today_entity: "Licznik mediów (dzienny)", week_entity: "Licznik mediów (tygodniowy)", month_entity: "Licznik mediów (miesięczny)", year_entity: "Licznik mediów (roczny)",
-    zoom: "Przycisk szczegółów", zoom_helper: "Przełącza minikartę na pełną kartę i z powrotem", language: "Język", lang_auto: "Automatycznie (Home Assistant)", illustration: "Ilustrowany nagłówek", illustration_theme: "Wygląd nagłówka", theme_auto: "Automatycznie (słońce, motyw)", theme_day: "Dzień", theme_night: "Noc",
+    zoom: "Przycisk szczegółów", zoom_helper: "Przełącza minikartę na pełną kartę i z powrotem", language: "Język", lang_auto: "Automatycznie (Home Assistant)", illustration: "Ilustrowany nagłówek", illustration_theme: "Wygląd nagłówka", theme_auto: "Automatycznie (słońce lub ciemny motyw)", theme_day: "Dzień", theme_night: "Noc",
   },
   ro: {
     meter_water: "Contor de apă", meter_gas: "Contor de gaz", meter_electricity: "Contor de energie electrică", type_electricity: "Electricitate", power: "Putere", index: "Index", today: "Azi", week: "Săptămâna aceasta", month: "Luna aceasta", year: "Anul acesta",
@@ -350,7 +350,7 @@ const STRINGS = {
     leak_section: "Detectarea scurgerilor", flow_entity: "Senzor de debit", leak_entity: "Senzor de scurgere", leak_start: "Începutul intervalului nocturn", leak_end: "Sfârșitul intervalului nocturn",
     leak_threshold: "Prag (L/h pentru apă)", daily_limit: "Limită zilnică", sources_section: "Surse de date", statistic_id: "Statistică (în locul celei a senzorului)",
     today_entity: "Contor de consum (zilnic)", week_entity: "Contor de consum (săptămânal)", month_entity: "Contor de consum (lunar)", year_entity: "Contor de consum (anual)",
-    zoom: "Buton de detalii", zoom_helper: "Comută mini cardul la cardul complet și înapoi", language: "Limbă", lang_auto: "Automat (Home Assistant)", illustration: "Antet ilustrat", illustration_theme: "Aspectul antetului", theme_auto: "Automat (soare, temă)", theme_day: "Zi", theme_night: "Noapte",
+    zoom: "Buton de detalii", zoom_helper: "Comută mini cardul la cardul complet și înapoi", language: "Limbă", lang_auto: "Automat (Home Assistant)", illustration: "Antet ilustrat", illustration_theme: "Aspectul antetului", theme_auto: "Automat (soare sau temă întunecată)", theme_day: "Zi", theme_night: "Noapte",
   },
   da: {
     meter_water: "Vandmåler", meter_gas: "Gasmåler", meter_electricity: "Elmåler", type_electricity: "El", power: "Effekt", index: "Målerstand", today: "I dag", week: "Denne uge", month: "Denne måned", year: "I år",
@@ -370,7 +370,7 @@ const STRINGS = {
     leak_section: "Lækagedetektion", flow_entity: "Flowsensor", leak_entity: "Lækagesensor", leak_start: "Start på natperiode", leak_end: "Slut på natperiode",
     leak_threshold: "Tærskel (L/t for vand)", daily_limit: "Dagsgrænse", sources_section: "Datakilder", statistic_id: "Statistik (i stedet for sensorens)",
     today_entity: "Forbrugsmåler (daglig)", week_entity: "Forbrugsmåler (ugentlig)", month_entity: "Forbrugsmåler (månedlig)", year_entity: "Forbrugsmåler (årlig)",
-    zoom: "Detaljeknap", zoom_helper: "Skifter minikortet til det fulde kort og tilbage", language: "Sprog", lang_auto: "Automatisk (Home Assistant)", illustration: "Illustreret overskrift", illustration_theme: "Overskriftens stemning", theme_auto: "Automatisk (sol, tema)", theme_day: "Dag", theme_night: "Nat",
+    zoom: "Detaljeknap", zoom_helper: "Skifter minikortet til det fulde kort og tilbage", language: "Sprog", lang_auto: "Automatisk (Home Assistant)", illustration: "Illustreret overskrift", illustration_theme: "Overskriftens stemning", theme_auto: "Automatisk (sol eller mørkt tema)", theme_day: "Dag", theme_night: "Nat",
   },
   sv: {
     meter_water: "Vattenmätare", meter_gas: "Gasmätare", meter_electricity: "Elmätare", type_electricity: "El", power: "Effekt", index: "Mätarställning", today: "I dag", week: "Den här veckan", month: "Den här månaden", year: "I år",
@@ -390,7 +390,7 @@ const STRINGS = {
     leak_section: "Läckagedetektering", flow_entity: "Flödessensor", leak_entity: "Läckagesensor", leak_start: "Nattperiodens början", leak_end: "Nattperiodens slut",
     leak_threshold: "Tröskel (L/h för vatten)", daily_limit: "Dagsgräns", sources_section: "Datakällor", statistic_id: "Statistik (i stället för sensorns)",
     today_entity: "Förbrukningsmätare (daglig)", week_entity: "Förbrukningsmätare (veckovis)", month_entity: "Förbrukningsmätare (månadsvis)", year_entity: "Förbrukningsmätare (årlig)",
-    zoom: "Detaljknapp", zoom_helper: "Växlar minikortet till hela kortet och tillbaka", language: "Språk", lang_auto: "Automatiskt (Home Assistant)", illustration: "Illustrerad rubrik", illustration_theme: "Rubrikens stämning", theme_auto: "Automatiskt (sol, tema)", theme_day: "Dag", theme_night: "Natt",
+    zoom: "Detaljknapp", zoom_helper: "Växlar minikortet till hela kortet och tillbaka", language: "Språk", lang_auto: "Automatiskt (Home Assistant)", illustration: "Illustrerad rubrik", illustration_theme: "Rubrikens stämning", theme_auto: "Automatiskt (sol eller mörkt tema)", theme_day: "Dag", theme_night: "Natt",
   },
   bg: {
     meter_water: "Водомер", meter_gas: "Газомер", meter_electricity: "Електромер", type_electricity: "Електричество", power: "Мощност", index: "Показание", today: "Днес", week: "Тази седмица", month: "Този месец", year: "Тази година",
@@ -410,7 +410,7 @@ const STRINGS = {
     leak_section: "Откриване на течове", flow_entity: "Сензор за дебит", leak_entity: "Сензор за теч", leak_start: "Начало на нощния период", leak_end: "Край на нощния период",
     leak_threshold: "Праг (L/ч за вода)", daily_limit: "Дневен лимит", sources_section: "Източници на данни", statistic_id: "Статистика (вместо тази на сензора)",
     today_entity: "Брояч на потребление (дневен)", week_entity: "Брояч на потребление (седмичен)", month_entity: "Брояч на потребление (месечен)", year_entity: "Брояч на потребление (годишен)",
-    zoom: "Бутон за подробности", zoom_helper: "Превключва мини картата към пълната карта и обратно", language: "Език", lang_auto: "Автоматично (Home Assistant)", illustration: "Илюстрирана заглавка", illustration_theme: "Изглед на заглавката", theme_auto: "Автоматично (слънце, тема)", theme_day: "Ден", theme_night: "Нощ",
+    zoom: "Бутон за подробности", zoom_helper: "Превключва мини картата към пълната карта и обратно", language: "Език", lang_auto: "Автоматично (Home Assistant)", illustration: "Илюстрирана заглавка", illustration_theme: "Изглед на заглавката", theme_auto: "Автоматично (слънце или тъмна тема)", theme_day: "Ден", theme_night: "Нощ",
   },
   ru: {
     meter_water: "Счётчик воды", meter_gas: "Счётчик газа", meter_electricity: "Счётчик электроэнергии", type_electricity: "Электричество", power: "Мощность", index: "Показания", today: "Сегодня", week: "Эта неделя", month: "Этот месяц", year: "Этот год",
@@ -430,7 +430,7 @@ const STRINGS = {
     leak_section: "Обнаружение утечек", flow_entity: "Датчик расхода", leak_entity: "Датчик протечки", leak_start: "Начало ночного интервала", leak_end: "Конец ночного интервала",
     leak_threshold: "Порог (л/ч для воды)", daily_limit: "Дневной лимит", sources_section: "Источники данных", statistic_id: "Статистика (вместо статистики датчика)",
     today_entity: "Счётчик потребления (за день)", week_entity: "Счётчик потребления (за неделю)", month_entity: "Счётчик потребления (за месяц)", year_entity: "Счётчик потребления (за год)",
-    zoom: "Кнопка подробностей", zoom_helper: "Переключает мини-карточку на полную и обратно", language: "Язык", lang_auto: "Автоматически (Home Assistant)", illustration: "Иллюстрированный заголовок", illustration_theme: "Вид заголовка", theme_auto: "Автоматически (солнце, тема)", theme_day: "День", theme_night: "Ночь",
+    zoom: "Кнопка подробностей", zoom_helper: "Переключает мини-карточку на полную и обратно", language: "Язык", lang_auto: "Автоматически (Home Assistant)", illustration: "Иллюстрированный заголовок", illustration_theme: "Вид заголовка", theme_auto: "Автоматически (солнце или тёмная тема)", theme_day: "День", theme_night: "Ночь",
   },
   uk: {
     meter_water: "Лічильник води", meter_gas: "Лічильник газу", meter_electricity: "Лічильник електроенергії", type_electricity: "Електрика", power: "Потужність", index: "Показники", today: "Сьогодні", week: "Цей тиждень", month: "Цей місяць", year: "Цей рік",
@@ -450,7 +450,7 @@ const STRINGS = {
     leak_section: "Виявлення витоків", flow_entity: "Датчик витрати", leak_entity: "Датчик протікання", leak_start: "Початок нічного інтервалу", leak_end: "Кінець нічного інтервалу",
     leak_threshold: "Поріг (л/год для води)", daily_limit: "Денний ліміт", sources_section: "Джерела даних", statistic_id: "Статистика (замість статистики датчика)",
     today_entity: "Лічильник споживання (денний)", week_entity: "Лічильник споживання (тижневий)", month_entity: "Лічильник споживання (місячний)", year_entity: "Лічильник споживання (річний)",
-    zoom: "Кнопка подробиць", zoom_helper: "Перемикає міні-картку на повну й назад", language: "Мова", lang_auto: "Автоматично (Home Assistant)", illustration: "Ілюстрований заголовок", illustration_theme: "Вигляд заголовка", theme_auto: "Автоматично (сонце, тема)", theme_day: "День", theme_night: "Ніч",
+    zoom: "Кнопка подробиць", zoom_helper: "Перемикає міні-картку на повну й назад", language: "Мова", lang_auto: "Автоматично (Home Assistant)", illustration: "Ілюстрований заголовок", illustration_theme: "Вигляд заголовка", theme_auto: "Автоматично (сонце або темна тема)", theme_day: "День", theme_night: "Ніч",
   },
   hu: {
     meter_water: "Vízóra", meter_gas: "Gázóra", meter_electricity: "Villanyóra", type_electricity: "Áram", power: "Teljesítmény", index: "Mérőállás", today: "Ma", week: "Ezen a héten", month: "Ebben a hónapban", year: "Ebben az évben",
@@ -470,7 +470,7 @@ const STRINGS = {
     leak_section: "Szivárgásérzékelés", flow_entity: "Átfolyásérzékelő", leak_entity: "Szivárgásérzékelő", leak_start: "Az éjszakai időszak kezdete", leak_end: "Az éjszakai időszak vége",
     leak_threshold: "Küszöb (L/óra víz esetén)", daily_limit: "Napi korlát", sources_section: "Adatforrások", statistic_id: "Statisztika (az érzékelőé helyett)",
     today_entity: "Fogyasztásmérő (napi)", week_entity: "Fogyasztásmérő (heti)", month_entity: "Fogyasztásmérő (havi)", year_entity: "Fogyasztásmérő (éves)",
-    zoom: "Részletek gomb", zoom_helper: "A mini kártyát a teljes kártyára váltja és vissza", language: "Nyelv", lang_auto: "Automatikus (Home Assistant)", illustration: "Illusztrált fejléc", illustration_theme: "A fejléc hangulata", theme_auto: "Automatikus (nap, téma)", theme_day: "Nappal", theme_night: "Éjszaka",
+    zoom: "Részletek gomb", zoom_helper: "A mini kártyát a teljes kártyára váltja és vissza", language: "Nyelv", lang_auto: "Automatikus (Home Assistant)", illustration: "Illusztrált fejléc", illustration_theme: "A fejléc hangulata", theme_auto: "Automatikus (nap vagy sötét téma)", theme_day: "Nappal", theme_night: "Éjszaka",
   },
   sk: {
     meter_water: "Vodomer", meter_gas: "Plynomer", meter_electricity: "Elektromer", type_electricity: "Elektrina", power: "Výkon", index: "Stav meradla", today: "Dnes", week: "Tento týždeň", month: "Tento mesiac", year: "Tento rok",
@@ -490,7 +490,7 @@ const STRINGS = {
     leak_section: "Detekcia únikov", flow_entity: "Senzor prietoku", leak_entity: "Senzor úniku", leak_start: "Začiatok nočného okna", leak_end: "Koniec nočného okna",
     leak_threshold: "Prah (L/h pre vodu)", daily_limit: "Denný limit", sources_section: "Zdroje údajov", statistic_id: "Štatistika (namiesto štatistiky senzora)",
     today_entity: "Merač spotreby (denný)", week_entity: "Merač spotreby (týždenný)", month_entity: "Merač spotreby (mesačný)", year_entity: "Merač spotreby (ročný)",
-    zoom: "Tlačidlo podrobností", zoom_helper: "Prepne mini kartu na úplnú kartu a späť", language: "Jazyk", lang_auto: "Automaticky (Home Assistant)", illustration: "Ilustrovaná hlavička", illustration_theme: "Vzhľad hlavičky", theme_auto: "Automaticky (slnko, téma)", theme_day: "Deň", theme_night: "Noc",
+    zoom: "Tlačidlo podrobností", zoom_helper: "Prepne mini kartu na úplnú kartu a späť", language: "Jazyk", lang_auto: "Automaticky (Home Assistant)", illustration: "Ilustrovaná hlavička", illustration_theme: "Vzhľad hlavičky", theme_auto: "Automaticky (slnko alebo tmavá téma)", theme_day: "Deň", theme_night: "Noc",
   },
   cs: {
     meter_water: "Vodoměr", meter_gas: "Plynoměr", meter_electricity: "Elektroměr", type_electricity: "Elektřina", power: "Výkon", index: "Stav měřidla", today: "Dnes", week: "Tento týden", month: "Tento měsíc", year: "Letos",
@@ -510,7 +510,7 @@ const STRINGS = {
     leak_section: "Detekce úniků", flow_entity: "Senzor průtoku", leak_entity: "Senzor úniku", leak_start: "Začátek nočního okna", leak_end: "Konec nočního okna",
     leak_threshold: "Práh (L/h pro vodu)", daily_limit: "Denní limit", sources_section: "Zdroje dat", statistic_id: "Statistika (místo statistiky senzoru)",
     today_entity: "Měřič spotřeby (denní)", week_entity: "Měřič spotřeby (týdenní)", month_entity: "Měřič spotřeby (měsíční)", year_entity: "Měřič spotřeby (roční)",
-    zoom: "Tlačítko podrobností", zoom_helper: "Přepne mini kartu na úplnou kartu a zpět", language: "Jazyk", lang_auto: "Automaticky (Home Assistant)", illustration: "Ilustrované záhlaví", illustration_theme: "Vzhled záhlaví", theme_auto: "Automaticky (slunce, motiv)", theme_day: "Den", theme_night: "Noc",
+    zoom: "Tlačítko podrobností", zoom_helper: "Přepne mini kartu na úplnou kartu a zpět", language: "Jazyk", lang_auto: "Automaticky (Home Assistant)", illustration: "Ilustrované záhlaví", illustration_theme: "Vzhled záhlaví", theme_auto: "Automaticky (slunce nebo tmavý motiv)", theme_day: "Den", theme_night: "Noc",
   },
   sl: {
     meter_water: "Vodomer", meter_gas: "Plinomer", meter_electricity: "Števec elektrike", type_electricity: "Elektrika", power: "Moč", index: "Stanje števca", today: "Danes", week: "Ta teden", month: "Ta mesec", year: "Letos",
@@ -530,7 +530,7 @@ const STRINGS = {
     leak_section: "Zaznavanje puščanja", flow_entity: "Senzor pretoka", leak_entity: "Senzor puščanja", leak_start: "Začetek nočnega okna", leak_end: "Konec nočnega okna",
     leak_threshold: "Prag (L/h za vodo)", daily_limit: "Dnevna omejitev", sources_section: "Viri podatkov", statistic_id: "Statistika (namesto statistike senzorja)",
     today_entity: "Števec porabe (dnevni)", week_entity: "Števec porabe (tedenski)", month_entity: "Števec porabe (mesečni)", year_entity: "Števec porabe (letni)",
-    zoom: "Gumb za podrobnosti", zoom_helper: "Preklopi mini kartico na polno kartico in nazaj", language: "Jezik", lang_auto: "Samodejno (Home Assistant)", illustration: "Ilustrirana glava", illustration_theme: "Videz glave", theme_auto: "Samodejno (sonce, tema)", theme_day: "Dan", theme_night: "Noč",
+    zoom: "Gumb za podrobnosti", zoom_helper: "Preklopi mini kartico na polno kartico in nazaj", language: "Jezik", lang_auto: "Samodejno (Home Assistant)", illustration: "Ilustrirana glava", illustration_theme: "Videz glave", theme_auto: "Samodejno (sonce ali temna tema)", theme_day: "Dan", theme_night: "Noč",
   },
   lv: {
     meter_water: "Ūdens skaitītājs", meter_gas: "Gāzes skaitītājs", meter_electricity: "Elektrības skaitītājs", type_electricity: "Elektrība", power: "Jauda", index: "Rādījums", today: "Šodien", week: "Šonedēļ", month: "Šomēnes", year: "Šogad",
@@ -550,7 +550,7 @@ const STRINGS = {
     leak_section: "Noplūžu noteikšana", flow_entity: "Plūsmas sensors", leak_entity: "Noplūdes sensors", leak_start: "Nakts perioda sākums", leak_end: "Nakts perioda beigas",
     leak_threshold: "Slieksnis (L/h ūdenim)", daily_limit: "Dienas limits", sources_section: "Datu avoti", statistic_id: "Statistika (sensora statistikas vietā)",
     today_entity: "Patēriņa skaitītājs (dienas)", week_entity: "Patēriņa skaitītājs (nedēļas)", month_entity: "Patēriņa skaitītājs (mēneša)", year_entity: "Patēriņa skaitītājs (gada)",
-    zoom: "Detaļu poga", zoom_helper: "Pārslēdz mini karti uz pilno karti un atpakaļ", language: "Valoda", lang_auto: "Automātiski (Home Assistant)", illustration: "Ilustrēta galvene", illustration_theme: "Galvenes noskaņa", theme_auto: "Automātiski (saule, motīvs)", theme_day: "Diena", theme_night: "Nakts",
+    zoom: "Detaļu poga", zoom_helper: "Pārslēdz mini karti uz pilno karti un atpakaļ", language: "Valoda", lang_auto: "Automātiski (Home Assistant)", illustration: "Ilustrēta galvene", illustration_theme: "Galvenes noskaņa", theme_auto: "Automātiski (saule vai tumšais motīvs)", theme_day: "Diena", theme_night: "Nakts",
   },
   el: {
     meter_water: "Μετρητής νερού", meter_gas: "Μετρητής αερίου", meter_electricity: "Μετρητής ηλεκτρικού", type_electricity: "Ηλεκτρικό", power: "Ισχύς", index: "Ένδειξη", today: "Σήμερα", week: "Αυτή την εβδομάδα", month: "Αυτόν τον μήνα", year: "Φέτος",
@@ -570,7 +570,7 @@ const STRINGS = {
     leak_section: "Ανίχνευση διαρροών", flow_entity: "Αισθητήρας ροής", leak_entity: "Αισθητήρας διαρροής", leak_start: "Αρχή νυχτερινού διαστήματος", leak_end: "Τέλος νυχτερινού διαστήματος",
     leak_threshold: "Όριο (L/ώρα για νερό)", daily_limit: "Ημερήσιο όριο", sources_section: "Πηγές δεδομένων", statistic_id: "Στατιστικό (αντί του αισθητήρα)",
     today_entity: "Μετρητής κατανάλωσης (ημερήσιος)", week_entity: "Μετρητής κατανάλωσης (εβδομαδιαίος)", month_entity: "Μετρητής κατανάλωσης (μηνιαίος)", year_entity: "Μετρητής κατανάλωσης (ετήσιος)",
-    zoom: "Κουμπί λεπτομερειών", zoom_helper: "Εναλλάσσει τη μίνι κάρτα με την πλήρη κάρτα", language: "Γλώσσα", lang_auto: "Αυτόματα (Home Assistant)", illustration: "Εικονογραφημένη κεφαλίδα", illustration_theme: "Ατμόσφαιρα κεφαλίδας", theme_auto: "Αυτόματα (ήλιος, θέμα)", theme_day: "Ημέρα", theme_night: "Νύχτα",
+    zoom: "Κουμπί λεπτομερειών", zoom_helper: "Εναλλάσσει τη μίνι κάρτα με την πλήρη κάρτα", language: "Γλώσσα", lang_auto: "Αυτόματα (Home Assistant)", illustration: "Εικονογραφημένη κεφαλίδα", illustration_theme: "Ατμόσφαιρα κεφαλίδας", theme_auto: "Αυτόματα (ήλιος ή σκούρο θέμα)", theme_day: "Ημέρα", theme_night: "Νύχτα",
   },
 };
 
