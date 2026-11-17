@@ -1285,6 +1285,8 @@ const BASE_STYLE = `
   .titles.below .trow { display: contents; }
   .titles.below .name { max-width: 100%; }
   .titles.below .chip { order: 3; max-width: 100%; }
+  /* In the banner, a pill on its own line may run over the picture, up to the banner's edge. */
+  .banner .titles.below .chip { max-width: none; }
   .titles.below .sub { max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .titles.dotonly .trow .chip { padding: 4px; } .titles.dotonly .trow .chip .chip-text { display: none; }
   @container um-card (max-width: 200px) { .titles .tstack .chip { padding: 4px; } .titles .tstack .chip .chip-text { display: none; } }
@@ -1561,8 +1563,9 @@ class UtilityMeterCard extends HTMLElement {
 
   // The status pill goes right after the title only when the whole title and the pill's whole label fit on that row;
   // otherwise it takes a line of its own under the subtitle (.titles.below, the subtitle cut to one line). In the
-  // banner, when the titles still run below the top of the ground strip (or out of the banner), or when the label does
-  // not fit even alone, the pill keeps its dot alone, beside the title (.titles.dotonly). Measured in fractional pixels.
+  // banner (where that line may run over the picture), when the titles still run below the top of the ground strip or
+  // out of the banner, and in the classic header when the label does not fit even alone, the pill keeps its dot alone,
+  // beside the title (.titles.dotonly). Measured in fractional pixels.
   _fitPill() {
     for (const t of this.shadowRoot?.querySelectorAll?.(".titles") || []) {
       const row = t.querySelector(".trow");
@@ -1577,8 +1580,8 @@ class UtilityMeterCard extends HTMLElement {
       const room = row.getBoundingClientRect().width + 0.5;
       if (need <= room) continue;
       t.classList.add("below");
-      const cut = widths.some((w) => w > room);
       const banner = t.closest(".banner");
+      const cut = !banner && widths.some((w) => w > room);
       let out = false;
       if (banner) {
         const b = banner.getBoundingClientRect();
