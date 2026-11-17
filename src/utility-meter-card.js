@@ -1171,14 +1171,13 @@ const UM_ART_VIEW = {
 const umScene = (type, night, zoom) =>
   `<svg class="um-bg" viewBox="0 0 200 80" preserveAspectRatio="xMaxYMax meet" aria-hidden="true">${UM_SCENES[type](night, zoom)}</svg>`;
 
-// Night picture: forced by illustration_theme, else the sun below the horizon, else Home Assistant's dark mode.
+// Night picture: forced by illustration_theme, else the sun below the horizon or Home Assistant's dark theme
+// (an unknown or unavailable sun leaves the theme alone to decide).
 const umIsNight = (hass, config) => {
   const theme = config?.illustration_theme;
   if (theme === "night") return true;
   if (theme === "day") return false;
-  const sun = hass?.states?.["sun.sun"];
-  if (sun && (sun.state === "above_horizon" || sun.state === "below_horizon")) return sun.state === "below_horizon";
-  return !!hass?.themes?.darkMode;
+  return hass?.states?.["sun.sun"]?.state === "below_horizon" || !!hass?.themes?.darkMode;
 };
 
 const BANNER_STYLE = `
