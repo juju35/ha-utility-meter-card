@@ -87,10 +87,9 @@ for (const type of ["utility-meter-card", "utility-meter-mini-card"]) {
   });
 }
 
-// The status pill of the illustrated header: its whole label on the title row whenever it fits there beside the title
-// cut down to four characters (always at 460 and 500 px), else on its own line under the subtitle, the title kept
-// readable; the mini
-// card's detail button in the banner's top-right corner. A normal meter and a leak ("Leak suspected", the longest).
+// The status pill of the illustrated header: its whole label, on the title row or under the subtitle (the full rule in
+// every language is checked by pill-layout.test.mjs), the title kept readable; the mini card's detail button in the
+// banner's top-right corner. A normal meter and a leak ("Leak suspected", the longest).
 const PILL_CONFIGS = [
   { entity: "sensor.water_meter", price: 4 },
   { entity: "sensor.cottage_water_meter", leak_entity: "binary_sensor.cottage_leak", price: 3.9 },
@@ -130,13 +129,8 @@ for (const type of ["utility-meter-card", "utility-meter-mini-card"]) {
             const banner = box(q(".banner"));
             const zoom = box(q(".banner .zoom"));
             const mid = (b) => b.top + b.height / 2;
-            const ctx = document.createElement("canvas").getContext("2d");
-            const cs = getComputedStyle(title);
-            ctx.font = `${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`;
-            const four = Math.min(title.scrollWidth, ctx.measureText(`${title.textContent.trim().slice(0, 4)}…`).width);
             return {
               width: Number(name.split(" ").at(-1)),
-              fits: four + 8 + box(chip).width <= titles.right - box(title).left - 1,
               name,
               whole: text.scrollWidth <= text.clientWidth + 1,
               inline: Math.abs(mid(box(chip)) - mid(box(title))) <= 2,
@@ -152,8 +146,6 @@ for (const type of ["utility-meter-card", "utility-meter-mini-card"]) {
       for (const r of results) {
         assert.ok(r.whole, `${r.name}: the pill's label is cut`);
         assert.ok(r.inline || r.below, `${r.name}: the pill is neither on the title row nor under the subtitle`);
-        if (!r.inline) assert.ok(!r.fits, `${r.name}: the pill is under the subtitle although it fits beside the title`);
-        if (r.width >= 460) assert.ok(r.inline, `${r.name}: the pill is not beside the title`);
         assert.ok(r.inside, `${r.name}: the pill runs out of the title block`);
         assert.ok(r.title, `${r.name}: the title is cut to nothing`);
         if (type === "utility-meter-mini-card") assert.deepEqual(r.zoom, { top: 5, right: 5, w: 24 }, `${r.name}: the detail button is out of its corner`);

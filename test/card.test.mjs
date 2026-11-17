@@ -425,7 +425,7 @@ test("the picture: still when nothing flows, animated while flowing (flow sensor
 
 test("mini card: index in the subtitle, today and this month, detail button switching to the full card", async () => {
   const { card, html } = await newCard({}, { Card: um.MiniCard });
-  assert.match(html(), /<div class="sub">1,234\.567 m³<\/div>/);
+  assert.match(html(), /<div class="sub"[^>]*>1,234\.567 m³<\/div>/);
   assert.match(html(), /<div class="k">Today<\/div>/);
   assert.match(html(), /<div class="k">This month<\/div>/);
   assert.match(html(), /class="zoom" data-action="zoom"/);
