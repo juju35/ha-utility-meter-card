@@ -1123,18 +1123,22 @@ const umSunMoon = (x, y, night) =>
     ? `<path d="M${x} ${y - 6}a6.4 6.4 0 1 0 5.6 9.6 5.2 5.2 0 1 1-5.6-9.6Z" fill="#f4f1dc"/>`
     : `<circle cx="${x}" cy="${y}" r="9" fill="#ffd65a" opacity=".28"/><circle cx="${x}" cy="${y}" r="6" fill="#ffd65a"/>`;
 const umLines = (x1, n, step, color, width) =>
-  `<g stroke="${color}" stroke-width="${width}">${Array.from({ length: n }, (_, i) => `<line x1="${x1}" y1="${i * step}" x2="200" y2="${i * step}"/>`).join("")}</g>`;
+  `<g stroke="${color}" stroke-width="${width}">${Array.from({ length: n }, (_, i) => `<line x1="${x1}" y1="${i * step}" x2="240" y2="${i * step}"/>`).join("")}</g>`;
 
+// The room behind each meter, in a 200 × 80 view. Its wall, lines and pipes run on to x 240, past the view's right
+// edge: when the mini card's scene steps left of the corner button, they continue under the button to the banner's edge.
 const UM_SCENES = {
-  water: (n) =>
-    `<rect width="200" height="80" fill="${n ? "#26241f" : "#e9e3da"}"/>${umLines(0, 10, 9, n ? "#33302a" : "#d8cfc1", 1)}` +
-    '<path d="M40 68 H200 M100 68 V14 H200" stroke="#2f80ed" stroke-width="5" fill="none" stroke-linecap="round"/>' +
-    '<path class="um-pulse" d="M40 68 H200" stroke="#bfe6ff" stroke-width="2" fill="none"/>' +
+  // With the corner button (`zoom`), the upper pipe rises through the ceiling before the button instead of running
+  // on under it.
+  water: (n, zoom) =>
+    `<rect width="240" height="80" fill="${n ? "#26241f" : "#e9e3da"}"/>${umLines(0, 10, 9, n ? "#33302a" : "#d8cfc1", 1)}` +
+    `<path d="M40 68 H240 M100 68 V14 ${zoom ? "H192 V0" : "H240"}" stroke="#2f80ed" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>` +
+    '<path class="um-pulse" d="M40 68 H240" stroke="#bfe6ff" stroke-width="2" fill="none"/>' +
     '<rect x="118" y="62" width="8" height="12" rx="1" fill="#e5484d"/><circle cx="122" cy="60" r="4" fill="#e5484d"/>' +
     `<path d="M180 0 v20" stroke="#5f5e5a" stroke-width=".6"/><circle cx="180" cy="22" r="3" fill="${n ? "#ffcf6e" : "#f3e6d3"}"/>` +
     '<ellipse class="um-puddle" cx="170" cy="79.2" rx="20" ry="2.4"/>',
   electricity: (n) =>
-    `<rect width="200" height="80" fill="${n ? "#24272e" : "#f1f2f4"}"/>` +
+    `<rect width="240" height="80" fill="${n ? "#24272e" : "#f1f2f4"}"/>` +
     `<g transform="translate(96 8)"><rect width="64" height="58" rx="3" fill="${n ? "#3a4050" : "#fff"}" stroke="${n ? "#4a5568" : "#c9ced6"}"/>${[0, 1, 2]
       .map(
         (r) =>
@@ -1146,7 +1150,7 @@ const UM_SCENES = {
       .join("")}</g>` +
     '<path d="M128 66 V80" stroke="#5f6b7a" stroke-width="3"/><path class="um-flow" d="M128 66 V80" stroke="#f5b400" stroke-width="1.4"/>',
   gas: (n) =>
-    `${umStars(n)}${umSunMoon(30, 14, n)}<rect x="60" y="0" width="140" height="80" fill="${n ? "#3a3530" : "#efe3cf"}"/>${umLines(60, 9, 10, n ? "#4a443c" : "#e2d3b8", 0.8)}` +
+    `${umStars(n)}${umSunMoon(30, 14, n)}<rect x="60" y="0" width="180" height="80" fill="${n ? "#3a3530" : "#efe3cf"}"/>${umLines(60, 9, 10, n ? "#4a443c" : "#e2d3b8", 0.8)}` +
     `<rect x="150" y="8" width="26" height="22" rx="1.5" fill="${n ? "#1b2f52" : "#bfe0f7"}" stroke="${n ? "#4a5568" : "#fff"}" stroke-width="1.4"/>` +
     `<rect x="104" y="30" width="56" height="46" rx="2" fill="${n ? "#4a443c" : "#d9c9ab"}" stroke="${n ? "#5a5246" : "#b9a684"}"/>` +
     '<path d="M86 80 V60 H104" stroke="#f5b400" stroke-width="4" fill="none" stroke-linejoin="round"/>' +
@@ -1164,7 +1168,8 @@ const UM_ART_VIEW = {
   submeter: "-2 4 84 63",
 };
 
-const umScene = (type, night) => `<svg class="um-bg" viewBox="0 0 200 80" preserveAspectRatio="xMaxYMax meet" aria-hidden="true">${UM_SCENES[type](night)}</svg>`;
+const umScene = (type, night, zoom) =>
+  `<svg class="um-bg" viewBox="0 0 200 80" preserveAspectRatio="xMaxYMax meet" aria-hidden="true">${UM_SCENES[type](night, zoom)}</svg>`;
 
 // Night picture: forced by illustration_theme, else the sun below the horizon, else Home Assistant's dark mode.
 const umIsNight = (hass, config) => {
@@ -1185,11 +1190,12 @@ const BANNER_STYLE = `
   .banner.t-water { background: #e9e3da; } .banner.t-water.night { background: #26241f; }
   .banner.t-electricity { background: #f1f2f4; } .banner.t-electricity.night { background: #24272e; }
   .um-scene { position: absolute; right: 0; bottom: 10px; width: min(200px, 56cqw); aspect-ratio: 5 / 2; }
-  .um-bg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  .um-bg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; overflow: visible; }
   .um-scene .picture { position: absolute; right: 2%; bottom: 0; height: 90%; }
   .um-scene .picture .puddle { display: none; }
-  /* The mini card's detail button sits at the top right: the meter steps left of it. */
-  .banner.has-zoom .um-scene .picture { right: 16%; }
+  /* The mini card's detail button sits at the top right (5 + 24 px): the whole scene, meter and background, steps
+     left of it at full size. */
+  .banner.has-zoom .um-scene { right: 34px; }
   .um-pulse { stroke-dasharray: 4 26; opacity: 0; }
   .um-flow { stroke-dasharray: 3 4; opacity: 0; }
   .banner.active .um-pulse { opacity: 1; animation: um-pl 1.4s linear infinite; }
@@ -1903,7 +1909,7 @@ class UtilityMeterCard extends HTMLElement {
     const cls = `banner t-${m.type}${zoom ? " has-zoom" : ""}${umIsNight(this._hass, c) ? " night" : ""}${m.active ? " active" : ""}${m.leak ? " leak" : ""}`;
     return `
       <div class="${cls}">
-        <div class="um-scene">${umScene(m.type, umIsNight(this._hass, c))}${this._picture(m, true)}</div>
+        <div class="um-scene">${umScene(m.type, umIsNight(this._hass, c), !!zoom)}${this._picture(m, true)}</div>
         <div class="ground g-${UM_GROUND[m.type]}"></div>
         <div class="htext">${icon}<div class="titles"><div class="tstack"><div class="trow">${name}${pill}</div>${sub ? `<div class="sub">${esc(sub)}</div>` : ""}</div></div></div>
         ${zoom}
