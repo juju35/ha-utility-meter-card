@@ -2029,7 +2029,9 @@ class UtilityMeterCard extends HTMLElement {
       const view = UM_ART_VIEW[m.type === "electricity" ? this._pictureStyle(m) : m.type];
       const [, , w, h] = view.split(" ").map(Number);
       art = art.replace('viewBox="0 0 80 88"', `viewBox="${view}"`);
-      style = ` style="aspect-ratio: ${w} / ${h}"`;
+      // Explicit width (90 % of the 5 : 2 scene's height, at the drawing's ratio): WebKit would size the absolute box
+      // from its SVG's default 300 px width otherwise.
+      style = ` style="aspect-ratio: ${w} / ${h}; width: ${+((36 * w) / h).toFixed(2)}%"`;
     }
     return `<div class="picture clickable${cls}" role="button" tabindex="0" aria-label="${esc(label)}" data-entity="${esc(m.id)}"${style}>${art}</div>`;
   }
