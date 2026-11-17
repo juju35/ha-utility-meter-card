@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.2.1 - 2026-11-17
+
+### Fixes
+- Illustrated header in Safari (WebKit): the meter gets an explicit width, so that WebKit no longer sizes the picture from an SVG's default 300 px width and lays it over the title.
+
 ## 1.2.0 - 2026-11-17
 
 ### Features
