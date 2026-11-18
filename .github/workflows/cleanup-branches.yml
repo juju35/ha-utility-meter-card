@@ -3,7 +3,8 @@ name: Clean up merged branches
 # Deletes the branches whose pull request was merged: right after a pull request is closed,
 # and once a week for leftovers. Branches with an open pull request or never merged are kept,
 # and so is a branch that got new commits after its pull request was merged (its tip is no
-# longer the merged head): those commits exist nowhere else.
+# longer the merged head): those commits exist nowhere else — unless they are only the Screenshots
+# bot's [skip ci] commits.
 on:
   pull_request:
     types: [closed]
@@ -33,6 +34,16 @@ jobs:
             open=$(gh api --paginate "repos/$REPO/pulls?state=open&head=$owner:$branch" --jq '.[].number' | wc -l)
             merged=$(gh api --paginate "repos/$REPO/pulls?state=closed&head=$owner:$branch" \
               --jq ".[] | select(.merged_at and .head.sha == \"$sha\") | .number" | wc -l)
+            # The Screenshots job may push its [skip ci] commit right after the auto-merge: a tip that only adds
+            # github-actions[bot] [skip ci] commits on top of a merged head is merged too (those are regenerated).
+            if [ "$open" = "0" ] && [ "$merged" = "0" ]; then
+              for head in $(gh api --paginate "repos/$REPO/pulls?state=closed&head=$owner:$branch" \
+                --jq '.[] | select(.merged_at) | .head.sha'); do
+                only_bot=$(gh api "repos/$REPO/compare/$head...$sha" --jq '.status == "ahead" and
+                  ([.commits[] | .author.login == "github-actions[bot]" and (.commit.message | contains("[skip ci]"))] | all)')
+                [ "$only_bot" = "true" ] && { merged=1; break; }
+              done
+            fi
             if [ "$open" = "0" ] && [ "$merged" != "0" ]; then
               gh api -X DELETE "repos/$REPO/git/refs/heads/$branch" >/dev/null && echo "Deleted $branch" || echo "::warning::Could not delete $branch"
             else
