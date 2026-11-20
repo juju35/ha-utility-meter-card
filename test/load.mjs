@@ -1,6 +1,10 @@
 // Evaluates src/utility-meter-card.js (a classic script, bundled as is by scripts/build.mjs) in a sandbox with
 // minimal DOM stand-ins and a fixed clock, and returns the names the tests need. No dependency, no browser.
 import { readFileSync } from "node:fs";
+
+// The periods and the chart cut days in the browser's time zone: the tests expect UTC, whatever the machine's zone
+// (`npm test` sets it too; this covers a plain `node --test`). Set before any date is made.
+process.env.TZ = "UTC";
 import vm from "node:vm";
 import { NOW } from "../scripts/mock-states.mjs";
 
