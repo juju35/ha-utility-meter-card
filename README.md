@@ -198,12 +198,12 @@ daily_limit: 5                       # kWh today above this → "High usage", th
 | `show_picture` | both | `true` | Show the drawn meter, animated by its state |
 | `picture_style` | both | `auto` | Electricity drawing: `auto` (submeter when a power sensor is set, else digital), `digital`, `disc` or `submeter` |
 | `show_index` | both | `true` | Show the index |
-| `index_decimals` | both | `3` for m³, `0` for L and kWh | Decimals of the index (YAML only) |
-| `show_consumption` | full | `true` | Today, this week, this month and this year |
+| `index_decimals` | both | `3` for m³, `1` for ft³, CCF and gal, `0` for L and kWh | Decimals of the index (0 to 6) |
+| `show_consumption` | both | `true` | Today, this week, this month and this year |
 | `show_comparison` | both | `true` | Percentage against the previous period at the same point |
 | `show_chart` | both | `true` | History chart (the last days on the mini card) |
-| `chart_period` | full | `week` | Chart shown first: `day`, `week`, `month` or `year` (the tabs switch it) |
-| `collapsed` | full | `[night]` | Sections folded by default, among `consumption`, `history` and `night` (`[]` to unfold everything). Click a section title (or Tab to it and press Enter or Space) to fold or unfold it; a click elsewhere folds them back |
+| `chart_period` | both | `week` | Chart shown first: `day`, `week`, `month` or `year` (the tabs switch it) |
+| `collapsed` | both | `[night]` | Sections folded by default, among `consumption`, `history` and `night` (`[]` to unfold everything). Click a section title (or Tab to it and press Enter or Space) to fold or unfold it; a click elsewhere folds them back |
 | `liters` | both | `true` | Water in m³ or L: amounts below 1 m³ in liters, from 1000 L in m³; `false` keeps the sensor's unit |
 | `show_cost` | both | `true` | Show the cost when a price is set |
 | `price` | both | — | Price per m³ (per the sensor's unit when it is not metric) or per kWh |

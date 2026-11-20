@@ -507,7 +507,7 @@ test("the editor keeps the YAML minimal: defaults and empty values are dropped",
   const form = ed.children[0];
   assert.ok(form.schema.length > 5);
   const names = JSON.stringify(form.schema);
-  for (const n of ["price", "leak_start", "statistic_id", "show_picture", "collapsed"]) assert.ok(names.includes(`"${n}"`), n);
+  for (const n of ["price", "leak_start", "statistic_id", "show_picture", "collapsed", "index_decimals"]) assert.ok(names.includes(`"${n}"`), n);
   let out;
   ed.dispatchEvent = (ev) => (out = ev.detail.config);
   const events = form.listeners;
