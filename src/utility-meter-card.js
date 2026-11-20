@@ -679,7 +679,9 @@ const fmtAmount = (v, unit, locale, { water = false, liters = true } = {}) => {
 };
 
 const indexDigits = (unit, config) => {
-  if (Number.isInteger(config?.index_decimals)) return config.index_decimals;
+  // 0 to 6 decimals: Intl throws past 100, and a negative count is no count.
+  const d = config?.index_decimals;
+  if (Number.isInteger(d) && d >= 0 && d <= 6) return d;
   const u = normUnit(unit);
   return u === "m³" ? 3 : u === "ft³" || u === "CCF" || u === "gal" ? 1 : 0;
 };
