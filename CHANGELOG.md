@@ -1,5 +1,22 @@
 # Changelog
 
+## 1.3.0 - 2026-11-20
+
+### Features
+- **Index decimals in the visual editor** (`index_decimals`, both cards): a number field, 0 to 6; empty keeps the unit's default (3 for m³, 1 for ft³, CCF and gal, 0 for L and kWh).
+
+### Fixes
+- `index_decimals` outside 0–6 (a negative count) no longer breaks the card: the unit's default is used.
+- The card picker describes the cards as water, gas or electricity meters.
+- README: `show_consumption`, `chart_period` and `collapsed` are marked "both" — the mini card's detailed view uses them and its editor shows them.
+- The page no longer jumps on state updates: an update patches the card's shadow DOM in place instead of rebuilding it, so the meter's animations keep running and no node shows for a frame at another size (no element replaced when only the values change).
+- The status pill is placed from the card's first frame: it was measured before Home Assistant's `<ha-card>` had laid out its content (0 px wide). It is now fitted once the card is drawn.
+
+### Maintenance
+- The commitlint config loads as an ES module: the `commit-msg` hook failed on every commit.
+- The tests run in UTC whatever the machine's time zone (a plain `node --test` failed outside UTC).
+- Browser regression test (`test/layout-shift.test.mjs`): in-place updates and the pill at the first frame with a Lit-like `<ha-card>`.
+
 ## 1.2.2 - 2026-11-18
 
 ### Fixes

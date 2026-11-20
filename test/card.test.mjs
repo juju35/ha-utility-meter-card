@@ -200,6 +200,12 @@ test("amounts: liters below 1 m³ for water, fewer digits as values grow, the se
   assert.equal(um.fmtPct(-0.5, "en"), "-50%");
 });
 
+test("index_decimals: 0 to 6 decimals, the unit's default outside of them", async () => {
+  assert.match((await newCard({ index_decimals: 1 })).html(), /1,234\.6<small>m³<\/small>/);
+  // Out of range (Intl throws past 100): the default for m³.
+  for (const index_decimals of [-1, 99]) assert.match((await newCard({ index_decimals })).html(), /1,234\.567<small>m³<\/small>/, String(index_decimals));
+});
+
 test("the full card shows the index, the periods with cost and comparison, the chart and the night section", async () => {
   const { html, hass } = await newCard({ price_entity: "sensor.water_price", flow_entity: "sensor.water_flow" });
   const h = html();
@@ -501,7 +507,7 @@ test("the editor keeps the YAML minimal: defaults and empty values are dropped",
   const form = ed.children[0];
   assert.ok(form.schema.length > 5);
   const names = JSON.stringify(form.schema);
-  for (const n of ["price", "leak_start", "statistic_id", "show_picture", "collapsed"]) assert.ok(names.includes(`"${n}"`), n);
+  for (const n of ["price", "leak_start", "statistic_id", "show_picture", "collapsed", "index_decimals"]) assert.ok(names.includes(`"${n}"`), n);
   let out;
   ed.dispatchEvent = (ev) => (out = ev.detail.config);
   const events = form.listeners;
