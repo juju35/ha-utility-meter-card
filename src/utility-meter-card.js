@@ -1442,6 +1442,44 @@ const MINI_STYLE = `
 `;
 
 // ---------------------------------------------------------------------------
+// Shadow DOM patching: an update changes the nodes that differ and keeps the others (their focus, hover, running
+// animations and size), instead of rebuilding the whole card. `<ha-icon>` and the other Home Assistant elements keep
+// their own shadow content (only their attributes are patched).
+// ---------------------------------------------------------------------------
+
+const umPatchAttrs = (cur, next) => {
+  for (const { name } of [...cur.attributes]) if (!next.hasAttribute(name)) cur.removeAttribute(name);
+  for (const { name, value } of next.attributes) if (cur.getAttribute(name) !== value) cur.setAttribute(name, value);
+};
+const umSame = (a, b) => !!a && a.nodeType === b.nodeType && a.nodeName === b.nodeName;
+const umPatchChildren = (cur, next) => {
+  const fresh = [...next.childNodes];
+  fresh.forEach((n, i) => {
+    const o = cur.childNodes[i];
+    if (!umSame(o, n)) {
+      if (o) cur.replaceChild(n, o);
+      else cur.appendChild(n);
+      return;
+    }
+    if (n.nodeType === 1) {
+      umPatchAttrs(o, n);
+      umPatchChildren(o, n);
+    } else if (o.nodeValue !== n.nodeValue) o.nodeValue = n.nodeValue;
+  });
+  while (cur.childNodes.length > fresh.length) cur.removeChild(cur.lastChild);
+};
+// The first render (an empty root) and environments without a DOM (the unit tests' stand-ins) set innerHTML.
+const umMorph = (root, html) => {
+  if (!root.childNodes?.length) {
+    root.innerHTML = html;
+    return;
+  }
+  const tpl = document.createElement("template");
+  tpl.innerHTML = html;
+  umPatchChildren(root, tpl.content);
+};
+
+// ---------------------------------------------------------------------------
 // Cards
 // ---------------------------------------------------------------------------
 
@@ -1569,6 +1607,16 @@ class UtilityMeterCard extends HTMLElement {
   // out of the banner, and in the classic header when the label does not fit even alone, the pill keeps its dot alone,
   // beside the title (.titles.dotonly). Measured in fractional pixels.
   _fitPill() {
+    // Home Assistant's <ha-card> (a Lit element) lays its content out at its first update, a microtask after it is
+    // connected: measured before, everything is 0 px wide and the pill lands on the wrong line. Fitted then.
+    const haCard = this.shadowRoot?.querySelector?.("ha-card");
+    if (haCard && haCard.hasUpdated === false) {
+      this._pillWait ??= (haCard.updateComplete?.then ? haCard.updateComplete : new Promise((r) => requestAnimationFrame(r))).then(() => {
+        this._pillWait = null;
+        this._fitPill();
+      });
+      return;
+    }
     for (const t of this.shadowRoot?.querySelectorAll?.(".titles") || []) {
       const row = t.querySelector(".trow");
       const chips = row ? [...row.querySelectorAll(":scope > .chip")] : [];
@@ -1743,7 +1791,7 @@ class UtilityMeterCard extends HTMLElement {
     const active = this.shadowRoot.activeElement;
     const kept = !this._byPointer && active?.dataset && Object.keys(active.dataset).length ? JSON.stringify({ ...active.dataset }) : null;
     this._html = html;
-    this.shadowRoot.innerHTML = html;
+    umMorph(this.shadowRoot, html);
     this._fitPill();
     if (this._popup) this.shadowRoot.querySelector('[data-action="popup_close"]')?.focus?.({ preventScroll: true });
     else if (kept) {
