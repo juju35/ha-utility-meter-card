@@ -99,7 +99,7 @@ export const load = (now = NOW) => {
   vm.createContext(sandbox);
   return vm.runInContext(
     `${source}
-    ({ STRINGS, LANGUAGES, esc, convert, normUnit, fmtAmount, fmtPct, fmtMoney, parseTime, statRows, periodValues, chartSlots, nightWindow, nightCheck, umIsNight,
+    ({ STRINGS, LANGUAGES, esc, convert, normUnit, fmtAmount, fmtPct, fmtMoney, parseTime, statRows, periodValues, chartSlots, nightWindow, nightCheck, umIsNight, isLightColor, meterType,
        leakThreshold, listMeters, utilityMeters, startOfWeek, startOfDay, Card: customElements.get("utility-meter-card"),
        MiniCard: customElements.get("utility-meter-mini-card"), Editor: customElements.get("utility-meter-card-editor"),
        MiniEditor: customElements.get("utility-meter-mini-card-editor"), window })`,

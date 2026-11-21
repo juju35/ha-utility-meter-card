@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.3.1 - 2026-11-21
+
+### Fixes
+- Electricity meters without a device class (Modbus, template sensors) were drawn as water meters whatever `picture_style`: with `meter_type: auto`, the kind of meter now falls back on the sensor's unit — Wh / kWh / MWh electricity, MJ / GJ gas, a volume water (#25).
+- Illustrated header: a dark theme picked on its own (Home Assistant's dark mode off) now gets the night picture — the theme's text colour tells it apart from a light theme (#25).
+- Illustrated header: a long meter name takes two lines before being cut, so that it stays readable on a narrow card (a grid of three columns) (#25).
+
 ## 1.3.0 - 2026-11-20
 
 ### Features

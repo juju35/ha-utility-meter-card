@@ -559,3 +559,27 @@ test("night picture: the dark theme alone, whatever the sun; forced day or night
   assert.equal(um.umIsNight(hass("below_horizon", true), { illustration_theme: "day" }), false);
   assert.equal(um.umIsNight(hass("above_horizon", false), { illustration_theme: "night" }), true);
 });
+
+test("meter type: meter_type, else device_class, else the unit (a Modbus sensor has no device_class)", () => {
+  const st = (unit, device_class) => ({ attributes: { unit_of_measurement: unit, ...(device_class ? { device_class } : {}) } });
+  assert.equal(um.meterType(st("kWh"), "auto"), "electricity");
+  assert.equal(um.meterType(st("Wh")), "electricity");
+  assert.equal(um.meterType(st("kwh")), "electricity");
+  assert.equal(um.meterType(st("GJ")), "gas");
+  assert.equal(um.meterType(st("m³")), "water");
+  assert.equal(um.meterType(st("m³", "gas")), "gas");
+  assert.equal(um.meterType(st("kWh", "gas")), "gas");
+  assert.equal(um.meterType(st("kWh"), "water"), "water");
+  assert.equal(um.meterType(undefined), "water");
+});
+
+test("night picture: a dark theme picked without HA's dark mode, read from its text colour", () => {
+  assert.equal(um.isLightColor("#e1e1e1"), true);
+  assert.equal(um.isLightColor("#fff"), true);
+  assert.equal(um.isLightColor("rgb(225, 225, 225)"), true);
+  assert.equal(um.isLightColor("#212121"), false);
+  assert.equal(um.isLightColor("rgba(33, 33, 33, 1)"), false);
+  assert.equal(um.isLightColor(""), false);
+  assert.equal(um.isLightColor("var(--x)"), false);
+  assert.equal(um.umIsNight({ themes: { darkMode: false } }, {}, null), false, "no element: day");
+});
