@@ -651,6 +651,20 @@ const convert = (v, from, to) => {
 const isMetricVolume = (u) => ["mL", "L", "m³"].includes(normUnit(u));
 const isEnergy = (u) => normUnit(u) in ENERGY_KWH;
 
+// The kind of meter: `meter_type` when set, else the sensor's device_class, else its unit — a Modbus or template
+// sensor often has no device_class: Wh / kWh / MWh is electricity, MJ / GJ gas, a volume water.
+const meterType = (st, cfgType) => {
+  if (cfgType === "water" || cfgType === "gas" || cfgType === "electricity") return cfgType;
+  const a = st?.attributes || {};
+  if (a.device_class === "gas") return "gas";
+  if (a.device_class === "energy") return "electricity";
+  if (a.device_class === "water") return "water";
+  const u = normUnit(a.unit_of_measurement);
+  if (u === "Wh" || u === "kWh" || u === "MWh") return "electricity";
+  if (u === "MJ" || u === "GJ") return "gas";
+  return "water";
+};
+
 const NUM_FMT = {};
 const fmtNum = (v, locale, digits = 2, min = 0) =>
   (NUM_FMT[`${locale}|${digits}|${min}`] ??= new Intl.NumberFormat(locale, { maximumFractionDigits: digits, minimumFractionDigits: min })).format(v);
@@ -1175,11 +1189,31 @@ const umScene = (type, night, zoom) =>
 
 // Night picture: forced by illustration_theme, else Home Assistant's dark theme alone (a light theme keeps the day
 // picture after sunset).
-const umIsNight = (hass, config) => {
+// A dark theme picked as a plain theme (not through Home Assistant's dark mode) leaves themes.darkMode false: the
+// theme's text colour then tells — light text is a dark theme. Reads #rgb, #rrggbb and rgb()/rgba().
+const isLightColor = (c) => {
+  const s = String(c ?? "").trim();
+  let rgb = null;
+  const h = s.match(/^#([\da-f]{3}|[\da-f]{6})([\da-f]{2})?$/i);
+  if (h) {
+    const x = h[1].length === 3 ? [...h[1]].map((d) => d + d).join("") : h[1];
+    rgb = [0, 2, 4].map((i) => parseInt(x.slice(i, i + 2), 16));
+  } else {
+    const m = s.match(/^rgba?\(\s*([\d.]+)[,\s]+([\d.]+)[,\s]+([\d.]+)/i);
+    if (m) rgb = m.slice(1, 4).map(Number);
+  }
+  return !!rgb && 0.2126 * rgb[0] + 0.7152 * rgb[1] + 0.0722 * rgb[2] > 140;
+};
+const umIsNight = (hass, config, el) => {
   const theme = config?.illustration_theme;
   if (theme === "night") return true;
   if (theme === "day") return false;
-  return !!hass?.themes?.darkMode;
+  if (hass?.themes?.darkMode) return true;
+  try {
+    return !!el && typeof getComputedStyle === "function" && isLightColor(getComputedStyle(el).getPropertyValue("--primary-text-color"));
+  } catch {
+    return false;
+  }
 };
 
 const BANNER_STYLE = `
@@ -1243,6 +1277,8 @@ const BANNER_STYLE = `
   .banner .chip .chip-text { display: inline; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
   .banner .chip.on { --c: var(--um-accent); }
   .banner + .content { padding-top: 12px; }
+  /* A long meter name (a card in a grid of three columns) takes two lines in the banner, cut after the second. */
+  .htext .name { white-space: normal; overflow-wrap: anywhere; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; }
   /* Narrow card: no room for the scene beside the text, the background alone stays. */
   @container um-card (max-width: 320px) { .um-scene { display: none; } .htext { right: 32px; } }
 `;
@@ -1688,10 +1724,7 @@ class UtilityMeterCard extends HTMLElement {
   }
 
   _type(st) {
-    const c = this._config.meter_type;
-    if (c === "water" || c === "gas" || c === "electricity") return c;
-    const dc = st?.attributes?.device_class;
-    return dc === "gas" ? "gas" : dc === "energy" ? "electricity" : "water";
+    return meterType(st, this._config.meter_type);
   }
 
   _utility() {
@@ -2007,10 +2040,10 @@ class UtilityMeterCard extends HTMLElement {
     // pill on the title row in the round icon's colour.
     const zoom = this._zoomButton();
     const pill = chip.replace(`chip clickable ${m.status.cls}"`, `chip clickable ${this._iconState(m)}"`);
-    const cls = `banner t-${m.type}${zoom ? " has-zoom" : ""}${umIsNight(this._hass, c) ? " night" : ""}${m.active ? " active" : ""}${m.leak ? " leak" : ""}`;
+    const cls = `banner t-${m.type}${zoom ? " has-zoom" : ""}${umIsNight(this._hass, c, this) ? " night" : ""}${m.active ? " active" : ""}${m.leak ? " leak" : ""}`;
     return `
       <div class="${cls}">
-        <div class="um-scene">${umScene(m.type, umIsNight(this._hass, c), !!zoom)}${this._picture(m, true)}</div>
+        <div class="um-scene">${umScene(m.type, umIsNight(this._hass, c, this), !!zoom)}${this._picture(m, true)}</div>
         <div class="ground g-${UM_GROUND[m.type]}"></div>
         <div class="htext">${icon}<div class="titles"><div class="tstack"><div class="trow">${name}${pill}</div>${sub ? `<div class="sub" title="${esc(sub)}">${esc(sub)}</div>` : ""}</div></div></div>
         ${zoom}
@@ -2364,9 +2397,7 @@ class UtilityMeterEditorBase extends HTMLElement {
   // Defaults of the toggles: leak detection is on for water meters, off for gas meters.
   _defaults() {
     const st = this._hass?.states[this._config.entity || listMeters(this._hass)[0]?.entity_id];
-    const cfgType = this._config.meter_type;
-    const dc = st?.attributes?.device_class;
-    const type = ["water", "gas", "electricity"].includes(cfgType) ? cfgType : dc === "gas" ? "gas" : dc === "energy" ? "electricity" : "water";
+    const type = meterType(st, this._config.meter_type);
     const d = {
       illustration: true,
       illustration_theme: "auto",
