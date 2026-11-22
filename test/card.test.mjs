@@ -293,6 +293,37 @@ test("a leak sensor reports a leak, leak_detection: false hides it all, gas mete
   assert.doesNotMatch(c.html(), /data-section="night"/);
 });
 
+test("valve: open / close button, red while open during a leak, valve or switch services", async () => {
+  // A valve entity, open during a night leak: red button, a tap closes it.
+  const a = await newCard({ entity: "sensor.cottage_water_meter", valve_entity: "valve.cottage_main_water" });
+  assert.match(a.html(), /class="btn valve crit" data-action="valve" aria-pressed="true" title="Close the valve"/);
+  assert.match(a.html(), />Valve open</);
+  click(a.card, { action: "valve" });
+  assert.deepEqual(plain(a.hass.calls.filter((c) => c[0] === "service")), [["service", "valve", "close_valve", { entity_id: "valve.cottage_main_water" }]]);
+  // No leak: the accent while open.
+  const b = await newCard({ valve_entity: "valve.cottage_main_water" });
+  assert.match(b.html(), /class="btn valve primary"/);
+  // A switch driving the valve, off: opened with turn_on.
+  const c = await newCard({ valve_entity: "switch.garden_valve" });
+  assert.match(c.html(), /class="btn valve" data-action="valve" aria-pressed="false" title="Open the valve"/);
+  assert.match(c.html(), />Valve closed</);
+  click(c.card, { action: "valve" });
+  assert.deepEqual(plain(c.hass.calls.filter((x) => x[0] === "service")), [["service", "switch", "turn_on", { entity_id: "switch.garden_valve" }]]);
+  // Moving or unavailable: shown, not pressable.
+  const st = clone(states);
+  st["valve.cottage_main_water"].state = "closing";
+  const d = await newCard({ valve_entity: "valve.cottage_main_water" }, { st });
+  assert.match(d.html(), /Closing…<\/span><\/button>/);
+  assert.match(d.html(), /data-action="valve"[^>]* disabled/);
+  click(d.card, { action: "valve" });
+  assert.equal(d.hass.calls.filter((x) => x[0] === "service").length, 0);
+  // Without valve_entity: no button; the mini card has it next to the flow.
+  const e = await newCard();
+  assert.doesNotMatch(e.html(), /data-action="valve"/);
+  const f = await newCard({ flow_entity: "sensor.water_flow", valve_entity: "valve.cottage_main_water" }, { Card: um.MiniCard });
+  assert.match(f.html(), /<div class="acts"><div class="flowline[^"]*"[\s\S]*data-action="valve"/);
+});
+
 test("daily limit: high usage in orange; an unavailable meter is grey", async () => {
   const a = await newCard({ daily_limit: 0.01 });
   assert.match(a.html(), /title="High usage"/);

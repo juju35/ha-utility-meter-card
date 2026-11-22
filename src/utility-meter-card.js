@@ -106,6 +106,9 @@ const ICONS = {
   flow: "M3 8c2 0 2-1.5 4.5-1.5S9.5 8 12 8s2-1.5 4.5-1.5S18.5 8 21 8v2c-2 0-2-1.5-4.5-1.5S14.5 10 12 10s-2-1.5-4.5-1.5S5 10 3 10V8zm0 6c2 0 2-1.5 4.5-1.5S9.5 14 12 14s2-1.5 4.5-1.5S18.5 14 21 14v2c-2 0-2-1.5-4.5-1.5S14.5 16 12 16s-2-1.5-4.5-1.5S5 16 3 16v-2z",
   coin: "M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 2a8 8 0 1 1 0 16 8 8 0 0 1 0-16zm1 3h-2v1.1c-1.7.4-2.8 1.6-2.8 3 0 1.8 1.5 2.5 3.4 3 1.3.3 1.8.7 1.8 1.2 0 .6-.6 1-1.6 1-1.1 0-1.7-.5-1.8-1.3H8c.1 1.6 1.3 2.6 3 2.9V18h2v-1.1c1.7-.3 2.8-1.4 2.8-2.9 0-1.9-1.6-2.6-3.4-3.1-1.3-.3-1.8-.6-1.8-1.1s.5-.9 1.4-.9c1 0 1.4.5 1.5 1.1h1.8c-.1-1.4-1-2.5-2.3-2.8V7z",
   sensor: "M12 2c-.3 0-.6.1-.8.4C9.6 4.6 6 9.6 6 13.5 6 17.1 8.7 20 12 20s6-2.9 6-6.5c0-3.9-3.6-8.9-5.2-11.1-.2-.3-.5-.4-.8-.4zM5 21h14v2H5z",
+  // Shut-off valve between two flanges: the passage across the pipe when open, the gate across it when closed.
+  valve_open: "M2 2h2v20H2zM20 2h2v20h-2zM4 11h4.27a4 4 0 0 1 7.46 0H20v2h-4.27a4 4 0 0 1-7.46 0H4z",
+  valve_closed: "M2 2h2v20H2zM20 2h2v20h-2zM11 4h2v4.27a4 4 0 0 1 0 7.46V20h-2v-4.27a4 4 0 0 1 0-7.46z",
   up: "M7 15l5-5 5 5z",
   down: "M7 10l5 5 5-5z",
   chevron_down: "M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z",
@@ -218,6 +221,13 @@ const STRINGS = {
     theme_auto: "Automatic (follows the theme)",
     theme_day: "Day",
     theme_night: "Night",
+    valve_entity: "Shut-off valve",
+    valve_open: "Valve open",
+    valve_closed: "Valve closed",
+    valve_opening: "Opening…",
+    valve_closing: "Closing…",
+    valve_do_open: "Open the valve",
+    valve_do_close: "Close the valve",
   },
   fr: {
     meter_water: "Compteur d'eau", meter_gas: "Compteur de gaz", meter_electricity: "Compteur électrique", index: "Index", today: "Aujourd'hui", week: "Cette semaine", month: "Ce mois-ci", year: "Cette année",
@@ -239,6 +249,7 @@ const STRINGS = {
     leak_threshold: "Seuil (L/h pour l'eau)", daily_limit: "Limite journalière", sources_section: "Sources de données", statistic_id: "Statistique (au lieu de celle du capteur)",
     today_entity: "Compteur de services (journalier)", week_entity: "Compteur de services (hebdomadaire)", month_entity: "Compteur de services (mensuel)", year_entity: "Compteur de services (annuel)",
     zoom: "Bouton détail", zoom_helper: "Bascule la mini-carte vers la carte complète et inversement", language: "Langue", lang_auto: "Automatique (Home Assistant)", illustration: "En-tête illustré", illustration_theme: "Ambiance de l'en-tête", theme_auto: "Automatique (suit le thème)", theme_day: "Jour", theme_night: "Nuit",
+    valve_entity: "Vanne d'arrêt", valve_open: "Vanne ouverte", valve_closed: "Vanne fermée", valve_opening: "Ouverture…", valve_closing: "Fermeture…", valve_do_open: "Ouvrir la vanne", valve_do_close: "Fermer la vanne",
   },
   de: {
     meter_water: "Wasserzähler", meter_gas: "Gaszähler", meter_electricity: "Stromzähler", type_electricity: "Strom", power: "Leistung", index: "Zählerstand", today: "Heute", week: "Diese Woche", month: "Dieser Monat", year: "Dieses Jahr",
@@ -259,6 +270,7 @@ const STRINGS = {
     leak_threshold: "Schwelle (L/h für Wasser)", daily_limit: "Tageslimit", sources_section: "Datenquellen", statistic_id: "Statistik (statt der des Sensors)",
     today_entity: "Verbrauchszähler (täglich)", week_entity: "Verbrauchszähler (wöchentlich)", month_entity: "Verbrauchszähler (monatlich)", year_entity: "Verbrauchszähler (jährlich)",
     zoom: "Detail-Schaltfläche", zoom_helper: "Schaltet die Mini-Karte auf die vollständige Karte um und zurück", language: "Sprache", lang_auto: "Automatisch (Home Assistant)", illustration: "Illustrierte Kopfzeile", illustration_theme: "Bild der Kopfzeile", theme_auto: "Automatisch (folgt dem Design)", theme_day: "Tag", theme_night: "Nacht",
+    valve_entity: "Absperrventil", valve_open: "Ventil offen", valve_closed: "Ventil geschlossen", valve_opening: "Öffnet…", valve_closing: "Schließt…", valve_do_open: "Ventil öffnen", valve_do_close: "Ventil schließen",
   },
   es: {
     meter_water: "Contador de agua", meter_gas: "Contador de gas", meter_electricity: "Contador de electricidad", type_electricity: "Electricidad", power: "Potencia", index: "Lectura", today: "Hoy", week: "Esta semana", month: "Este mes", year: "Este año",
@@ -279,6 +291,7 @@ const STRINGS = {
     leak_threshold: "Umbral (L/h para el agua)", daily_limit: "Límite diario", sources_section: "Fuentes de datos", statistic_id: "Estadística (en lugar de la del sensor)",
     today_entity: "Contador de consumo (diario)", week_entity: "Contador de consumo (semanal)", month_entity: "Contador de consumo (mensual)", year_entity: "Contador de consumo (anual)",
     zoom: "Botón de detalle", zoom_helper: "Cambia la minitarjeta a la tarjeta completa y viceversa", language: "Idioma", lang_auto: "Automático (Home Assistant)", illustration: "Cabecera ilustrada", illustration_theme: "Ambiente de la cabecera", theme_auto: "Automático (sigue el tema)", theme_day: "Día", theme_night: "Noche",
+    valve_entity: "Válvula de corte", valve_open: "Válvula abierta", valve_closed: "Válvula cerrada", valve_opening: "Abriendo…", valve_closing: "Cerrando…", valve_do_open: "Abrir la válvula", valve_do_close: "Cerrar la válvula",
   },
   sr: {
     meter_water: "Водомер", meter_gas: "Гасомер", meter_electricity: "Бројило струје", type_electricity: "Струја", power: "Снага", index: "Стање бројила", today: "Данас", week: "Ове недеље", month: "Овог месеца", year: "Ове године",
@@ -299,6 +312,7 @@ const STRINGS = {
     leak_threshold: "Праг (L/h за воду)", daily_limit: "Дневно ограничење", sources_section: "Извори података", statistic_id: "Статистика (уместо статистике сензора)",
     today_entity: "Бројач потрошње (дневни)", week_entity: "Бројач потрошње (недељни)", month_entity: "Бројач потрошње (месечни)", year_entity: "Бројач потрошње (годишњи)",
     zoom: "Дугме за детаље", zoom_helper: "Пребацује мини картицу на пуну картицу и назад", language: "Језик", lang_auto: "Аутоматски (Home Assistant)", illustration: "Илустровано заглавље", illustration_theme: "Слика заглавља", theme_auto: "Аутоматски (прати тему)", theme_day: "Дан", theme_night: "Ноћ",
+    valve_entity: "Запорни вентил", valve_open: "Вентил отворен", valve_closed: "Вентил затворен", valve_opening: "Отвара се…", valve_closing: "Затвара се…", valve_do_open: "Отвори вентил", valve_do_close: "Затвори вентил",
   },
   "sr-Latn": {
     meter_water: "Vodomer", meter_gas: "Gasomer", meter_electricity: "Brojilo struje", type_electricity: "Struja", power: "Snaga", index: "Stanje brojila", today: "Danas", week: "Ove nedelje", month: "Ovog meseca", year: "Ove godine",
@@ -319,6 +333,7 @@ const STRINGS = {
     leak_threshold: "Prag (L/h za vodu)", daily_limit: "Dnevno ograničenje", sources_section: "Izvori podataka", statistic_id: "Statistika (umesto statistike senzora)",
     today_entity: "Brojač potrošnje (dnevni)", week_entity: "Brojač potrošnje (nedeljni)", month_entity: "Brojač potrošnje (mesečni)", year_entity: "Brojač potrošnje (godišnji)",
     zoom: "Dugme za detalje", zoom_helper: "Prebacuje mini karticu na punu karticu i nazad", language: "Jezik", lang_auto: "Automatski (Home Assistant)", illustration: "Ilustrovano zaglavlje", illustration_theme: "Slika zaglavlja", theme_auto: "Automatski (prati temu)", theme_day: "Dan", theme_night: "Noć",
+    valve_entity: "Zaporni ventil", valve_open: "Ventil otvoren", valve_closed: "Ventil zatvoren", valve_opening: "Otvara se…", valve_closing: "Zatvara se…", valve_do_open: "Otvori ventil", valve_do_close: "Zatvori ventil",
   },
   it: {
     meter_water: "Contatore dell'acqua", meter_gas: "Contatore del gas", meter_electricity: "Contatore elettrico", type_electricity: "Elettricità", power: "Potenza", index: "Lettura", today: "Oggi", week: "Questa settimana", month: "Questo mese", year: "Quest'anno",
@@ -339,6 +354,7 @@ const STRINGS = {
     leak_threshold: "Soglia (L/h per l'acqua)", daily_limit: "Limite giornaliero", sources_section: "Fonti dei dati", statistic_id: "Statistica (al posto di quella del sensore)",
     today_entity: "Contatore dei consumi (giornaliero)", week_entity: "Contatore dei consumi (settimanale)", month_entity: "Contatore dei consumi (mensile)", year_entity: "Contatore dei consumi (annuale)",
     zoom: "Pulsante dettagli", zoom_helper: "Passa dalla mini scheda alla scheda completa e viceversa", language: "Lingua", lang_auto: "Automatica (Home Assistant)", illustration: "Intestazione illustrata", illustration_theme: "Atmosfera dell'intestazione", theme_auto: "Automatica (segue il tema)", theme_day: "Giorno", theme_night: "Notte",
+    valve_entity: "Valvola di intercettazione", valve_open: "Valvola aperta", valve_closed: "Valvola chiusa", valve_opening: "Apertura…", valve_closing: "Chiusura…", valve_do_open: "Apri la valvola", valve_do_close: "Chiudi la valvola",
   },
   nl: {
     meter_water: "Watermeter", meter_gas: "Gasmeter", meter_electricity: "Elektriciteitsmeter", type_electricity: "Elektriciteit", power: "Vermogen", index: "Meterstand", today: "Vandaag", week: "Deze week", month: "Deze maand", year: "Dit jaar",
@@ -359,6 +375,7 @@ const STRINGS = {
     leak_threshold: "Drempel (L/u voor water)", daily_limit: "Daglimiet", sources_section: "Gegevensbronnen", statistic_id: "Statistiek (in plaats van die van de sensor)",
     today_entity: "Verbruiksmeter (dagelijks)", week_entity: "Verbruiksmeter (wekelijks)", month_entity: "Verbruiksmeter (maandelijks)", year_entity: "Verbruiksmeter (jaarlijks)",
     zoom: "Detailknop", zoom_helper: "Schakelt de minikaart naar de volledige kaart en terug", language: "Taal", lang_auto: "Automatisch (Home Assistant)", illustration: "Geïllustreerde koptekst", illustration_theme: "Sfeer van de koptekst", theme_auto: "Automatisch (volgt het thema)", theme_day: "Dag", theme_night: "Nacht",
+    valve_entity: "Afsluitklep", valve_open: "Klep open", valve_closed: "Klep dicht", valve_opening: "Opent…", valve_closing: "Sluit…", valve_do_open: "Klep openen", valve_do_close: "Klep sluiten",
   },
   pt: {
     meter_water: "Contador de água", meter_gas: "Contador de gás", meter_electricity: "Contador de eletricidade", type_electricity: "Eletricidade", power: "Potência", index: "Leitura", today: "Hoje", week: "Esta semana", month: "Este mês", year: "Este ano",
@@ -379,6 +396,7 @@ const STRINGS = {
     leak_threshold: "Limiar (L/h para a água)", daily_limit: "Limite diário", sources_section: "Fontes de dados", statistic_id: "Estatística (em vez da do sensor)",
     today_entity: "Contador de consumo (diário)", week_entity: "Contador de consumo (semanal)", month_entity: "Contador de consumo (mensal)", year_entity: "Contador de consumo (anual)",
     zoom: "Botão de detalhe", zoom_helper: "Muda o mini cartão para o cartão completo e vice-versa", language: "Idioma", lang_auto: "Automático (Home Assistant)", illustration: "Cabeçalho ilustrado", illustration_theme: "Ambiente do cabeçalho", theme_auto: "Automático (segue o tema)", theme_day: "Dia", theme_night: "Noite",
+    valve_entity: "Válvula de corte", valve_open: "Válvula aberta", valve_closed: "Válvula fechada", valve_opening: "A abrir…", valve_closing: "A fechar…", valve_do_open: "Abrir a válvula", valve_do_close: "Fechar a válvula",
   },
   pl: {
     meter_water: "Wodomierz", meter_gas: "Gazomierz", meter_electricity: "Licznik energii elektrycznej", type_electricity: "Energia elektryczna", power: "Moc", index: "Stan licznika", today: "Dziś", week: "Ten tydzień", month: "Ten miesiąc", year: "Ten rok",
@@ -399,6 +417,7 @@ const STRINGS = {
     leak_threshold: "Próg (L/h dla wody)", daily_limit: "Dzienny limit", sources_section: "Źródła danych", statistic_id: "Statystyka (zamiast statystyki czujnika)",
     today_entity: "Licznik mediów (dzienny)", week_entity: "Licznik mediów (tygodniowy)", month_entity: "Licznik mediów (miesięczny)", year_entity: "Licznik mediów (roczny)",
     zoom: "Przycisk szczegółów", zoom_helper: "Przełącza minikartę na pełną kartę i z powrotem", language: "Język", lang_auto: "Automatycznie (Home Assistant)", illustration: "Ilustrowany nagłówek", illustration_theme: "Wygląd nagłówka", theme_auto: "Automatycznie (według motywu)", theme_day: "Dzień", theme_night: "Noc",
+    valve_entity: "Zawór odcinający", valve_open: "Zawór otwarty", valve_closed: "Zawór zamknięty", valve_opening: "Otwieranie…", valve_closing: "Zamykanie…", valve_do_open: "Otwórz zawór", valve_do_close: "Zamknij zawór",
   },
   ro: {
     meter_water: "Contor de apă", meter_gas: "Contor de gaz", meter_electricity: "Contor de energie electrică", type_electricity: "Electricitate", power: "Putere", index: "Index", today: "Azi", week: "Săptămâna aceasta", month: "Luna aceasta", year: "Anul acesta",
@@ -419,6 +438,7 @@ const STRINGS = {
     leak_threshold: "Prag (L/h pentru apă)", daily_limit: "Limită zilnică", sources_section: "Surse de date", statistic_id: "Statistică (în locul celei a senzorului)",
     today_entity: "Contor de consum (zilnic)", week_entity: "Contor de consum (săptămânal)", month_entity: "Contor de consum (lunar)", year_entity: "Contor de consum (anual)",
     zoom: "Buton de detalii", zoom_helper: "Comută mini cardul la cardul complet și înapoi", language: "Limbă", lang_auto: "Automat (Home Assistant)", illustration: "Antet ilustrat", illustration_theme: "Aspectul antetului", theme_auto: "Automat (urmează tema)", theme_day: "Zi", theme_night: "Noapte",
+    valve_entity: "Robinet de închidere", valve_open: "Robinet deschis", valve_closed: "Robinet închis", valve_opening: "Se deschide…", valve_closing: "Se închide…", valve_do_open: "Deschide robinetul", valve_do_close: "Închide robinetul",
   },
   da: {
     meter_water: "Vandmåler", meter_gas: "Gasmåler", meter_electricity: "Elmåler", type_electricity: "El", power: "Effekt", index: "Målerstand", today: "I dag", week: "Denne uge", month: "Denne måned", year: "I år",
@@ -439,6 +459,7 @@ const STRINGS = {
     leak_threshold: "Tærskel (L/t for vand)", daily_limit: "Dagsgrænse", sources_section: "Datakilder", statistic_id: "Statistik (i stedet for sensorens)",
     today_entity: "Forbrugsmåler (daglig)", week_entity: "Forbrugsmåler (ugentlig)", month_entity: "Forbrugsmåler (månedlig)", year_entity: "Forbrugsmåler (årlig)",
     zoom: "Detaljeknap", zoom_helper: "Skifter minikortet til det fulde kort og tilbage", language: "Sprog", lang_auto: "Automatisk (Home Assistant)", illustration: "Illustreret overskrift", illustration_theme: "Overskriftens stemning", theme_auto: "Automatisk (følger temaet)", theme_day: "Dag", theme_night: "Nat",
+    valve_entity: "Afspærringsventil", valve_open: "Ventil åben", valve_closed: "Ventil lukket", valve_opening: "Åbner…", valve_closing: "Lukker…", valve_do_open: "Åbn ventilen", valve_do_close: "Luk ventilen",
   },
   sv: {
     meter_water: "Vattenmätare", meter_gas: "Gasmätare", meter_electricity: "Elmätare", type_electricity: "El", power: "Effekt", index: "Mätarställning", today: "I dag", week: "Den här veckan", month: "Den här månaden", year: "I år",
@@ -459,6 +480,7 @@ const STRINGS = {
     leak_threshold: "Tröskel (L/h för vatten)", daily_limit: "Dagsgräns", sources_section: "Datakällor", statistic_id: "Statistik (i stället för sensorns)",
     today_entity: "Förbrukningsmätare (daglig)", week_entity: "Förbrukningsmätare (veckovis)", month_entity: "Förbrukningsmätare (månadsvis)", year_entity: "Förbrukningsmätare (årlig)",
     zoom: "Detaljknapp", zoom_helper: "Växlar minikortet till hela kortet och tillbaka", language: "Språk", lang_auto: "Automatiskt (Home Assistant)", illustration: "Illustrerad rubrik", illustration_theme: "Rubrikens stämning", theme_auto: "Automatiskt (följer temat)", theme_day: "Dag", theme_night: "Natt",
+    valve_entity: "Avstängningsventil", valve_open: "Ventil öppen", valve_closed: "Ventil stängd", valve_opening: "Öppnar…", valve_closing: "Stänger…", valve_do_open: "Öppna ventilen", valve_do_close: "Stäng ventilen",
   },
   bg: {
     meter_water: "Водомер", meter_gas: "Газомер", meter_electricity: "Електромер", type_electricity: "Електричество", power: "Мощност", index: "Показание", today: "Днес", week: "Тази седмица", month: "Този месец", year: "Тази година",
@@ -479,6 +501,7 @@ const STRINGS = {
     leak_threshold: "Праг (L/ч за вода)", daily_limit: "Дневен лимит", sources_section: "Източници на данни", statistic_id: "Статистика (вместо тази на сензора)",
     today_entity: "Брояч на потребление (дневен)", week_entity: "Брояч на потребление (седмичен)", month_entity: "Брояч на потребление (месечен)", year_entity: "Брояч на потребление (годишен)",
     zoom: "Бутон за подробности", zoom_helper: "Превключва мини картата към пълната карта и обратно", language: "Език", lang_auto: "Автоматично (Home Assistant)", illustration: "Илюстрирана заглавка", illustration_theme: "Изглед на заглавката", theme_auto: "Автоматично (следва темата)", theme_day: "Ден", theme_night: "Нощ",
+    valve_entity: "Спирателен вентил", valve_open: "Вентилът е отворен", valve_closed: "Вентилът е затворен", valve_opening: "Отваряне…", valve_closing: "Затваряне…", valve_do_open: "Отвори вентила", valve_do_close: "Затвори вентила",
   },
   ru: {
     meter_water: "Счётчик воды", meter_gas: "Счётчик газа", meter_electricity: "Счётчик электроэнергии", type_electricity: "Электричество", power: "Мощность", index: "Показания", today: "Сегодня", week: "Эта неделя", month: "Этот месяц", year: "Этот год",
@@ -499,6 +522,7 @@ const STRINGS = {
     leak_threshold: "Порог (л/ч для воды)", daily_limit: "Дневной лимит", sources_section: "Источники данных", statistic_id: "Статистика (вместо статистики датчика)",
     today_entity: "Счётчик потребления (за день)", week_entity: "Счётчик потребления (за неделю)", month_entity: "Счётчик потребления (за месяц)", year_entity: "Счётчик потребления (за год)",
     zoom: "Кнопка подробностей", zoom_helper: "Переключает мини-карточку на полную и обратно", language: "Язык", lang_auto: "Автоматически (Home Assistant)", illustration: "Иллюстрированный заголовок", illustration_theme: "Вид заголовка", theme_auto: "Автоматически (по теме)", theme_day: "День", theme_night: "Ночь",
+    valve_entity: "Запорный кран", valve_open: "Кран открыт", valve_closed: "Кран закрыт", valve_opening: "Открывается…", valve_closing: "Закрывается…", valve_do_open: "Открыть кран", valve_do_close: "Закрыть кран",
   },
   uk: {
     meter_water: "Лічильник води", meter_gas: "Лічильник газу", meter_electricity: "Лічильник електроенергії", type_electricity: "Електрика", power: "Потужність", index: "Показники", today: "Сьогодні", week: "Цей тиждень", month: "Цей місяць", year: "Цей рік",
@@ -519,6 +543,7 @@ const STRINGS = {
     leak_threshold: "Поріг (л/год для води)", daily_limit: "Денний ліміт", sources_section: "Джерела даних", statistic_id: "Статистика (замість статистики датчика)",
     today_entity: "Лічильник споживання (денний)", week_entity: "Лічильник споживання (тижневий)", month_entity: "Лічильник споживання (місячний)", year_entity: "Лічильник споживання (річний)",
     zoom: "Кнопка подробиць", zoom_helper: "Перемикає міні-картку на повну й назад", language: "Мова", lang_auto: "Автоматично (Home Assistant)", illustration: "Ілюстрований заголовок", illustration_theme: "Вигляд заголовка", theme_auto: "Автоматично (за темою)", theme_day: "День", theme_night: "Ніч",
+    valve_entity: "Запірний кран", valve_open: "Кран відкрито", valve_closed: "Кран закрито", valve_opening: "Відкривається…", valve_closing: "Закривається…", valve_do_open: "Відкрити кран", valve_do_close: "Закрити кран",
   },
   hu: {
     meter_water: "Vízóra", meter_gas: "Gázóra", meter_electricity: "Villanyóra", type_electricity: "Áram", power: "Teljesítmény", index: "Mérőállás", today: "Ma", week: "Ezen a héten", month: "Ebben a hónapban", year: "Ebben az évben",
@@ -539,6 +564,7 @@ const STRINGS = {
     leak_threshold: "Küszöb (L/óra víz esetén)", daily_limit: "Napi korlát", sources_section: "Adatforrások", statistic_id: "Statisztika (az érzékelőé helyett)",
     today_entity: "Fogyasztásmérő (napi)", week_entity: "Fogyasztásmérő (heti)", month_entity: "Fogyasztásmérő (havi)", year_entity: "Fogyasztásmérő (éves)",
     zoom: "Részletek gomb", zoom_helper: "A mini kártyát a teljes kártyára váltja és vissza", language: "Nyelv", lang_auto: "Automatikus (Home Assistant)", illustration: "Illusztrált fejléc", illustration_theme: "A fejléc hangulata", theme_auto: "Automatikus (a témát követi)", theme_day: "Nappal", theme_night: "Éjszaka",
+    valve_entity: "Elzárószelep", valve_open: "Szelep nyitva", valve_closed: "Szelep zárva", valve_opening: "Nyitás…", valve_closing: "Zárás…", valve_do_open: "Szelep nyitása", valve_do_close: "Szelep zárása",
   },
   sk: {
     meter_water: "Vodomer", meter_gas: "Plynomer", meter_electricity: "Elektromer", type_electricity: "Elektrina", power: "Výkon", index: "Stav meradla", today: "Dnes", week: "Tento týždeň", month: "Tento mesiac", year: "Tento rok",
@@ -559,6 +585,7 @@ const STRINGS = {
     leak_threshold: "Prah (L/h pre vodu)", daily_limit: "Denný limit", sources_section: "Zdroje údajov", statistic_id: "Štatistika (namiesto štatistiky senzora)",
     today_entity: "Merač spotreby (denný)", week_entity: "Merač spotreby (týždenný)", month_entity: "Merač spotreby (mesačný)", year_entity: "Merač spotreby (ročný)",
     zoom: "Tlačidlo podrobností", zoom_helper: "Prepne mini kartu na úplnú kartu a späť", language: "Jazyk", lang_auto: "Automaticky (Home Assistant)", illustration: "Ilustrovaná hlavička", illustration_theme: "Vzhľad hlavičky", theme_auto: "Automaticky (podľa témy)", theme_day: "Deň", theme_night: "Noc",
+    valve_entity: "Uzatvárací ventil", valve_open: "Ventil otvorený", valve_closed: "Ventil zatvorený", valve_opening: "Otvára sa…", valve_closing: "Zatvára sa…", valve_do_open: "Otvoriť ventil", valve_do_close: "Zatvoriť ventil",
   },
   cs: {
     meter_water: "Vodoměr", meter_gas: "Plynoměr", meter_electricity: "Elektroměr", type_electricity: "Elektřina", power: "Výkon", index: "Stav měřidla", today: "Dnes", week: "Tento týden", month: "Tento měsíc", year: "Letos",
@@ -579,6 +606,7 @@ const STRINGS = {
     leak_threshold: "Práh (L/h pro vodu)", daily_limit: "Denní limit", sources_section: "Zdroje dat", statistic_id: "Statistika (místo statistiky senzoru)",
     today_entity: "Měřič spotřeby (denní)", week_entity: "Měřič spotřeby (týdenní)", month_entity: "Měřič spotřeby (měsíční)", year_entity: "Měřič spotřeby (roční)",
     zoom: "Tlačítko podrobností", zoom_helper: "Přepne mini kartu na úplnou kartu a zpět", language: "Jazyk", lang_auto: "Automaticky (Home Assistant)", illustration: "Ilustrované záhlaví", illustration_theme: "Vzhled záhlaví", theme_auto: "Automaticky (podle motivu)", theme_day: "Den", theme_night: "Noc",
+    valve_entity: "Uzavírací ventil", valve_open: "Ventil otevřen", valve_closed: "Ventil zavřen", valve_opening: "Otevírá se…", valve_closing: "Zavírá se…", valve_do_open: "Otevřít ventil", valve_do_close: "Zavřít ventil",
   },
   sl: {
     meter_water: "Vodomer", meter_gas: "Plinomer", meter_electricity: "Števec elektrike", type_electricity: "Elektrika", power: "Moč", index: "Stanje števca", today: "Danes", week: "Ta teden", month: "Ta mesec", year: "Letos",
@@ -599,6 +627,7 @@ const STRINGS = {
     leak_threshold: "Prag (L/h za vodo)", daily_limit: "Dnevna omejitev", sources_section: "Viri podatkov", statistic_id: "Statistika (namesto statistike senzorja)",
     today_entity: "Števec porabe (dnevni)", week_entity: "Števec porabe (tedenski)", month_entity: "Števec porabe (mesečni)", year_entity: "Števec porabe (letni)",
     zoom: "Gumb za podrobnosti", zoom_helper: "Preklopi mini kartico na polno kartico in nazaj", language: "Jezik", lang_auto: "Samodejno (Home Assistant)", illustration: "Ilustrirana glava", illustration_theme: "Videz glave", theme_auto: "Samodejno (sledi temi)", theme_day: "Dan", theme_night: "Noč",
+    valve_entity: "Zaporni ventil", valve_open: "Ventil odprt", valve_closed: "Ventil zaprt", valve_opening: "Odpiranje…", valve_closing: "Zapiranje…", valve_do_open: "Odpri ventil", valve_do_close: "Zapri ventil",
   },
   lv: {
     meter_water: "Ūdens skaitītājs", meter_gas: "Gāzes skaitītājs", meter_electricity: "Elektrības skaitītājs", type_electricity: "Elektrība", power: "Jauda", index: "Rādījums", today: "Šodien", week: "Šonedēļ", month: "Šomēnes", year: "Šogad",
@@ -619,6 +648,7 @@ const STRINGS = {
     leak_threshold: "Slieksnis (L/h ūdenim)", daily_limit: "Dienas limits", sources_section: "Datu avoti", statistic_id: "Statistika (sensora statistikas vietā)",
     today_entity: "Patēriņa skaitītājs (dienas)", week_entity: "Patēriņa skaitītājs (nedēļas)", month_entity: "Patēriņa skaitītājs (mēneša)", year_entity: "Patēriņa skaitītājs (gada)",
     zoom: "Detaļu poga", zoom_helper: "Pārslēdz mini karti uz pilno karti un atpakaļ", language: "Valoda", lang_auto: "Automātiski (Home Assistant)", illustration: "Ilustrēta galvene", illustration_theme: "Galvenes noskaņa", theme_auto: "Automātiski (atbilstoši motīvam)", theme_day: "Diena", theme_night: "Nakts",
+    valve_entity: "Noslēgvārsts", valve_open: "Vārsts atvērts", valve_closed: "Vārsts aizvērts", valve_opening: "Atveras…", valve_closing: "Aizveras…", valve_do_open: "Atvērt vārstu", valve_do_close: "Aizvērt vārstu",
   },
   el: {
     meter_water: "Μετρητής νερού", meter_gas: "Μετρητής αερίου", meter_electricity: "Μετρητής ηλεκτρικού", type_electricity: "Ηλεκτρικό", power: "Ισχύς", index: "Ένδειξη", today: "Σήμερα", week: "Αυτή την εβδομάδα", month: "Αυτόν τον μήνα", year: "Φέτος",
@@ -639,6 +669,7 @@ const STRINGS = {
     leak_threshold: "Όριο (L/ώρα για νερό)", daily_limit: "Ημερήσιο όριο", sources_section: "Πηγές δεδομένων", statistic_id: "Στατιστικό (αντί του αισθητήρα)",
     today_entity: "Μετρητής κατανάλωσης (ημερήσιος)", week_entity: "Μετρητής κατανάλωσης (εβδομαδιαίος)", month_entity: "Μετρητής κατανάλωσης (μηνιαίος)", year_entity: "Μετρητής κατανάλωσης (ετήσιος)",
     zoom: "Κουμπί λεπτομερειών", zoom_helper: "Εναλλάσσει τη μίνι κάρτα με την πλήρη κάρτα", language: "Γλώσσα", lang_auto: "Αυτόματα (Home Assistant)", illustration: "Εικονογραφημένη κεφαλίδα", illustration_theme: "Ατμόσφαιρα κεφαλίδας", theme_auto: "Αυτόματα (ακολουθεί το θέμα)", theme_day: "Ημέρα", theme_night: "Νύχτα",
+    valve_entity: "Βαλβίδα διακοπής", valve_open: "Βαλβίδα ανοιχτή", valve_closed: "Βαλβίδα κλειστή", valve_opening: "Άνοιγμα…", valve_closing: "Κλείσιμο…", valve_do_open: "Άνοιγμα βαλβίδας", valve_do_close: "Κλείσιμο βαλβίδας",
   },
 };
 
@@ -1424,6 +1455,15 @@ const BASE_STYLE = `
   .btn:hover { background: color-mix(in srgb, var(--um-accent) 8%, transparent); }
   .btn.primary { color: var(--um-accent-text); border-color: color-mix(in srgb, var(--um-accent) 55%, transparent); }
   .btn.primary .icon { color: var(--um-accent); }
+  .btn.crit { color: color-mix(in srgb, var(--um-crit) 55%, var(--primary-text-color)); border-color: color-mix(in srgb, var(--um-crit) 55%, transparent); }
+  .btn.crit .icon { color: var(--um-crit); }
+  .btn[disabled] { cursor: default; opacity: .6; }
+  .btn[disabled]:hover { background: color-mix(in srgb, var(--primary-text-color) 4%, transparent); }
+  /* Valve button: the size of the flow pill next to it. */
+  .btn.valve { font-size: 12px; font-weight: 400; padding: 4px 10px; border-radius: 14px; white-space: nowrap; max-width: 100%; }
+  .btn.valve .icon { width: 16px; height: 16px; flex: none; }
+  .btn.valve span { overflow: hidden; text-overflow: ellipsis; }
+  .acts { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; min-width: 0; max-width: 100%; }
   .zoom { all: unset; flex: none; cursor: pointer; width: 24px; height: 24px; margin: 0 -4px 0 0; border-radius: 50%; align-self: flex-start; margin-top: 0;
           display: grid; place-items: center; color: var(--secondary-text-color); }
   .zoom .icon { width: 16px; height: 16px; }
@@ -1535,6 +1575,8 @@ const MINI_STYLE = `
   .flowline .icon { width: 16px; height: 16px; }
   .flowline.flowing { color: var(--um-accent-text); }
   .flowline.flowing .icon { color: var(--um-accent); }
+  .acts .flowline { flex: 1 1 auto; min-width: 0; }
+  .acts .btn.valve { margin-left: auto; }
   @container um-card (max-width: 270px) {
     .spark { display: none; }
   }
@@ -1811,7 +1853,7 @@ class UtilityMeterCard extends HTMLElement {
     const h = this._hass;
     if (!h || !this._config) return null;
     const c = this._config;
-    const ids = [this._entity(), c.flow_entity, c.leak_entity, c.price_entity, c.conversion_factor_entity, ...Object.values(this._utility())];
+    const ids = [this._entity(), c.flow_entity, c.leak_entity, c.valve_entity, c.price_entity, c.conversion_factor_entity, ...Object.values(this._utility())];
     return [h.language, h.locale, h.themes?.darkMode, h.config?.currency, this._statsVersion, startOfDay(Date.now()), ...ids.map((id) => h.states[id])];
   }
 
@@ -1920,6 +1962,7 @@ class UtilityMeterCard extends HTMLElement {
     ev.stopPropagation();
     const { action, entity } = el.dataset;
     if (action === "zoom") return this._toggleZoom(ev);
+    if (action === "valve") return this._toggleValve();
     if (action === "toggle_section") {
       const key = el.dataset.section;
       this._toggled = new Map(this._toggled).set(key, !this._isCollapsed(key));
@@ -1996,7 +2039,43 @@ class UtilityMeterCard extends HTMLElement {
       const row = stats.hourly.findLast((r) => r.s <= now);
       active = !!row && row.v > 0 && now - row.e < HOUR;
     }
-    return { id, st, type, unit, now, fw, stats, periods, leakOn, threshold, night, sensor, sensorWet, high, limit, leak, status, flow, active };
+    const valve = this._valve();
+    return { id, st, type, unit, now, fw, stats, periods, leakOn, threshold, night, sensor, sensorWet, high, limit, leak, status, flow, active, valve };
+  }
+
+  // The shut-off valve (`valve_entity`): a `valve` entity (open / opening / closed / closing), or a `switch` /
+  // `input_boolean` driving a motorised valve (on = open).
+  _valve() {
+    const id = this._config.valve_entity;
+    const st = this._s(id);
+    if (!st) return null;
+    const domain = id.split(".")[0];
+    const state = st.state;
+    const moving = domain === "valve" && (state === "opening" || state === "closing");
+    const unavailable = state === "unavailable" || state === "unknown";
+    const open = domain === "valve" ? state === "open" || state === "opening" : state === "on";
+    return { id, st, domain, state, open, moving, unavailable };
+  }
+
+  // Open / close button of the valve. Outlined like the other buttons; the accent while open, red while open during a
+  // leak (closing it is what is wanted then). Not pressable while it moves or is unavailable.
+  _valveHtml(m) {
+    const v = m.valve;
+    if (!v) return "";
+    const label = v.unavailable ? this._t("status_unavailable") : this._t(v.moving ? `valve_${v.state}` : v.open ? "valve_open" : "valve_closed");
+    const action = this._t(v.open ? "valve_do_close" : "valve_do_open");
+    const cls = v.unavailable || v.moving || !v.open ? "" : m.leak ? " crit" : " primary";
+    const off = v.unavailable || v.moving;
+    return `<button class="btn valve${cls}" data-action="valve" aria-pressed="${v.open}" title="${esc(action)}" aria-label="${esc(off ? label : `${label}. ${action}`)}"${
+      off ? " disabled" : ""
+    }>${svgIcon(v.open ? ICONS.valve_open : ICONS.valve_closed)}<span>${esc(label)}</span></button>`;
+  }
+
+  _toggleValve() {
+    const v = this._m?.valve;
+    if (!v || v.unavailable || v.moving || typeof this._hass?.callService !== "function") return;
+    const service = v.domain === "valve" ? (v.open ? "close_valve" : "open_valve") : v.open ? "turn_off" : "turn_on";
+    this._hass.callService(v.domain, service, { entity_id: v.id });
   }
 
   _amount(m, v) {
@@ -2197,9 +2276,13 @@ class UtilityMeterCard extends HTMLElement {
         `<div class="index clickable" role="button" tabindex="0" data-entity="${esc(m.id)}"><div class="k">${esc(this._t("index"))}</div><div class="v">${esc(value)}${m.unit ? `<small>${esc(m.unit)}</small>` : ""}</div></div>`,
       );
     }
-    if (m.flow) {
-      const on = m.flow.v !== null && m.flow.v > 0;
-      info.push(`<div><span class="flow clickable${on ? " flowing" : ""}" role="button" tabindex="0" data-entity="${esc(c.flow_entity)}">${svgIcon(m.type === "water" ? ICONS.flow : ICONS[m.type])}<span>${esc(this._flowText(m))}</span></span></div>`);
+    const valve = this._valveHtml(m);
+    if (m.flow || valve) {
+      const on = m.flow && m.flow.v !== null && m.flow.v > 0;
+      const flow = m.flow
+        ? `<span class="flow clickable${on ? " flowing" : ""}" role="button" tabindex="0" data-entity="${esc(c.flow_entity)}">${svgIcon(m.type === "water" ? ICONS.flow : ICONS[m.type])}<span>${esc(this._flowText(m))}</span></span>`
+        : "";
+      info.push(`<div${valve ? ` class="acts"` : ""}>${flow}${valve}</div>`);
     }
     if (m.night) {
       info.push(
@@ -2431,13 +2514,14 @@ class UtilityMeterMiniCard extends UtilityMeterCard {
     const flow = m.flow
       ? `<div class="flowline clickable${m.flow.v > 0 ? " flowing" : ""}" role="button" tabindex="0" data-entity="${esc(c.flow_entity)}">${svgIcon(m.type === "water" ? ICONS.flow : ICONS[m.type])}<span>${esc(this._flowText(m))}</span></div>`
       : "";
+    const valve = this._valveHtml(m);
     return `${this._style(m, MINI_STYLE)}
       <ha-card>
         ${this._header(m, index)}
         <div class="content">
           ${this._alerts(m)}
           <div class="mini">${this._illustrated() ? "" : this._picture(m)}${stat("day", "today")}${stat("month", "month")}${spark}</div>
-          ${flow}
+          ${valve ? `<div class="acts">${flow}${valve}</div>` : flow}
         </div>
       </ha-card>`;
   }
@@ -2544,6 +2628,7 @@ class UtilityMeterEditorBase extends HTMLElement {
           { name: "daily_limit", selector: { number: { min: 0, step: "any", mode: "box" } } },
           { name: "flow_entity", selector: sensor() },
           { name: "leak_entity", selector: { entity: { domain: "binary_sensor" } } },
+          { name: "valve_entity", selector: { entity: { domain: ["valve", "switch", "input_boolean"] } } },
         ],
       },
       {

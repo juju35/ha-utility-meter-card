@@ -23,6 +23,8 @@ entity("sensor.cottage_water_meter", "287.341", {
   unit_of_measurement: "m³",
 });
 entity("binary_sensor.cottage_leak", "off", { friendly_name: "Utility room leak sensor", device_class: "moisture" });
+entity("valve.cottage_main_water", "open", { friendly_name: "Main water valve", device_class: "water", supported_features: 3 });
+entity("switch.garden_valve", "off", { friendly_name: "Garden valve" });
 entity("sensor.gas_meter", "8456.12", {
   friendly_name: "House gas",
   device_class: "gas",

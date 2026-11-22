@@ -44,6 +44,7 @@ The cards work on top of the meters you already have — a pulse counter, [Linky
 - **Leak detection**: water used every single hour of a night window (01:00 – 05:00 by default) above a threshold (2 L/h by default) raises an alert; a leak sensor (`binary_sensor`) and a daily limit can raise one too. The status pill turns red (orange for the daily limit), an alert banner appears and the night section unfolds
 - Drawn water, gas and electricity meters, animated by their state (see [Animations](#animations)): water flowing, gas burning, power being drawn, leak
 - Live flow from a flow sensor (`flow_entity`) — a power sensor (W) for electricity — which also drives the animation
+- **Shut-off valve** (optional, `valve_entity`): an open / close button for a motorised valve — a `valve` entity, or a `switch` / `input_boolean` driving it — next to the flow; red while the valve is open during a suspected leak
 - Header icon of the kind of meter in a tinted round badge, colored with the meter state, and a status pill on the title line
 - Collapsible sections (the night section folded by default, unfolded on a suspected leak); a click anywhere else folds them back
 - Sections view: the full card takes 12 columns by default and at least 6, the mini card 6; narrow widths get their own layout (see [Screenshots](#screenshots))
@@ -67,6 +68,7 @@ The cards read a cumulative `sensor` (`state_class: total` or `total_increasing`
 | <img src="https://raw.githubusercontent.com/juju35/ha-utility-meter-card/main/images/suez_water.png" alt="" width="16"> [Suez Water](https://www.home-assistant.io/integrations/suez_water/) (core) and the custom integrations of other water companies (Veolia, Eau de Paris…) | Water | The water sensor; `statistic_id` for the statistics the integration imports (its daily data is a day late, so the Day tab is left out when there is no hourly data) |
 | [Utility Meter](https://www.home-assistant.io/integrations/utility_meter/) helpers (core) | Water, gas, electricity | Daily, weekly, monthly and yearly helpers fed by the meter are found on their own and give the live value of their period (and their previous period when there are no statistics); `today_entity`, `week_entity`, `month_entity`, `year_entity` pick others |
 | Any `binary_sensor` leak / moisture sensor | Water | `leak_entity`: raises the leak alert when it turns on |
+| Motorised shut-off valves — [Valve](https://www.home-assistant.io/integrations/valve/) entities (Zigbee, Z-Wave, Tuya, ESPHome…), or a [Switch](https://www.home-assistant.io/integrations/switch/) / [Input boolean](https://www.home-assistant.io/integrations/input_boolean/) driving the valve | Water, gas | `valve_entity`: open / close button (`valve.open_valve` / `valve.close_valve`, or `turn_on` / `turn_off`) |
 
 The statistics are the ones Home Assistant keeps for every sensor with a state class (the same as the Energy dashboard's water, gas and electricity sources).
 
@@ -157,6 +159,7 @@ leak_threshold: 2
 daily_limit: 0.5
 flow_entity: sensor.water_flow
 leak_entity: binary_sensor.utility_room_leak
+valve_entity: valve.main_water
 # Data sources
 statistic_id: sensor.water_meter
 today_entity: sensor.water_daily
@@ -218,6 +221,7 @@ daily_limit: 5                       # kWh today above this → "High usage", th
 | `daily_limit` | both | — | Today's consumption above this (sensor's unit) shows "High usage"; the electricity meter pulses red |
 | `flow_entity` | both | — | Flow sensor (L/min, m³/h…), or a power sensor (W) for electricity: shown live, and drives the animation |
 | `leak_entity` | both | — | Leak or moisture `binary_sensor`: its `on` state raises the leak alert |
+| `valve_entity` | both | — | Shut-off valve: a `valve` entity, or a `switch` / `input_boolean` driving a motorised valve (`on` = open). Shown as an open / close button next to the flow, red while open during a suspected leak; not pressable while it moves or is unavailable |
 | `statistic_id` | both | The entity's | Long-term statistic to read instead of the sensor's, e.g. one imported by Suez Water or a Gazpar integration (in a unit of the same kind as the sensor's: volume or energy) |
 | `today_entity`, `week_entity`, `month_entity`, `year_entity` | both | Found on their own | utility_meter helpers giving the live value of each period |
 | `zoom` | mini | `true` | Detail button at the top right of the mini card: it shows the full card's content (with the same options) and switches back to the compact view; a click outside the card also brings the compact view back. `false` removes the button |

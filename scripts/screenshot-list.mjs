@@ -5,7 +5,7 @@ import { electricityFlowing, gasFlowing, waterFlowing } from "./mock-states.mjs"
 
 const water = { entity: "sensor.water_meter", flow_entity: "sensor.water_flow", price_entity: "sensor.water_price" };
 const gas = { entity: "sensor.gas_meter", flow_entity: "sensor.gas_flow", price: 0.105, price_unit: "energy", chart_period: "year" };
-const leak = { entity: "sensor.cottage_water_meter", leak_entity: "binary_sensor.cottage_leak", price: 3.9, chart_period: "day" };
+const leak = { entity: "sensor.cottage_water_meter", leak_entity: "binary_sensor.cottage_leak", valve_entity: "valve.cottage_main_water", price: 3.9, chart_period: "day" };
 const elec = { entity: "sensor.electricity_meter", flow_entity: "sensor.electricity_power", price_entity: "sensor.electricity_price" };
 
 const twins = (file, type, width, config, extra = {}, first = "light") => {
