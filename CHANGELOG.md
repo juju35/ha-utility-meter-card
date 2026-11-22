@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.4.0 - 2026-11-22
+
+### Features
+- **Shut-off valve** (`valve_entity`, both cards and their editors): an open / close button for a motorised valve, next to the flow — a `valve` entity (`valve.open_valve` / `valve.close_valve`), or a `switch` / `input_boolean` driving the valve (`turn_on` / `turn_off`). The accent while open, red while open during a suspected leak; shown but not pressable while it opens, closes or is unavailable (#29).
+
 ## 1.3.3 - 2026-11-22
 
 ### Performance
