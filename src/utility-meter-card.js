@@ -2564,7 +2564,7 @@ for (const card of [
   },
 ]) {
   if (!window.customCards.some((c) => c.type === card.type))
-    window.customCards.push({ ...card, preview: true, documentationURL: "https://github.com/juju35/ha-utility-meter-card" });
+    window.customCards.push({ ...card, preview: false, documentationURL: "https://github.com/juju35/ha-utility-meter-card" });
 }
 
 console.info(`%c UTILITY-METER-CARD %c v${VERSION} `, "color: white; background: #0288d1; font-weight: 700;", "color: #0288d1; background: white; font-weight: 700;");
