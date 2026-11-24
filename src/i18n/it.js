@@ -1,0 +1,22 @@
+// STRINGS — "it"; a missing key falls back to English.
+export default {
+  meter_water: "Contatore dell'acqua", meter_gas: "Contatore del gas", meter_electricity: "Contatore elettrico", type_electricity: "Elettricità", power: "Potenza", index: "Lettura", today: "Oggi", week: "Questa settimana", month: "Questo mese", year: "Quest'anno",
+  yesterday: "Ieri", last_week: "Settimana scorsa", last_month: "Mese scorso", last_year: "Anno scorso",
+  vs_day: "rispetto a ieri", vs_week: "rispetto alla settimana scorsa", vs_month: "rispetto al mese scorso", vs_year: "rispetto all'anno scorso",
+  consumption: "Consumo", history: "Cronologia", night: "Monitoraggio notturno", tab_day: "Giorno", tab_week: "Settimana", tab_month: "Mese", tab_year: "Anno",
+  average: "Media {value}", cost: "Costo", flow: "Portata", status_ok: "Normale", status_leak: "Sospetta perdita", status_high: "Consumo elevato", status_unavailable: "Non disponibile",
+  leak_alert: "Flusso continuo per tutta la notte: almeno {value} ogni ora dalle {start} alle {end}", leak_sensor: "{name} segnala una perdita",
+  high_alert: "Il consumo di oggi supera il limite giornaliero ({value})", night_window: "Fascia notturna", night_lowest: "Ora più bassa della notte scorsa",
+  night_threshold: "Soglia di allarme", sensor_ok: "Asciutto", sensor_wet: "Perdita rilevata", no_stats: "Ancora nessuna statistica a lungo termine per questo contatore", loading: "Caricamento…",
+  close: "Chiudi", per_hour: "{value}/h", zoom_in: "Mostra dettagli", zoom_out: "Mostra meno", no_meter: "Nessun contatore dell'acqua o del gas trovato", unknown_entity: "Entità non trovata",
+  entity: "Contatore (sensore della lettura)", title: "Titolo", meter_type: "Tipo di contatore", type_auto: "Automatico", type_water: "Acqua", type_gas: "Gas", chart_period: "Grafico predefinito",
+  show_title: "Mostra il titolo", show_subtitle: "Mostra il sottotitolo", show_picture: "Mostra l'illustrazione del contatore", show_index: "Mostra la lettura", index_decimals: "Decimali della lettura",
+  show_consumption: "Mostra il consumo", show_comparison: "Confronta con il periodo precedente", show_chart: "Mostra il grafico della cronologia", show_cost: "Mostra il costo",
+  leak_detection: "Rilevamento perdite", liters: "Piccole quantità d'acqua in litri", collapsed: "Sezioni chiuse per impostazione predefinita", cost_section: "Costo", price: "Prezzo unitario",
+  price_entity: "Entità del prezzo", currency: "Valuta", price_unit: "Prezzo per", unit_volume: "Volume (m³)", unit_energy: "Energia (kWh)", conversion_factor: "Fattore di conversione (kWh per m³)", conversion_factor_entity: "Entità del fattore di conversione", picture_style: "Immagine del contatore elettrico", style_auto: "Automatico", style_digital: "Contatore digitale", style_disc: "Disco rotante", style_submeter: "Sottocontatore (pinza)",
+  leak_section: "Rilevamento perdite", flow_entity: "Sensore di portata", leak_entity: "Sensore di perdite", leak_start: "Inizio della fascia notturna", leak_end: "Fine della fascia notturna",
+  leak_threshold: "Soglia (L/h per l'acqua)", daily_limit: "Limite giornaliero", sources_section: "Fonti dei dati", statistic_id: "Statistica (al posto di quella del sensore)",
+  today_entity: "Contatore dei consumi (giornaliero)", week_entity: "Contatore dei consumi (settimanale)", month_entity: "Contatore dei consumi (mensile)", year_entity: "Contatore dei consumi (annuale)",
+  zoom: "Pulsante dettagli", zoom_helper: "Passa dalla mini scheda alla scheda completa e viceversa", language: "Lingua", lang_auto: "Automatica (Home Assistant)", illustration: "Intestazione illustrata", illustration_theme: "Atmosfera dell'intestazione", theme_auto: "Automatica (segue il tema)", theme_day: "Giorno", theme_night: "Notte",
+  valve_entity: "Valvola di intercettazione", valve_open: "Valvola aperta", valve_closed: "Valvola chiusa", valve_opening: "Apertura…", valve_closing: "Chiusura…", valve_do_open: "Apri la valvola", valve_do_close: "Chiudi la valvola",
+};

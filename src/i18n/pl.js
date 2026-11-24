@@ -1,0 +1,22 @@
+// STRINGS — "pl"; a missing key falls back to English.
+export default {
+  meter_water: "Wodomierz", meter_gas: "Gazomierz", meter_electricity: "Licznik energii elektrycznej", type_electricity: "Energia elektryczna", power: "Moc", index: "Stan licznika", today: "Dziś", week: "Ten tydzień", month: "Ten miesiąc", year: "Ten rok",
+  yesterday: "Wczoraj", last_week: "Poprzedni tydzień", last_month: "Poprzedni miesiąc", last_year: "Poprzedni rok",
+  vs_day: "względem wczoraj", vs_week: "względem poprzedniego tygodnia", vs_month: "względem poprzedniego miesiąca", vs_year: "względem poprzedniego roku",
+  consumption: "Zużycie", history: "Historia", night: "Nadzór nocny", tab_day: "Dzień", tab_week: "Tydzień", tab_month: "Miesiąc", tab_year: "Rok",
+  average: "Średnia {value}", cost: "Koszt", flow: "Przepływ", status_ok: "Normalnie", status_leak: "Podejrzenie wycieku", status_high: "Wysokie zużycie", status_unavailable: "Niedostępny",
+  leak_alert: "Ciągły przepływ przez całą noc: co najmniej {value} co godzinę od {start} do {end}", leak_sensor: "{name} zgłasza wyciek",
+  high_alert: "Dzisiejsze zużycie przekracza dzienny limit ({value})", night_window: "Okno nocne", night_lowest: "Najniższa godzina ostatniej nocy",
+  night_threshold: "Próg alarmu", sensor_ok: "Sucho", sensor_wet: "Wykryto wyciek", no_stats: "Brak jeszcze statystyk długoterminowych dla tego licznika", loading: "Ładowanie…",
+  close: "Zamknij", per_hour: "{value}/h", zoom_in: "Pokaż szczegóły", zoom_out: "Pokaż mniej", no_meter: "Nie znaleziono wodomierza ani gazomierza", unknown_entity: "Nie znaleziono encji",
+  entity: "Licznik (czujnik stanu)", title: "Tytuł", meter_type: "Rodzaj licznika", type_auto: "Automatycznie", type_water: "Woda", type_gas: "Gaz", chart_period: "Domyślny wykres",
+  show_title: "Pokaż tytuł", show_subtitle: "Pokaż podtytuł", show_picture: "Pokaż ilustrację licznika", show_index: "Pokaż stan licznika", index_decimals: "Miejsca dziesiętne stanu licznika",
+  show_consumption: "Pokaż zużycie", show_comparison: "Porównaj z poprzednim okresem", show_chart: "Pokaż wykres historii", show_cost: "Pokaż koszt",
+  leak_detection: "Wykrywanie wycieków", liters: "Małe ilości wody w litrach", collapsed: "Sekcje domyślnie zwinięte", cost_section: "Koszt", price: "Cena za jednostkę",
+  price_entity: "Encja ceny", currency: "Waluta", price_unit: "Cena za", unit_volume: "Objętość (m³)", unit_energy: "Energia (kWh)", conversion_factor: "Współczynnik przeliczeniowy (kWh na m³)", conversion_factor_entity: "Encja współczynnika przeliczeniowego", picture_style: "Obraz licznika energii", style_auto: "Automatycznie", style_digital: "Licznik cyfrowy", style_disc: "Obracająca się tarcza", style_submeter: "Podlicznik (cęgi)",
+  leak_section: "Wykrywanie wycieków", flow_entity: "Czujnik przepływu", leak_entity: "Czujnik wycieku", leak_start: "Początek okna nocnego", leak_end: "Koniec okna nocnego",
+  leak_threshold: "Próg (L/h dla wody)", daily_limit: "Dzienny limit", sources_section: "Źródła danych", statistic_id: "Statystyka (zamiast statystyki czujnika)",
+  today_entity: "Licznik mediów (dzienny)", week_entity: "Licznik mediów (tygodniowy)", month_entity: "Licznik mediów (miesięczny)", year_entity: "Licznik mediów (roczny)",
+  zoom: "Przycisk szczegółów", zoom_helper: "Przełącza minikartę na pełną kartę i z powrotem", language: "Język", lang_auto: "Automatycznie (Home Assistant)", illustration: "Ilustrowany nagłówek", illustration_theme: "Wygląd nagłówka", theme_auto: "Automatycznie (według motywu)", theme_day: "Dzień", theme_night: "Noc",
+  valve_entity: "Zawór odcinający", valve_open: "Zawór otwarty", valve_closed: "Zawór zamknięty", valve_opening: "Otwieranie…", valve_closing: "Zamykanie…", valve_do_open: "Otwórz zawór", valve_do_close: "Zamknij zawór",
+};

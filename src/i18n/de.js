@@ -1,0 +1,22 @@
+// STRINGS — "de"; a missing key falls back to English.
+export default {
+  meter_water: "Wasserzähler", meter_gas: "Gaszähler", meter_electricity: "Stromzähler", type_electricity: "Strom", power: "Leistung", index: "Zählerstand", today: "Heute", week: "Diese Woche", month: "Dieser Monat", year: "Dieses Jahr",
+  yesterday: "Gestern", last_week: "Letzte Woche", last_month: "Letzter Monat", last_year: "Letztes Jahr",
+  vs_day: "ggü. gestern", vs_week: "ggü. letzter Woche", vs_month: "ggü. letztem Monat", vs_year: "ggü. letztem Jahr",
+  consumption: "Verbrauch", history: "Verlauf", night: "Nachtüberwachung", tab_day: "Tag", tab_week: "Woche", tab_month: "Monat", tab_year: "Jahr",
+  average: "Durchschnitt {value}", cost: "Kosten", flow: "Durchfluss", status_ok: "Normal", status_leak: "Leck vermutet", status_high: "Hoher Verbrauch", status_unavailable: "Nicht verfügbar",
+  leak_alert: "Durchgehender Durchfluss die ganze Nacht: mindestens {value} pro Stunde von {start} bis {end}", leak_sensor: "{name} meldet ein Leck",
+  high_alert: "Der heutige Verbrauch liegt über dem Tageslimit ({value})", night_window: "Nachtzeitraum", night_lowest: "Niedrigste Stunde letzte Nacht",
+  night_threshold: "Alarmschwelle", sensor_ok: "Trocken", sensor_wet: "Leck erkannt", no_stats: "Noch keine Langzeitstatistiken für diesen Zähler", loading: "Wird geladen…",
+  close: "Schließen", per_hour: "{value}/h", zoom_in: "Details anzeigen", zoom_out: "Weniger anzeigen", no_meter: "Kein Wasser- oder Gaszähler gefunden", unknown_entity: "Entität nicht gefunden",
+  entity: "Zähler (Zählerstand-Sensor)", title: "Titel", meter_type: "Zählerart", type_auto: "Automatisch", type_water: "Wasser", type_gas: "Gas", chart_period: "Standarddiagramm",
+  show_title: "Titel anzeigen", show_subtitle: "Untertitel anzeigen", show_picture: "Zählerbild anzeigen", show_index: "Zählerstand anzeigen", index_decimals: "Nachkommastellen des Zählerstands",
+  show_consumption: "Verbrauch anzeigen", show_comparison: "Mit dem vorherigen Zeitraum vergleichen", show_chart: "Verlaufsdiagramm anzeigen", show_cost: "Kosten anzeigen",
+  leak_detection: "Leckerkennung", liters: "Kleine Wassermengen in Litern", collapsed: "Standardmäßig eingeklappte Abschnitte", cost_section: "Kosten", price: "Preis pro Einheit",
+  price_entity: "Preis-Entität", currency: "Währung", price_unit: "Preis pro", unit_volume: "Volumen (m³)", unit_energy: "Energie (kWh)", conversion_factor: "Umrechnungsfaktor (kWh pro m³)", conversion_factor_entity: "Entität des Umrechnungsfaktors", picture_style: "Bild des Stromzählers", style_auto: "Automatisch", style_digital: "Digitaler Zähler", style_disc: "Drehscheibe", style_submeter: "Unterzähler (Zange)",
+  leak_section: "Leckerkennung", flow_entity: "Durchflusssensor", leak_entity: "Lecksensor", leak_start: "Beginn des Nachtzeitraums", leak_end: "Ende des Nachtzeitraums",
+  leak_threshold: "Schwelle (L/h für Wasser)", daily_limit: "Tageslimit", sources_section: "Datenquellen", statistic_id: "Statistik (statt der des Sensors)",
+  today_entity: "Verbrauchszähler (täglich)", week_entity: "Verbrauchszähler (wöchentlich)", month_entity: "Verbrauchszähler (monatlich)", year_entity: "Verbrauchszähler (jährlich)",
+  zoom: "Detail-Schaltfläche", zoom_helper: "Schaltet die Mini-Karte auf die vollständige Karte um und zurück", language: "Sprache", lang_auto: "Automatisch (Home Assistant)", illustration: "Illustrierte Kopfzeile", illustration_theme: "Bild der Kopfzeile", theme_auto: "Automatisch (folgt dem Design)", theme_day: "Tag", theme_night: "Nacht",
+  valve_entity: "Absperrventil", valve_open: "Ventil offen", valve_closed: "Ventil geschlossen", valve_opening: "Öffnet…", valve_closing: "Schließt…", valve_do_open: "Ventil öffnen", valve_do_close: "Ventil schließen",
+};

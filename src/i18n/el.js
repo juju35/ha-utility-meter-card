@@ -1,0 +1,22 @@
+// STRINGS — "el"; a missing key falls back to English.
+export default {
+  meter_water: "Μετρητής νερού", meter_gas: "Μετρητής αερίου", meter_electricity: "Μετρητής ηλεκτρικού", type_electricity: "Ηλεκτρικό", power: "Ισχύς", index: "Ένδειξη", today: "Σήμερα", week: "Αυτή την εβδομάδα", month: "Αυτόν τον μήνα", year: "Φέτος",
+  yesterday: "Χθες", last_week: "Προηγούμενη εβδομάδα", last_month: "Προηγούμενος μήνας", last_year: "Πέρσι",
+  vs_day: "σε σχέση με χθες", vs_week: "σε σχέση με την προηγούμενη εβδομάδα", vs_month: "σε σχέση με τον προηγούμενο μήνα", vs_year: "σε σχέση με πέρσι",
+  consumption: "Κατανάλωση", history: "Ιστορικό", night: "Νυχτερινή επιτήρηση", tab_day: "Ημέρα", tab_week: "Εβδομάδα", tab_month: "Μήνας", tab_year: "Έτος",
+  average: "Μέσος όρος {value}", cost: "Κόστος", flow: "Ροή", status_ok: "Κανονικά", status_leak: "Πιθανή διαρροή", status_high: "Υψηλή κατανάλωση", status_unavailable: "Μη διαθέσιμο",
+  leak_alert: "Συνεχής ροή όλη τη νύχτα: τουλάχιστον {value} κάθε ώρα από {start} έως {end}", leak_sensor: "Ο αισθητήρας {name} αναφέρει διαρροή",
+  high_alert: "Η σημερινή κατανάλωση υπερβαίνει το ημερήσιο όριο ({value})", night_window: "Νυχτερινό διάστημα", night_lowest: "Χαμηλότερη ώρα χθες βράδυ",
+  night_threshold: "Όριο ειδοποίησης", sensor_ok: "Στεγνό", sensor_wet: "Εντοπίστηκε διαρροή", no_stats: "Δεν υπάρχουν ακόμη μακροπρόθεσμα στατιστικά για αυτόν τον μετρητή", loading: "Φόρτωση…",
+  close: "Κλείσιμο", per_hour: "{value}/ώρα", zoom_in: "Εμφάνιση λεπτομερειών", zoom_out: "Λιγότερα", no_meter: "Δεν βρέθηκε μετρητής νερού ή αερίου", unknown_entity: "Η οντότητα δεν βρέθηκε",
+  entity: "Μετρητής (αισθητήρας ένδειξης)", title: "Τίτλος", meter_type: "Τύπος μετρητή", type_auto: "Αυτόματα", type_water: "Νερό", type_gas: "Αέριο", chart_period: "Προεπιλεγμένο γράφημα",
+  show_title: "Εμφάνιση τίτλου", show_subtitle: "Εμφάνιση υπότιτλου", show_picture: "Εμφάνιση εικόνας μετρητή", show_index: "Εμφάνιση ένδειξης", index_decimals: "Δεκαδικά ψηφία ένδειξης",
+  show_consumption: "Εμφάνιση κατανάλωσης", show_comparison: "Σύγκριση με την προηγούμενη περίοδο", show_chart: "Εμφάνιση γραφήματος ιστορικού", show_cost: "Εμφάνιση κόστους",
+  leak_detection: "Ανίχνευση διαρροών", liters: "Μικρές ποσότητες νερού σε λίτρα", collapsed: "Ενότητες συμπτυγμένες από προεπιλογή", cost_section: "Κόστος", price: "Τιμή ανά μονάδα",
+  price_entity: "Οντότητα τιμής", currency: "Νόμισμα", price_unit: "Τιμή ανά", unit_volume: "Όγκος (m³)", unit_energy: "Ενέργεια (kWh)", conversion_factor: "Συντελεστής μετατροπής (kWh ανά m³)", conversion_factor_entity: "Οντότητα συντελεστή μετατροπής", picture_style: "Εικόνα μετρητή ηλεκτρικού", style_auto: "Αυτόματα", style_digital: "Ψηφιακός μετρητής", style_disc: "Περιστρεφόμενος δίσκος", style_submeter: "Υπομετρητής (δαγκάνα)",
+  leak_section: "Ανίχνευση διαρροών", flow_entity: "Αισθητήρας ροής", leak_entity: "Αισθητήρας διαρροής", leak_start: "Αρχή νυχτερινού διαστήματος", leak_end: "Τέλος νυχτερινού διαστήματος",
+  leak_threshold: "Όριο (L/ώρα για νερό)", daily_limit: "Ημερήσιο όριο", sources_section: "Πηγές δεδομένων", statistic_id: "Στατιστικό (αντί του αισθητήρα)",
+  today_entity: "Μετρητής κατανάλωσης (ημερήσιος)", week_entity: "Μετρητής κατανάλωσης (εβδομαδιαίος)", month_entity: "Μετρητής κατανάλωσης (μηνιαίος)", year_entity: "Μετρητής κατανάλωσης (ετήσιος)",
+  zoom: "Κουμπί λεπτομερειών", zoom_helper: "Εναλλάσσει τη μίνι κάρτα με την πλήρη κάρτα", language: "Γλώσσα", lang_auto: "Αυτόματα (Home Assistant)", illustration: "Εικονογραφημένη κεφαλίδα", illustration_theme: "Ατμόσφαιρα κεφαλίδας", theme_auto: "Αυτόματα (ακολουθεί το θέμα)", theme_day: "Ημέρα", theme_night: "Νύχτα",
+  valve_entity: "Βαλβίδα διακοπής", valve_open: "Βαλβίδα ανοιχτή", valve_closed: "Βαλβίδα κλειστή", valve_opening: "Άνοιγμα…", valve_closing: "Κλείσιμο…", valve_do_open: "Άνοιγμα βαλβίδας", valve_do_close: "Κλείσιμο βαλβίδας",
+};

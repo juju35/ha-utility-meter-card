@@ -1,0 +1,22 @@
+// STRINGS — "sl"; a missing key falls back to English.
+export default {
+  meter_water: "Vodomer", meter_gas: "Plinomer", meter_electricity: "Števec elektrike", type_electricity: "Elektrika", power: "Moč", index: "Stanje števca", today: "Danes", week: "Ta teden", month: "Ta mesec", year: "Letos",
+  yesterday: "Včeraj", last_week: "Prejšnji teden", last_month: "Prejšnji mesec", last_year: "Lani",
+  vs_day: "glede na včeraj", vs_week: "glede na prejšnji teden", vs_month: "glede na prejšnji mesec", vs_year: "glede na lani",
+  consumption: "Poraba", history: "Zgodovina", night: "Nočni nadzor", tab_day: "Dan", tab_week: "Teden", tab_month: "Mesec", tab_year: "Leto",
+  average: "Povprečje {value}", cost: "Strošek", flow: "Pretok", status_ok: "Normalno", status_leak: "Sum puščanja", status_high: "Visoka poraba", status_unavailable: "Ni na voljo",
+  leak_alert: "Neprekinjen pretok vso noč: vsaj {value} vsako uro od {start} do {end}", leak_sensor: "{name} javlja puščanje",
+  high_alert: "Današnja poraba presega dnevno omejitev ({value})", night_window: "Nočno okno", night_lowest: "Najnižja ura pretekle noči",
+  night_threshold: "Prag opozorila", sensor_ok: "Suho", sensor_wet: "Zaznano puščanje", no_stats: "Za ta števec še ni dolgoročne statistike", loading: "Nalaganje…",
+  close: "Zapri", per_hour: "{value}/h", zoom_in: "Prikaži podrobnosti", zoom_out: "Prikaži manj", no_meter: "Ni najdenega vodomera ali plinomera", unknown_entity: "Entitete ni mogoče najti",
+  entity: "Števec (senzor stanja)", title: "Naslov", meter_type: "Vrsta števca", type_auto: "Samodejno", type_water: "Voda", type_gas: "Plin", chart_period: "Privzeti graf",
+  show_title: "Prikaži naslov", show_subtitle: "Prikaži podnaslov", show_picture: "Prikaži sliko števca", show_index: "Prikaži stanje števca", index_decimals: "Decimalna mesta stanja števca",
+  show_consumption: "Prikaži porabo", show_comparison: "Primerjaj s prejšnjim obdobjem", show_chart: "Prikaži graf zgodovine", show_cost: "Prikaži strošek",
+  leak_detection: "Zaznavanje puščanja", liters: "Majhne količine vode v litrih", collapsed: "Privzeto strnjeni razdelki", cost_section: "Strošek", price: "Cena na enoto",
+  price_entity: "Entiteta cene", currency: "Valuta", price_unit: "Cena na", unit_volume: "Prostornina (m³)", unit_energy: "Energija (kWh)", conversion_factor: "Pretvorbeni faktor (kWh na m³)", conversion_factor_entity: "Entiteta pretvorbenega faktorja", picture_style: "Slika števca elektrike", style_auto: "Samodejno", style_digital: "Digitalni števec", style_disc: "Vrteči se disk", style_submeter: "Podštevec (klešče)",
+  leak_section: "Zaznavanje puščanja", flow_entity: "Senzor pretoka", leak_entity: "Senzor puščanja", leak_start: "Začetek nočnega okna", leak_end: "Konec nočnega okna",
+  leak_threshold: "Prag (L/h za vodo)", daily_limit: "Dnevna omejitev", sources_section: "Viri podatkov", statistic_id: "Statistika (namesto statistike senzorja)",
+  today_entity: "Števec porabe (dnevni)", week_entity: "Števec porabe (tedenski)", month_entity: "Števec porabe (mesečni)", year_entity: "Števec porabe (letni)",
+  zoom: "Gumb za podrobnosti", zoom_helper: "Preklopi mini kartico na polno kartico in nazaj", language: "Jezik", lang_auto: "Samodejno (Home Assistant)", illustration: "Ilustrirana glava", illustration_theme: "Videz glave", theme_auto: "Samodejno (sledi temi)", theme_day: "Dan", theme_night: "Noč",
+  valve_entity: "Zaporni ventil", valve_open: "Ventil odprt", valve_closed: "Ventil zaprt", valve_opening: "Odpiranje…", valve_closing: "Zapiranje…", valve_do_open: "Odpri ventil", valve_do_close: "Zapri ventil",
+};

@@ -1,0 +1,22 @@
+// STRINGS — "nl"; a missing key falls back to English.
+export default {
+  meter_water: "Watermeter", meter_gas: "Gasmeter", meter_electricity: "Elektriciteitsmeter", type_electricity: "Elektriciteit", power: "Vermogen", index: "Meterstand", today: "Vandaag", week: "Deze week", month: "Deze maand", year: "Dit jaar",
+  yesterday: "Gisteren", last_week: "Vorige week", last_month: "Vorige maand", last_year: "Vorig jaar",
+  vs_day: "t.o.v. gisteren", vs_week: "t.o.v. vorige week", vs_month: "t.o.v. vorige maand", vs_year: "t.o.v. vorig jaar",
+  consumption: "Verbruik", history: "Geschiedenis", night: "Nachtbewaking", tab_day: "Dag", tab_week: "Week", tab_month: "Maand", tab_year: "Jaar",
+  average: "Gemiddelde {value}", cost: "Kosten", flow: "Debiet", status_ok: "Normaal", status_leak: "Mogelijk lek", status_high: "Hoog verbruik", status_unavailable: "Niet beschikbaar",
+  leak_alert: "De hele nacht doorlopend verbruik: minstens {value} per uur van {start} tot {end}", leak_sensor: "{name} meldt een lek",
+  high_alert: "Het verbruik van vandaag ligt boven de daglimiet ({value})", night_window: "Nachtperiode", night_lowest: "Laagste uur afgelopen nacht",
+  night_threshold: "Alarmdrempel", sensor_ok: "Droog", sensor_wet: "Lek gedetecteerd", no_stats: "Nog geen langetermijnstatistieken voor deze meter", loading: "Laden…",
+  close: "Sluiten", per_hour: "{value}/u", zoom_in: "Details tonen", zoom_out: "Minder tonen", no_meter: "Geen water- of gasmeter gevonden", unknown_entity: "Entiteit niet gevonden",
+  entity: "Meter (meterstandsensor)", title: "Titel", meter_type: "Type meter", type_auto: "Automatisch", type_water: "Water", type_gas: "Gas", chart_period: "Standaardgrafiek",
+  show_title: "Titel tonen", show_subtitle: "Ondertitel tonen", show_picture: "Afbeelding van de meter tonen", show_index: "Meterstand tonen", index_decimals: "Decimalen van de meterstand",
+  show_consumption: "Verbruik tonen", show_comparison: "Vergelijken met de vorige periode", show_chart: "Geschiedenisgrafiek tonen", show_cost: "Kosten tonen",
+  leak_detection: "Lekdetectie", liters: "Kleine hoeveelheden water in liters", collapsed: "Standaard ingeklapte secties", cost_section: "Kosten", price: "Prijs per eenheid",
+  price_entity: "Prijsentiteit", currency: "Valuta", price_unit: "Prijs per", unit_volume: "Volume (m³)", unit_energy: "Energie (kWh)", conversion_factor: "Omrekenfactor (kWh per m³)", conversion_factor_entity: "Entiteit van de omrekenfactor", picture_style: "Afbeelding van de elektriciteitsmeter", style_auto: "Automatisch", style_digital: "Digitale meter", style_disc: "Draaiende schijf", style_submeter: "Tussenmeter (klem)",
+  leak_section: "Lekdetectie", flow_entity: "Debietsensor", leak_entity: "Leksensor", leak_start: "Begin van de nachtperiode", leak_end: "Einde van de nachtperiode",
+  leak_threshold: "Drempel (L/u voor water)", daily_limit: "Daglimiet", sources_section: "Gegevensbronnen", statistic_id: "Statistiek (in plaats van die van de sensor)",
+  today_entity: "Verbruiksmeter (dagelijks)", week_entity: "Verbruiksmeter (wekelijks)", month_entity: "Verbruiksmeter (maandelijks)", year_entity: "Verbruiksmeter (jaarlijks)",
+  zoom: "Detailknop", zoom_helper: "Schakelt de minikaart naar de volledige kaart en terug", language: "Taal", lang_auto: "Automatisch (Home Assistant)", illustration: "Geïllustreerde koptekst", illustration_theme: "Sfeer van de koptekst", theme_auto: "Automatisch (volgt het thema)", theme_day: "Dag", theme_night: "Nacht",
+  valve_entity: "Afsluitklep", valve_open: "Klep open", valve_closed: "Klep dicht", valve_opening: "Opent…", valve_closing: "Sluit…", valve_do_open: "Klep openen", valve_do_close: "Klep sluiten",
+};

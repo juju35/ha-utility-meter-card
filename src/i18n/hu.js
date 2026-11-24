@@ -1,0 +1,22 @@
+// STRINGS — "hu"; a missing key falls back to English.
+export default {
+  meter_water: "Vízóra", meter_gas: "Gázóra", meter_electricity: "Villanyóra", type_electricity: "Áram", power: "Teljesítmény", index: "Mérőállás", today: "Ma", week: "Ezen a héten", month: "Ebben a hónapban", year: "Ebben az évben",
+  yesterday: "Tegnap", last_week: "Múlt hét", last_month: "Múlt hónap", last_year: "Tavaly",
+  vs_day: "a tegnapihoz képest", vs_week: "a múlt héthez képest", vs_month: "a múlt hónaphoz képest", vs_year: "a tavalyihoz képest",
+  consumption: "Fogyasztás", history: "Előzmények", night: "Éjszakai felügyelet", tab_day: "Nap", tab_week: "Hét", tab_month: "Hónap", tab_year: "Év",
+  average: "Átlag {value}", cost: "Költség", flow: "Átfolyás", status_ok: "Normál", status_leak: "Szivárgás gyanúja", status_high: "Magas fogyasztás", status_unavailable: "Nem elérhető",
+  leak_alert: "Folyamatos átfolyás egész éjjel: óránként legalább {value} {start} és {end} között", leak_sensor: "{name} szivárgást jelez",
+  high_alert: "A mai fogyasztás meghaladja a napi korlátot ({value})", night_window: "Éjszakai időszak", night_lowest: "Legalacsonyabb óra az éjjel",
+  night_threshold: "Riasztási küszöb", sensor_ok: "Száraz", sensor_wet: "Szivárgás észlelve", no_stats: "Ehhez a mérőhöz még nincs hosszú távú statisztika", loading: "Betöltés…",
+  close: "Bezárás", per_hour: "{value}/óra", zoom_in: "Részletek", zoom_out: "Kevesebb", no_meter: "Nem található víz- vagy gázóra", unknown_entity: "Az entitás nem található",
+  entity: "Mérő (mérőállás-érzékelő)", title: "Cím", meter_type: "Mérő típusa", type_auto: "Automatikus", type_water: "Víz", type_gas: "Gáz", chart_period: "Alapértelmezett diagram",
+  show_title: "Cím megjelenítése", show_subtitle: "Alcím megjelenítése", show_picture: "A mérő képének megjelenítése", show_index: "Mérőállás megjelenítése", index_decimals: "A mérőállás tizedesjegyei",
+  show_consumption: "Fogyasztás megjelenítése", show_comparison: "Összevetés az előző időszakkal", show_chart: "Előzménydiagram megjelenítése", show_cost: "Költség megjelenítése",
+  leak_detection: "Szivárgásérzékelés", liters: "Kis vízmennyiségek literben", collapsed: "Alapértelmezetten összecsukott szakaszok", cost_section: "Költség", price: "Egységár",
+  price_entity: "Ár entitás", currency: "Pénznem", price_unit: "Ár / egység", unit_volume: "Térfogat (m³)", unit_energy: "Energia (kWh)", conversion_factor: "Átváltási tényező (kWh / m³)", conversion_factor_entity: "Átváltási tényező entitás", picture_style: "Villanyóra képe", style_auto: "Automatikus", style_digital: "Digitális mérő", style_disc: "Forgó tárcsa", style_submeter: "Almérő (lakatfogó)",
+  leak_section: "Szivárgásérzékelés", flow_entity: "Átfolyásérzékelő", leak_entity: "Szivárgásérzékelő", leak_start: "Az éjszakai időszak kezdete", leak_end: "Az éjszakai időszak vége",
+  leak_threshold: "Küszöb (L/óra víz esetén)", daily_limit: "Napi korlát", sources_section: "Adatforrások", statistic_id: "Statisztika (az érzékelőé helyett)",
+  today_entity: "Fogyasztásmérő (napi)", week_entity: "Fogyasztásmérő (heti)", month_entity: "Fogyasztásmérő (havi)", year_entity: "Fogyasztásmérő (éves)",
+  zoom: "Részletek gomb", zoom_helper: "A mini kártyát a teljes kártyára váltja és vissza", language: "Nyelv", lang_auto: "Automatikus (Home Assistant)", illustration: "Illusztrált fejléc", illustration_theme: "A fejléc hangulata", theme_auto: "Automatikus (a témát követi)", theme_day: "Nappal", theme_night: "Éjszaka",
+  valve_entity: "Elzárószelep", valve_open: "Szelep nyitva", valve_closed: "Szelep zárva", valve_opening: "Nyitás…", valve_closing: "Zárás…", valve_do_open: "Szelep nyitása", valve_do_close: "Szelep zárása",
+};

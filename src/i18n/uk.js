@@ -1,0 +1,22 @@
+// STRINGS — "uk"; a missing key falls back to English.
+export default {
+  meter_water: "Лічильник води", meter_gas: "Лічильник газу", meter_electricity: "Лічильник електроенергії", type_electricity: "Електрика", power: "Потужність", index: "Показники", today: "Сьогодні", week: "Цей тиждень", month: "Цей місяць", year: "Цей рік",
+  yesterday: "Учора", last_week: "Минулий тиждень", last_month: "Минулий місяць", last_year: "Минулий рік",
+  vs_day: "до вчора", vs_week: "до минулого тижня", vs_month: "до минулого місяця", vs_year: "до минулого року",
+  consumption: "Споживання", history: "Історія", night: "Нічний контроль", tab_day: "День", tab_week: "Тиждень", tab_month: "Місяць", tab_year: "Рік",
+  average: "У середньому {value}", cost: "Вартість", flow: "Витрата", status_ok: "Норма", status_leak: "Підозра на витік", status_high: "Високе споживання", status_unavailable: "Недоступно",
+  leak_alert: "Безперервна витрата всю ніч: щонайменше {value} щогодини з {start} до {end}", leak_sensor: "{name} повідомляє про витік",
+  high_alert: "Сьогоднішнє споживання перевищує денний ліміт ({value})", night_window: "Нічний інтервал", night_lowest: "Найнижча година минулої ночі",
+  night_threshold: "Поріг тривоги", sensor_ok: "Сухо", sensor_wet: "Виявлено витік", no_stats: "Для цього лічильника ще немає довгострокової статистики", loading: "Завантаження…",
+  close: "Закрити", per_hour: "{value}/год", zoom_in: "Докладніше", zoom_out: "Згорнути", no_meter: "Лічильник води чи газу не знайдено", unknown_entity: "Об'єкт не знайдено",
+  entity: "Лічильник (датчик показників)", title: "Заголовок", meter_type: "Тип лічильника", type_auto: "Автоматично", type_water: "Вода", type_gas: "Газ", chart_period: "Графік за замовчуванням",
+  show_title: "Показувати заголовок", show_subtitle: "Показувати підзаголовок", show_picture: "Показувати зображення лічильника", show_index: "Показувати показники", index_decimals: "Знаків після коми в показниках",
+  show_consumption: "Показувати споживання", show_comparison: "Порівнювати з попереднім періодом", show_chart: "Показувати графік історії", show_cost: "Показувати вартість",
+  leak_detection: "Виявлення витоків", liters: "Малі об'єми води в літрах", collapsed: "Розділи, згорнуті за замовчуванням", cost_section: "Вартість", price: "Ціна за одиницю",
+  price_entity: "Об'єкт ціни", currency: "Валюта", price_unit: "Ціна за", unit_volume: "Об'єм (m³)", unit_energy: "Енергія (kWh)", conversion_factor: "Коефіцієнт перерахунку (kWh на m³)", conversion_factor_entity: "Сутність коефіцієнта перерахунку", picture_style: "Зображення лічильника електроенергії", style_auto: "Автоматично", style_digital: "Цифровий лічильник", style_disc: "Обертовий диск", style_submeter: "Сублічильник (кліщі)",
+  leak_section: "Виявлення витоків", flow_entity: "Датчик витрати", leak_entity: "Датчик протікання", leak_start: "Початок нічного інтервалу", leak_end: "Кінець нічного інтервалу",
+  leak_threshold: "Поріг (л/год для води)", daily_limit: "Денний ліміт", sources_section: "Джерела даних", statistic_id: "Статистика (замість статистики датчика)",
+  today_entity: "Лічильник споживання (денний)", week_entity: "Лічильник споживання (тижневий)", month_entity: "Лічильник споживання (місячний)", year_entity: "Лічильник споживання (річний)",
+  zoom: "Кнопка подробиць", zoom_helper: "Перемикає міні-картку на повну й назад", language: "Мова", lang_auto: "Автоматично (Home Assistant)", illustration: "Ілюстрований заголовок", illustration_theme: "Вигляд заголовка", theme_auto: "Автоматично (за темою)", theme_day: "День", theme_night: "Ніч",
+  valve_entity: "Запірний кран", valve_open: "Кран відкрито", valve_closed: "Кран закрито", valve_opening: "Відкривається…", valve_closing: "Закривається…", valve_do_open: "Відкрити кран", valve_do_close: "Закрити кран",
+};

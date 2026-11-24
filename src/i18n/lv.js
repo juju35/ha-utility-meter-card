@@ -1,0 +1,22 @@
+// STRINGS — "lv"; a missing key falls back to English.
+export default {
+  meter_water: "Ūdens skaitītājs", meter_gas: "Gāzes skaitītājs", meter_electricity: "Elektrības skaitītājs", type_electricity: "Elektrība", power: "Jauda", index: "Rādījums", today: "Šodien", week: "Šonedēļ", month: "Šomēnes", year: "Šogad",
+  yesterday: "Vakar", last_week: "Pagājušajā nedēļā", last_month: "Pagājušajā mēnesī", last_year: "Pagājušajā gadā",
+  vs_day: "salīdzinot ar vakardienu", vs_week: "salīdzinot ar pagājušo nedēļu", vs_month: "salīdzinot ar pagājušo mēnesi", vs_year: "salīdzinot ar pagājušo gadu",
+  consumption: "Patēriņš", history: "Vēsture", night: "Nakts uzraudzība", tab_day: "Diena", tab_week: "Nedēļa", tab_month: "Mēnesis", tab_year: "Gads",
+  average: "Vidēji {value}", cost: "Izmaksas", flow: "Plūsma", status_ok: "Normāli", status_leak: "Aizdomas par noplūdi", status_high: "Liels patēriņš", status_unavailable: "Nav pieejams",
+  leak_alert: "Nepārtraukta plūsma visu nakti: vismaz {value} katru stundu no {start} līdz {end}", leak_sensor: "{name} ziņo par noplūdi",
+  high_alert: "Šodienas patēriņš pārsniedz dienas limitu ({value})", night_window: "Nakts periods", night_lowest: "Zemākā stunda pagājušajā naktī",
+  night_threshold: "Brīdinājuma slieksnis", sensor_ok: "Sauss", sensor_wet: "Konstatēta noplūde", no_stats: "Šim skaitītājam vēl nav ilgtermiņa statistikas", loading: "Ielādē…",
+  close: "Aizvērt", per_hour: "{value}/h", zoom_in: "Rādīt detaļas", zoom_out: "Rādīt mazāk", no_meter: "Nav atrasts neviens ūdens vai gāzes skaitītājs", unknown_entity: "Entītija nav atrasta",
+  entity: "Skaitītājs (rādījuma sensors)", title: "Virsraksts", meter_type: "Skaitītāja veids", type_auto: "Automātiski", type_water: "Ūdens", type_gas: "Gāze", chart_period: "Noklusējuma diagramma",
+  show_title: "Rādīt virsrakstu", show_subtitle: "Rādīt apakšvirsrakstu", show_picture: "Rādīt skaitītāja attēlu", show_index: "Rādīt rādījumu", index_decimals: "Rādījuma decimāldaļas",
+  show_consumption: "Rādīt patēriņu", show_comparison: "Salīdzināt ar iepriekšējo periodu", show_chart: "Rādīt vēstures diagrammu", show_cost: "Rādīt izmaksas",
+  leak_detection: "Noplūžu noteikšana", liters: "Nelielus ūdens daudzumus litros", collapsed: "Pēc noklusējuma sakļautās sadaļas", cost_section: "Izmaksas", price: "Vienības cena",
+  price_entity: "Cenas entītija", currency: "Valūta", price_unit: "Cena par", unit_volume: "Tilpums (m³)", unit_energy: "Enerģija (kWh)", conversion_factor: "Pārrēķina koeficients (kWh uz m³)", conversion_factor_entity: "Pārrēķina koeficienta entītija", picture_style: "Elektrības skaitītāja attēls", style_auto: "Automātiski", style_digital: "Digitāls skaitītājs", style_disc: "Rotējošs disks", style_submeter: "Apakšskaitītājs (knaibles)",
+  leak_section: "Noplūžu noteikšana", flow_entity: "Plūsmas sensors", leak_entity: "Noplūdes sensors", leak_start: "Nakts perioda sākums", leak_end: "Nakts perioda beigas",
+  leak_threshold: "Slieksnis (L/h ūdenim)", daily_limit: "Dienas limits", sources_section: "Datu avoti", statistic_id: "Statistika (sensora statistikas vietā)",
+  today_entity: "Patēriņa skaitītājs (dienas)", week_entity: "Patēriņa skaitītājs (nedēļas)", month_entity: "Patēriņa skaitītājs (mēneša)", year_entity: "Patēriņa skaitītājs (gada)",
+  zoom: "Detaļu poga", zoom_helper: "Pārslēdz mini karti uz pilno karti un atpakaļ", language: "Valoda", lang_auto: "Automātiski (Home Assistant)", illustration: "Ilustrēta galvene", illustration_theme: "Galvenes noskaņa", theme_auto: "Automātiski (atbilstoši motīvam)", theme_day: "Diena", theme_night: "Nakts",
+  valve_entity: "Noslēgvārsts", valve_open: "Vārsts atvērts", valve_closed: "Vārsts aizvērts", valve_opening: "Atveras…", valve_closing: "Aizveras…", valve_do_open: "Atvērt vārstu", valve_do_close: "Aizvērt vārstu",
+};

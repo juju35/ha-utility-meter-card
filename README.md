@@ -355,6 +355,8 @@ npm test             # unit tests (TZ=UTC, fixed clock)
 npm run screenshots  # renders the cards (and one GIF per animated state, needs ffmpeg) with mock data into screenshots/
 ```
 
+The source is split into ES modules under `src/` (entry `src/index.js`); `npm run build` assembles them (`scripts/bundle.mjs`) into the single file the Marketplace serves.
+
 `dist/` is not committed: `npm run build` creates it locally, CI builds it on every push, and the release workflow attaches the built files to the release, which is where the Marketplace installs it from. The screenshots are rendered on a fixed clock with mock meters and statistics (`scripts/mock-states.mjs`), and a capture is rewritten only when one of its pixels changed; the **Screenshots** workflow renders them on every pull request and commits them to the pull request's branch.
 
 ### Releasing

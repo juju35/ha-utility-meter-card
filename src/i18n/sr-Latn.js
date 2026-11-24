@@ -1,0 +1,22 @@
+// STRINGS — "sr-Latn"; a missing key falls back to English.
+export default {
+  meter_water: "Vodomer", meter_gas: "Gasomer", meter_electricity: "Brojilo struje", type_electricity: "Struja", power: "Snaga", index: "Stanje brojila", today: "Danas", week: "Ove nedelje", month: "Ovog meseca", year: "Ove godine",
+  yesterday: "Juče", last_week: "Prošle nedelje", last_month: "Prošlog meseca", last_year: "Prošle godine",
+  vs_day: "u odnosu na juče", vs_week: "u odnosu na prošlu nedelju", vs_month: "u odnosu na prošli mesec", vs_year: "u odnosu na prošlu godinu",
+  consumption: "Potrošnja", history: "Istorija", night: "Noćni nadzor", tab_day: "Dan", tab_week: "Nedelja", tab_month: "Mesec", tab_year: "Godina",
+  average: "Prosek {value}", cost: "Trošak", flow: "Protok", status_ok: "Normalno", status_leak: "Sumnja na curenje", status_high: "Visoka potrošnja", status_unavailable: "Nedostupno",
+  leak_alert: "Neprekidan protok cele noći: najmanje {value} svakog sata od {start} do {end}", leak_sensor: "{name} prijavljuje curenje",
+  high_alert: "Današnja potrošnja je iznad dnevnog ograničenja ({value})", night_window: "Noćni period", night_lowest: "Najniži sat prošle noći",
+  night_threshold: "Prag upozorenja", sensor_ok: "Suvo", sensor_wet: "Otkriveno curenje", no_stats: "Još nema dugoročne statistike za ovo brojilo", loading: "Učitavanje…",
+  close: "Zatvori", per_hour: "{value}/h", zoom_in: "Prikaži detalje", zoom_out: "Prikaži manje", no_meter: "Nije pronađen vodomer ni gasomer", unknown_entity: "Entitet nije pronađen",
+  entity: "Brojilo (senzor stanja)", title: "Naslov", meter_type: "Vrsta brojila", type_auto: "Automatski", type_water: "Voda", type_gas: "Gas", chart_period: "Podrazumevani grafikon",
+  show_title: "Prikaži naslov", show_subtitle: "Prikaži podnaslov", show_picture: "Prikaži sliku brojila", show_index: "Prikaži stanje brojila", index_decimals: "Decimale stanja brojila",
+  show_consumption: "Prikaži potrošnju", show_comparison: "Uporedi sa prethodnim periodom", show_chart: "Prikaži grafikon istorije", show_cost: "Prikaži trošak",
+  leak_detection: "Otkrivanje curenja", liters: "Male količine vode u litrima", collapsed: "Podrazumevano skupljeni odeljci", cost_section: "Trošak", price: "Cena po jedinici",
+  price_entity: "Entitet cene", currency: "Valuta", price_unit: "Cena po", unit_volume: "Zapremina (m³)", unit_energy: "Energija (kWh)", conversion_factor: "Faktor pretvaranja (kWh po m³)", conversion_factor_entity: "Entitet faktora pretvaranja", picture_style: "Slika brojila struje", style_auto: "Automatski", style_digital: "Digitalno brojilo", style_disc: "Rotirajući disk", style_submeter: "Podbrojilo (klešta)",
+  leak_section: "Otkrivanje curenja", flow_entity: "Senzor protoka", leak_entity: "Senzor curenja", leak_start: "Početak noćnog perioda", leak_end: "Kraj noćnog perioda",
+  leak_threshold: "Prag (L/h za vodu)", daily_limit: "Dnevno ograničenje", sources_section: "Izvori podataka", statistic_id: "Statistika (umesto statistike senzora)",
+  today_entity: "Brojač potrošnje (dnevni)", week_entity: "Brojač potrošnje (nedeljni)", month_entity: "Brojač potrošnje (mesečni)", year_entity: "Brojač potrošnje (godišnji)",
+  zoom: "Dugme za detalje", zoom_helper: "Prebacuje mini karticu na punu karticu i nazad", language: "Jezik", lang_auto: "Automatski (Home Assistant)", illustration: "Ilustrovano zaglavlje", illustration_theme: "Slika zaglavlja", theme_auto: "Automatski (prati temu)", theme_day: "Dan", theme_night: "Noć",
+  valve_entity: "Zaporni ventil", valve_open: "Ventil otvoren", valve_closed: "Ventil zatvoren", valve_opening: "Otvara se…", valve_closing: "Zatvara se…", valve_do_open: "Otvori ventil", valve_do_close: "Zatvori ventil",
+};

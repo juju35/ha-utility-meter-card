@@ -1,0 +1,22 @@
+// STRINGS — "sk"; a missing key falls back to English.
+export default {
+  meter_water: "Vodomer", meter_gas: "Plynomer", meter_electricity: "Elektromer", type_electricity: "Elektrina", power: "Výkon", index: "Stav meradla", today: "Dnes", week: "Tento týždeň", month: "Tento mesiac", year: "Tento rok",
+  yesterday: "Včera", last_week: "Minulý týždeň", last_month: "Minulý mesiac", last_year: "Minulý rok",
+  vs_day: "oproti včerajšku", vs_week: "oproti minulému týždňu", vs_month: "oproti minulému mesiacu", vs_year: "oproti minulému roku",
+  consumption: "Spotreba", history: "História", night: "Nočný dohľad", tab_day: "Deň", tab_week: "Týždeň", tab_month: "Mesiac", tab_year: "Rok",
+  average: "Priemer {value}", cost: "Náklady", flow: "Prietok", status_ok: "Normálne", status_leak: "Podozrenie na únik", status_high: "Vysoká spotreba", status_unavailable: "Nedostupné",
+  leak_alert: "Nepretržitý prietok celú noc: aspoň {value} každú hodinu od {start} do {end}", leak_sensor: "{name} hlási únik",
+  high_alert: "Dnešná spotreba prekračuje denný limit ({value})", night_window: "Nočné okno", night_lowest: "Najnižšia hodina minulej noci",
+  night_threshold: "Prah upozornenia", sensor_ok: "Sucho", sensor_wet: "Zistený únik", no_stats: "Pre toto meradlo zatiaľ nie sú dlhodobé štatistiky", loading: "Načítava sa…",
+  close: "Zavrieť", per_hour: "{value}/h", zoom_in: "Zobraziť podrobnosti", zoom_out: "Zobraziť menej", no_meter: "Nenašiel sa žiadny vodomer ani plynomer", unknown_entity: "Entita sa nenašla",
+  entity: "Meradlo (senzor stavu)", title: "Názov", meter_type: "Typ meradla", type_auto: "Automaticky", type_water: "Voda", type_gas: "Plyn", chart_period: "Predvolený graf",
+  show_title: "Zobraziť názov", show_subtitle: "Zobraziť podnadpis", show_picture: "Zobraziť obrázok meradla", show_index: "Zobraziť stav meradla", index_decimals: "Desatinné miesta stavu meradla",
+  show_consumption: "Zobraziť spotrebu", show_comparison: "Porovnať s predchádzajúcim obdobím", show_chart: "Zobraziť graf histórie", show_cost: "Zobraziť náklady",
+  leak_detection: "Detekcia únikov", liters: "Malé množstvá vody v litroch", collapsed: "Predvolene zbalené sekcie", cost_section: "Náklady", price: "Cena za jednotku",
+  price_entity: "Entita ceny", currency: "Mena", price_unit: "Cena za", unit_volume: "Objem (m³)", unit_energy: "Energia (kWh)", conversion_factor: "Prepočítavací koeficient (kWh na m³)", conversion_factor_entity: "Entita prepočítavacieho koeficientu", picture_style: "Obrázok elektromera", style_auto: "Automaticky", style_digital: "Digitálny merač", style_disc: "Otáčajúci sa disk", style_submeter: "Podružný merač (kliešte)",
+  leak_section: "Detekcia únikov", flow_entity: "Senzor prietoku", leak_entity: "Senzor úniku", leak_start: "Začiatok nočného okna", leak_end: "Koniec nočného okna",
+  leak_threshold: "Prah (L/h pre vodu)", daily_limit: "Denný limit", sources_section: "Zdroje údajov", statistic_id: "Štatistika (namiesto štatistiky senzora)",
+  today_entity: "Merač spotreby (denný)", week_entity: "Merač spotreby (týždenný)", month_entity: "Merač spotreby (mesačný)", year_entity: "Merač spotreby (ročný)",
+  zoom: "Tlačidlo podrobností", zoom_helper: "Prepne mini kartu na úplnú kartu a späť", language: "Jazyk", lang_auto: "Automaticky (Home Assistant)", illustration: "Ilustrovaná hlavička", illustration_theme: "Vzhľad hlavičky", theme_auto: "Automaticky (podľa témy)", theme_day: "Deň", theme_night: "Noc",
+  valve_entity: "Uzatvárací ventil", valve_open: "Ventil otvorený", valve_closed: "Ventil zatvorený", valve_opening: "Otvára sa…", valve_closing: "Zatvára sa…", valve_do_open: "Otvoriť ventil", valve_do_close: "Zatvoriť ventil",
+};
