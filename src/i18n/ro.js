@@ -1,0 +1,22 @@
+// STRINGS — "ro"; a missing key falls back to English.
+export default {
+  meter_water: "Contor de apă", meter_gas: "Contor de gaz", meter_electricity: "Contor de energie electrică", type_electricity: "Electricitate", power: "Putere", index: "Index", today: "Azi", week: "Săptămâna aceasta", month: "Luna aceasta", year: "Anul acesta",
+  yesterday: "Ieri", last_week: "Săptămâna trecută", last_month: "Luna trecută", last_year: "Anul trecut",
+  vs_day: "față de ieri", vs_week: "față de săptămâna trecută", vs_month: "față de luna trecută", vs_year: "față de anul trecut",
+  consumption: "Consum", history: "Istoric", night: "Supraveghere nocturnă", tab_day: "Zi", tab_week: "Săptămână", tab_month: "Lună", tab_year: "An",
+  average: "Medie {value}", cost: "Cost", flow: "Debit", status_ok: "Normal", status_leak: "Posibilă scurgere", status_high: "Consum ridicat", status_unavailable: "Indisponibil",
+  leak_alert: "Debit continuu toată noaptea: cel puțin {value} în fiecare oră de la {start} la {end}", leak_sensor: "{name} semnalează o scurgere",
+  high_alert: "Consumul de azi depășește limita zilnică ({value})", night_window: "Interval nocturn", night_lowest: "Cea mai mică oră de azi-noapte",
+  night_threshold: "Prag de alertă", sensor_ok: "Uscat", sensor_wet: "Scurgere detectată", no_stats: "Încă nu există statistici pe termen lung pentru acest contor", loading: "Se încarcă…",
+  close: "Închide", per_hour: "{value}/h", zoom_in: "Afișează detaliile", zoom_out: "Afișează mai puțin", no_meter: "Nu s-a găsit niciun contor de apă sau gaz", unknown_entity: "Entitate negăsită",
+  entity: "Contor (senzor de index)", title: "Titlu", meter_type: "Tip de contor", type_auto: "Automat", type_water: "Apă", type_gas: "Gaz", chart_period: "Grafic implicit",
+  show_title: "Afișează titlul", show_subtitle: "Afișează subtitlul", show_picture: "Afișează ilustrația contorului", show_index: "Afișează indexul", index_decimals: "Zecimalele indexului",
+  show_consumption: "Afișează consumul", show_comparison: "Compară cu perioada anterioară", show_chart: "Afișează graficul istoricului", show_cost: "Afișează costul",
+  leak_detection: "Detectarea scurgerilor", liters: "Cantități mici de apă în litri", collapsed: "Secțiuni restrânse implicit", cost_section: "Cost", price: "Preț pe unitate",
+  price_entity: "Entitate de preț", currency: "Monedă", price_unit: "Preț pe", unit_volume: "Volum (m³)", unit_energy: "Energie (kWh)", conversion_factor: "Factor de conversie (kWh pe m³)", conversion_factor_entity: "Entitate a factorului de conversie", picture_style: "Imaginea contorului electric", style_auto: "Automat", style_digital: "Contor digital", style_disc: "Disc rotativ", style_submeter: "Subcontor (clește)",
+  leak_section: "Detectarea scurgerilor", flow_entity: "Senzor de debit", leak_entity: "Senzor de scurgere", leak_start: "Începutul intervalului nocturn", leak_end: "Sfârșitul intervalului nocturn",
+  leak_threshold: "Prag (L/h pentru apă)", daily_limit: "Limită zilnică", sources_section: "Surse de date", statistic_id: "Statistică (în locul celei a senzorului)",
+  today_entity: "Contor de consum (zilnic)", week_entity: "Contor de consum (săptămânal)", month_entity: "Contor de consum (lunar)", year_entity: "Contor de consum (anual)",
+  zoom: "Buton de detalii", zoom_helper: "Comută mini cardul la cardul complet și înapoi", language: "Limbă", lang_auto: "Automat (Home Assistant)", illustration: "Antet ilustrat", illustration_theme: "Aspectul antetului", theme_auto: "Automat (urmează tema)", theme_day: "Zi", theme_night: "Noapte",
+  valve_entity: "Robinet de închidere", valve_open: "Robinet deschis", valve_closed: "Robinet închis", valve_opening: "Se deschide…", valve_closing: "Se închide…", valve_do_open: "Deschide robinetul", valve_do_close: "Închide robinetul",
+};

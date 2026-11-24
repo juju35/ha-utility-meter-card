@@ -1,0 +1,22 @@
+// STRINGS — "pt"; a missing key falls back to English.
+export default {
+  meter_water: "Contador de água", meter_gas: "Contador de gás", meter_electricity: "Contador de eletricidade", type_electricity: "Eletricidade", power: "Potência", index: "Leitura", today: "Hoje", week: "Esta semana", month: "Este mês", year: "Este ano",
+  yesterday: "Ontem", last_week: "Semana passada", last_month: "Mês passado", last_year: "Ano passado",
+  vs_day: "face a ontem", vs_week: "face à semana passada", vs_month: "face ao mês passado", vs_year: "face ao ano passado",
+  consumption: "Consumo", history: "Histórico", night: "Vigilância noturna", tab_day: "Dia", tab_week: "Semana", tab_month: "Mês", tab_year: "Ano",
+  average: "Média {value}", cost: "Custo", flow: "Caudal", status_ok: "Normal", status_leak: "Possível fuga", status_high: "Consumo elevado", status_unavailable: "Indisponível",
+  leak_alert: "Caudal contínuo toda a noite: pelo menos {value} por hora das {start} às {end}", leak_sensor: "{name} indica uma fuga",
+  high_alert: "O consumo de hoje ultrapassa o limite diário ({value})", night_window: "Período noturno", night_lowest: "Hora mais baixa da noite passada",
+  night_threshold: "Limiar de alerta", sensor_ok: "Seco", sensor_wet: "Fuga detetada", no_stats: "Ainda não há estatísticas de longo prazo para este contador", loading: "A carregar…",
+  close: "Fechar", per_hour: "{value}/h", zoom_in: "Mostrar detalhes", zoom_out: "Mostrar menos", no_meter: "Nenhum contador de água ou gás encontrado", unknown_entity: "Entidade não encontrada",
+  entity: "Contador (sensor de leitura)", title: "Título", meter_type: "Tipo de contador", type_auto: "Automático", type_water: "Água", type_gas: "Gás", chart_period: "Gráfico predefinido",
+  show_title: "Mostrar o título", show_subtitle: "Mostrar o subtítulo", show_picture: "Mostrar a ilustração do contador", show_index: "Mostrar a leitura", index_decimals: "Casas decimais da leitura",
+  show_consumption: "Mostrar o consumo", show_comparison: "Comparar com o período anterior", show_chart: "Mostrar o gráfico do histórico", show_cost: "Mostrar o custo",
+  leak_detection: "Deteção de fugas", liters: "Pequenas quantidades de água em litros", collapsed: "Secções recolhidas por predefinição", cost_section: "Custo", price: "Preço por unidade",
+  price_entity: "Entidade do preço", currency: "Moeda", price_unit: "Preço por", unit_volume: "Volume (m³)", unit_energy: "Energia (kWh)", conversion_factor: "Fator de conversão (kWh por m³)", conversion_factor_entity: "Entidade do fator de conversão", picture_style: "Imagem do contador elétrico", style_auto: "Automático", style_digital: "Contador digital", style_disc: "Disco rotativo", style_submeter: "Subcontador (pinça)",
+  leak_section: "Deteção de fugas", flow_entity: "Sensor de caudal", leak_entity: "Sensor de fugas", leak_start: "Início do período noturno", leak_end: "Fim do período noturno",
+  leak_threshold: "Limiar (L/h para a água)", daily_limit: "Limite diário", sources_section: "Fontes de dados", statistic_id: "Estatística (em vez da do sensor)",
+  today_entity: "Contador de consumo (diário)", week_entity: "Contador de consumo (semanal)", month_entity: "Contador de consumo (mensal)", year_entity: "Contador de consumo (anual)",
+  zoom: "Botão de detalhe", zoom_helper: "Muda o mini cartão para o cartão completo e vice-versa", language: "Idioma", lang_auto: "Automático (Home Assistant)", illustration: "Cabeçalho ilustrado", illustration_theme: "Ambiente do cabeçalho", theme_auto: "Automático (segue o tema)", theme_day: "Dia", theme_night: "Noite",
+  valve_entity: "Válvula de corte", valve_open: "Válvula aberta", valve_closed: "Válvula fechada", valve_opening: "A abrir…", valve_closing: "A fechar…", valve_do_open: "Abrir a válvula", valve_do_close: "Fechar a válvula",
+};

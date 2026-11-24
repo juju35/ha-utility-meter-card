@@ -1,0 +1,22 @@
+// STRINGS — "bg"; a missing key falls back to English.
+export default {
+  meter_water: "Водомер", meter_gas: "Газомер", meter_electricity: "Електромер", type_electricity: "Електричество", power: "Мощност", index: "Показание", today: "Днес", week: "Тази седмица", month: "Този месец", year: "Тази година",
+  yesterday: "Вчера", last_week: "Миналата седмица", last_month: "Миналия месец", last_year: "Миналата година",
+  vs_day: "спрямо вчера", vs_week: "спрямо миналата седмица", vs_month: "спрямо миналия месец", vs_year: "спрямо миналата година",
+  consumption: "Потребление", history: "История", night: "Нощно наблюдение", tab_day: "Ден", tab_week: "Седмица", tab_month: "Месец", tab_year: "Година",
+  average: "Средно {value}", cost: "Разход", flow: "Дебит", status_ok: "Нормално", status_leak: "Подозиран теч", status_high: "Високо потребление", status_unavailable: "Недостъпно",
+  leak_alert: "Непрекъснат дебит цяла нощ: поне {value} на всеки час от {start} до {end}", leak_sensor: "{name} съобщава за теч",
+  high_alert: "Днешното потребление надвишава дневния лимит ({value})", night_window: "Нощен период", night_lowest: "Най-нисък час миналата нощ",
+  night_threshold: "Праг на тревога", sensor_ok: "Сухо", sensor_wet: "Открит теч", no_stats: "Все още няма дългосрочна статистика за този уред", loading: "Зареждане…",
+  close: "Затвори", per_hour: "{value}/ч", zoom_in: "Покажи подробности", zoom_out: "Покажи по-малко", no_meter: "Не е намерен водомер или газомер", unknown_entity: "Обектът не е намерен",
+  entity: "Уред (сензор за показание)", title: "Заглавие", meter_type: "Вид уред", type_auto: "Автоматично", type_water: "Вода", type_gas: "Газ", chart_period: "Графика по подразбиране",
+  show_title: "Покажи заглавието", show_subtitle: "Покажи подзаглавието", show_picture: "Покажи изображение на уреда", show_index: "Покажи показанието", index_decimals: "Десетични знаци на показанието",
+  show_consumption: "Покажи потреблението", show_comparison: "Сравни с предходния период", show_chart: "Покажи графиката на историята", show_cost: "Покажи разхода",
+  leak_detection: "Откриване на течове", liters: "Малки количества вода в литри", collapsed: "Свити по подразбиране раздели", cost_section: "Разход", price: "Цена за единица",
+  price_entity: "Обект за цена", currency: "Валута", price_unit: "Цена за", unit_volume: "Обем (m³)", unit_energy: "Енергия (kWh)", conversion_factor: "Коефициент на преобразуване (kWh за m³)", conversion_factor_entity: "Обект за коефициент на преобразуване", picture_style: "Изображение на електромера", style_auto: "Автоматично", style_digital: "Цифров уред", style_disc: "Въртящ се диск", style_submeter: "Подброяч (щипка)",
+  leak_section: "Откриване на течове", flow_entity: "Сензор за дебит", leak_entity: "Сензор за теч", leak_start: "Начало на нощния период", leak_end: "Край на нощния период",
+  leak_threshold: "Праг (L/ч за вода)", daily_limit: "Дневен лимит", sources_section: "Източници на данни", statistic_id: "Статистика (вместо тази на сензора)",
+  today_entity: "Брояч на потребление (дневен)", week_entity: "Брояч на потребление (седмичен)", month_entity: "Брояч на потребление (месечен)", year_entity: "Брояч на потребление (годишен)",
+  zoom: "Бутон за подробности", zoom_helper: "Превключва мини картата към пълната карта и обратно", language: "Език", lang_auto: "Автоматично (Home Assistant)", illustration: "Илюстрирана заглавка", illustration_theme: "Изглед на заглавката", theme_auto: "Автоматично (следва темата)", theme_day: "Ден", theme_night: "Нощ",
+  valve_entity: "Спирателен вентил", valve_open: "Вентилът е отворен", valve_closed: "Вентилът е затворен", valve_opening: "Отваряне…", valve_closing: "Затваряне…", valve_do_open: "Отвори вентила", valve_do_close: "Затвори вентила",
+};

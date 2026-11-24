@@ -2,11 +2,10 @@
 // borders where it is sized by its content nor overflows a narrow track. Rendered in Chromium when Playwright and a
 // browser are available (CHROMIUM_PATH, or `npx playwright install chromium`); skipped otherwise.
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
 import { test } from "node:test";
 import { mockStatistics, NOW, states } from "../scripts/mock-states.mjs";
+import { source } from "./source.mjs";
 
-const source = readFileSync(new URL("../src/utility-meter-card.js", import.meta.url), "utf8");
 
 let chromium;
 try {

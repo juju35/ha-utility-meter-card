@@ -1,0 +1,22 @@
+// STRINGS — "da"; a missing key falls back to English.
+export default {
+  meter_water: "Vandmåler", meter_gas: "Gasmåler", meter_electricity: "Elmåler", type_electricity: "El", power: "Effekt", index: "Målerstand", today: "I dag", week: "Denne uge", month: "Denne måned", year: "I år",
+  yesterday: "I går", last_week: "Sidste uge", last_month: "Sidste måned", last_year: "Sidste år",
+  vs_day: "ift. i går", vs_week: "ift. sidste uge", vs_month: "ift. sidste måned", vs_year: "ift. sidste år",
+  consumption: "Forbrug", history: "Historik", night: "Natovervågning", tab_day: "Dag", tab_week: "Uge", tab_month: "Måned", tab_year: "År",
+  average: "Gennemsnit {value}", cost: "Pris", flow: "Flow", status_ok: "Normal", status_leak: "Mistanke om lækage", status_high: "Højt forbrug", status_unavailable: "Utilgængelig",
+  leak_alert: "Konstant flow hele natten: mindst {value} hver time fra {start} til {end}", leak_sensor: "{name} melder en lækage",
+  high_alert: "Dagens forbrug er over dagsgrænsen ({value})", night_window: "Natperiode", night_lowest: "Laveste time i nat",
+  night_threshold: "Alarmtærskel", sensor_ok: "Tør", sensor_wet: "Lækage registreret", no_stats: "Ingen langtidsstatistik for denne måler endnu", loading: "Indlæser…",
+  close: "Luk", per_hour: "{value}/t", zoom_in: "Vis detaljer", zoom_out: "Vis mindre", no_meter: "Ingen vand- eller gasmåler fundet", unknown_entity: "Enhed ikke fundet",
+  entity: "Måler (målerstandssensor)", title: "Titel", meter_type: "Målertype", type_auto: "Automatisk", type_water: "Vand", type_gas: "Gas", chart_period: "Standarddiagram",
+  show_title: "Vis titel", show_subtitle: "Vis undertitel", show_picture: "Vis billede af måleren", show_index: "Vis målerstand", index_decimals: "Decimaler for målerstand",
+  show_consumption: "Vis forbrug", show_comparison: "Sammenlign med forrige periode", show_chart: "Vis historikdiagram", show_cost: "Vis pris",
+  leak_detection: "Lækagedetektion", liters: "Små vandmængder i liter", collapsed: "Sektioner foldet sammen som standard", cost_section: "Pris", price: "Pris pr. enhed",
+  price_entity: "Prisenhed", currency: "Valuta", price_unit: "Pris pr.", unit_volume: "Volumen (m³)", unit_energy: "Energi (kWh)", conversion_factor: "Omregningsfaktor (kWh pr. m³)", conversion_factor_entity: "Enhed for omregningsfaktor", picture_style: "Billede af elmåler", style_auto: "Automatisk", style_digital: "Digital måler", style_disc: "Roterende skive", style_submeter: "Bimåler (tang)",
+  leak_section: "Lækagedetektion", flow_entity: "Flowsensor", leak_entity: "Lækagesensor", leak_start: "Start på natperiode", leak_end: "Slut på natperiode",
+  leak_threshold: "Tærskel (L/t for vand)", daily_limit: "Dagsgrænse", sources_section: "Datakilder", statistic_id: "Statistik (i stedet for sensorens)",
+  today_entity: "Forbrugsmåler (daglig)", week_entity: "Forbrugsmåler (ugentlig)", month_entity: "Forbrugsmåler (månedlig)", year_entity: "Forbrugsmåler (årlig)",
+  zoom: "Detaljeknap", zoom_helper: "Skifter minikortet til det fulde kort og tilbage", language: "Sprog", lang_auto: "Automatisk (Home Assistant)", illustration: "Illustreret overskrift", illustration_theme: "Overskriftens stemning", theme_auto: "Automatisk (følger temaet)", theme_day: "Dag", theme_night: "Nat",
+  valve_entity: "Afspærringsventil", valve_open: "Ventil åben", valve_closed: "Ventil lukket", valve_opening: "Åbner…", valve_closing: "Lukker…", valve_do_open: "Åbn ventilen", valve_do_close: "Luk ventilen",
+};

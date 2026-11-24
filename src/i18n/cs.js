@@ -1,0 +1,22 @@
+// STRINGS — "cs"; a missing key falls back to English.
+export default {
+  meter_water: "Vodoměr", meter_gas: "Plynoměr", meter_electricity: "Elektroměr", type_electricity: "Elektřina", power: "Výkon", index: "Stav měřidla", today: "Dnes", week: "Tento týden", month: "Tento měsíc", year: "Letos",
+  yesterday: "Včera", last_week: "Minulý týden", last_month: "Minulý měsíc", last_year: "Loni",
+  vs_day: "oproti včerejšku", vs_week: "oproti minulému týdnu", vs_month: "oproti minulému měsíci", vs_year: "oproti loňsku",
+  consumption: "Spotřeba", history: "Historie", night: "Noční dohled", tab_day: "Den", tab_week: "Týden", tab_month: "Měsíc", tab_year: "Rok",
+  average: "Průměr {value}", cost: "Náklady", flow: "Průtok", status_ok: "Normální", status_leak: "Podezření na únik", status_high: "Vysoká spotřeba", status_unavailable: "Nedostupné",
+  leak_alert: "Nepřetržitý průtok celou noc: alespoň {value} každou hodinu od {start} do {end}", leak_sensor: "{name} hlásí únik",
+  high_alert: "Dnešní spotřeba překračuje denní limit ({value})", night_window: "Noční okno", night_lowest: "Nejnižší hodina minulé noci",
+  night_threshold: "Práh upozornění", sensor_ok: "Sucho", sensor_wet: "Zjištěn únik", no_stats: "Pro toto měřidlo zatím nejsou dlouhodobé statistiky", loading: "Načítání…",
+  close: "Zavřít", per_hour: "{value}/h", zoom_in: "Zobrazit podrobnosti", zoom_out: "Zobrazit méně", no_meter: "Nebyl nalezen žádný vodoměr ani plynoměr", unknown_entity: "Entita nenalezena",
+  entity: "Měřidlo (senzor stavu)", title: "Název", meter_type: "Typ měřidla", type_auto: "Automaticky", type_water: "Voda", type_gas: "Plyn", chart_period: "Výchozí graf",
+  show_title: "Zobrazit název", show_subtitle: "Zobrazit podnadpis", show_picture: "Zobrazit obrázek měřidla", show_index: "Zobrazit stav měřidla", index_decimals: "Desetinná místa stavu měřidla",
+  show_consumption: "Zobrazit spotřebu", show_comparison: "Porovnat s předchozím obdobím", show_chart: "Zobrazit graf historie", show_cost: "Zobrazit náklady",
+  leak_detection: "Detekce úniků", liters: "Malá množství vody v litrech", collapsed: "Ve výchozím stavu sbalené sekce", cost_section: "Náklady", price: "Cena za jednotku",
+  price_entity: "Entita ceny", currency: "Měna", price_unit: "Cena za", unit_volume: "Objem (m³)", unit_energy: "Energie (kWh)", conversion_factor: "Přepočítací koeficient (kWh na m³)", conversion_factor_entity: "Entita přepočítacího koeficientu", picture_style: "Obrázek elektroměru", style_auto: "Automaticky", style_digital: "Digitální měřidlo", style_disc: "Otáčející se disk", style_submeter: "Podružné měřidlo (kleště)",
+  leak_section: "Detekce úniků", flow_entity: "Senzor průtoku", leak_entity: "Senzor úniku", leak_start: "Začátek nočního okna", leak_end: "Konec nočního okna",
+  leak_threshold: "Práh (L/h pro vodu)", daily_limit: "Denní limit", sources_section: "Zdroje dat", statistic_id: "Statistika (místo statistiky senzoru)",
+  today_entity: "Měřič spotřeby (denní)", week_entity: "Měřič spotřeby (týdenní)", month_entity: "Měřič spotřeby (měsíční)", year_entity: "Měřič spotřeby (roční)",
+  zoom: "Tlačítko podrobností", zoom_helper: "Přepne mini kartu na úplnou kartu a zpět", language: "Jazyk", lang_auto: "Automaticky (Home Assistant)", illustration: "Ilustrované záhlaví", illustration_theme: "Vzhled záhlaví", theme_auto: "Automaticky (podle motivu)", theme_day: "Den", theme_night: "Noc",
+  valve_entity: "Uzavírací ventil", valve_open: "Ventil otevřen", valve_closed: "Ventil zavřen", valve_opening: "Otevírá se…", valve_closing: "Zavírá se…", valve_do_open: "Otevřít ventil", valve_do_close: "Zavřít ventil",
+};

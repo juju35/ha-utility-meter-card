@@ -1,0 +1,22 @@
+// STRINGS — "ru"; a missing key falls back to English.
+export default {
+  meter_water: "Счётчик воды", meter_gas: "Счётчик газа", meter_electricity: "Счётчик электроэнергии", type_electricity: "Электричество", power: "Мощность", index: "Показания", today: "Сегодня", week: "Эта неделя", month: "Этот месяц", year: "Этот год",
+  yesterday: "Вчера", last_week: "Прошлая неделя", last_month: "Прошлый месяц", last_year: "Прошлый год",
+  vs_day: "к вчерашнему дню", vs_week: "к прошлой неделе", vs_month: "к прошлому месяцу", vs_year: "к прошлому году",
+  consumption: "Потребление", history: "История", night: "Ночной контроль", tab_day: "День", tab_week: "Неделя", tab_month: "Месяц", tab_year: "Год",
+  average: "В среднем {value}", cost: "Стоимость", flow: "Расход", status_ok: "Норма", status_leak: "Подозрение на утечку", status_high: "Высокое потребление", status_unavailable: "Недоступно",
+  leak_alert: "Непрерывный расход всю ночь: не менее {value} каждый час с {start} до {end}", leak_sensor: "{name} сообщает об утечке",
+  high_alert: "Сегодняшнее потребление превышает дневной лимит ({value})", night_window: "Ночной интервал", night_lowest: "Минимальный час прошлой ночью",
+  night_threshold: "Порог тревоги", sensor_ok: "Сухо", sensor_wet: "Обнаружена утечка", no_stats: "Для этого счётчика пока нет долгосрочной статистики", loading: "Загрузка…",
+  close: "Закрыть", per_hour: "{value}/ч", zoom_in: "Подробнее", zoom_out: "Свернуть", no_meter: "Счётчик воды или газа не найден", unknown_entity: "Объект не найден",
+  entity: "Счётчик (датчик показаний)", title: "Заголовок", meter_type: "Тип счётчика", type_auto: "Автоматически", type_water: "Вода", type_gas: "Газ", chart_period: "График по умолчанию",
+  show_title: "Показывать заголовок", show_subtitle: "Показывать подзаголовок", show_picture: "Показывать изображение счётчика", show_index: "Показывать показания", index_decimals: "Знаков после запятой в показаниях",
+  show_consumption: "Показывать потребление", show_comparison: "Сравнивать с предыдущим периодом", show_chart: "Показывать график истории", show_cost: "Показывать стоимость",
+  leak_detection: "Обнаружение утечек", liters: "Малые объёмы воды в литрах", collapsed: "Разделы, свёрнутые по умолчанию", cost_section: "Стоимость", price: "Цена за единицу",
+  price_entity: "Объект цены", currency: "Валюта", price_unit: "Цена за", unit_volume: "Объём (m³)", unit_energy: "Энергия (kWh)", conversion_factor: "Коэффициент пересчёта (kWh на m³)", conversion_factor_entity: "Объект коэффициента пересчёта", picture_style: "Изображение счётчика электроэнергии", style_auto: "Автоматически", style_digital: "Цифровой счётчик", style_disc: "Вращающийся диск", style_submeter: "Субсчётчик (клещи)",
+  leak_section: "Обнаружение утечек", flow_entity: "Датчик расхода", leak_entity: "Датчик протечки", leak_start: "Начало ночного интервала", leak_end: "Конец ночного интервала",
+  leak_threshold: "Порог (л/ч для воды)", daily_limit: "Дневной лимит", sources_section: "Источники данных", statistic_id: "Статистика (вместо статистики датчика)",
+  today_entity: "Счётчик потребления (за день)", week_entity: "Счётчик потребления (за неделю)", month_entity: "Счётчик потребления (за месяц)", year_entity: "Счётчик потребления (за год)",
+  zoom: "Кнопка подробностей", zoom_helper: "Переключает мини-карточку на полную и обратно", language: "Язык", lang_auto: "Автоматически (Home Assistant)", illustration: "Иллюстрированный заголовок", illustration_theme: "Вид заголовка", theme_auto: "Автоматически (по теме)", theme_day: "День", theme_night: "Ночь",
+  valve_entity: "Запорный кран", valve_open: "Кран открыт", valve_closed: "Кран закрыт", valve_opening: "Открывается…", valve_closing: "Закрывается…", valve_do_open: "Открыть кран", valve_do_close: "Закрыть кран",
+};

@@ -3,11 +3,10 @@
 // another entity's update), and with a Lit-like <ha-card> (its content laid out a microtask after it is connected,
 // as Home Assistant's) the status pill is placed right from the first frame.
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
 import { test } from "node:test";
 import { mockStatistics, NOW, states } from "../scripts/mock-states.mjs";
+import { source } from "./source.mjs";
 
-const source = readFileSync(new URL("../src/utility-meter-card.js", import.meta.url), "utf8");
 
 let chromium;
 try {

@@ -1,0 +1,22 @@
+// STRINGS — "sv"; a missing key falls back to English.
+export default {
+  meter_water: "Vattenmätare", meter_gas: "Gasmätare", meter_electricity: "Elmätare", type_electricity: "El", power: "Effekt", index: "Mätarställning", today: "I dag", week: "Den här veckan", month: "Den här månaden", year: "I år",
+  yesterday: "I går", last_week: "Förra veckan", last_month: "Förra månaden", last_year: "Förra året",
+  vs_day: "jämfört med i går", vs_week: "jämfört med förra veckan", vs_month: "jämfört med förra månaden", vs_year: "jämfört med förra året",
+  consumption: "Förbrukning", history: "Historik", night: "Nattövervakning", tab_day: "Dag", tab_week: "Vecka", tab_month: "Månad", tab_year: "År",
+  average: "Medel {value}", cost: "Kostnad", flow: "Flöde", status_ok: "Normal", status_leak: "Misstänkt läcka", status_high: "Hög förbrukning", status_unavailable: "Otillgänglig",
+  leak_alert: "Konstant flöde hela natten: minst {value} varje timme från {start} till {end}", leak_sensor: "{name} rapporterar en läcka",
+  high_alert: "Dagens förbrukning är över dagsgränsen ({value})", night_window: "Nattperiod", night_lowest: "Lägsta timmen i natt",
+  night_threshold: "Larmtröskel", sensor_ok: "Torrt", sensor_wet: "Läcka upptäckt", no_stats: "Ingen långtidsstatistik för den här mätaren ännu", loading: "Laddar…",
+  close: "Stäng", per_hour: "{value}/h", zoom_in: "Visa detaljer", zoom_out: "Visa mindre", no_meter: "Ingen vatten- eller gasmätare hittades", unknown_entity: "Entiteten hittades inte",
+  entity: "Mätare (sensor för mätarställning)", title: "Titel", meter_type: "Mätartyp", type_auto: "Automatisk", type_water: "Vatten", type_gas: "Gas", chart_period: "Standarddiagram",
+  show_title: "Visa titel", show_subtitle: "Visa underrubrik", show_picture: "Visa bild av mätaren", show_index: "Visa mätarställning", index_decimals: "Decimaler för mätarställning",
+  show_consumption: "Visa förbrukning", show_comparison: "Jämför med föregående period", show_chart: "Visa historikdiagram", show_cost: "Visa kostnad",
+  leak_detection: "Läckagedetektering", liters: "Små vattenmängder i liter", collapsed: "Avsnitt hopfällda som standard", cost_section: "Kostnad", price: "Pris per enhet",
+  price_entity: "Prisentitet", currency: "Valuta", price_unit: "Pris per", unit_volume: "Volym (m³)", unit_energy: "Energi (kWh)", conversion_factor: "Omräkningsfaktor (kWh per m³)", conversion_factor_entity: "Entitet för omräkningsfaktor", picture_style: "Bild av elmätare", style_auto: "Automatisk", style_digital: "Digital mätare", style_disc: "Roterande skiva", style_submeter: "Undermätare (tång)",
+  leak_section: "Läckagedetektering", flow_entity: "Flödessensor", leak_entity: "Läckagesensor", leak_start: "Nattperiodens början", leak_end: "Nattperiodens slut",
+  leak_threshold: "Tröskel (L/h för vatten)", daily_limit: "Dagsgräns", sources_section: "Datakällor", statistic_id: "Statistik (i stället för sensorns)",
+  today_entity: "Förbrukningsmätare (daglig)", week_entity: "Förbrukningsmätare (veckovis)", month_entity: "Förbrukningsmätare (månadsvis)", year_entity: "Förbrukningsmätare (årlig)",
+  zoom: "Detaljknapp", zoom_helper: "Växlar minikortet till hela kortet och tillbaka", language: "Språk", lang_auto: "Automatiskt (Home Assistant)", illustration: "Illustrerad rubrik", illustration_theme: "Rubrikens stämning", theme_auto: "Automatiskt (följer temat)", theme_day: "Dag", theme_night: "Natt",
+  valve_entity: "Avstängningsventil", valve_open: "Ventil öppen", valve_closed: "Ventil stängd", valve_opening: "Öppnar…", valve_closing: "Stänger…", valve_do_open: "Öppna ventilen", valve_do_close: "Stäng ventilen",
+};

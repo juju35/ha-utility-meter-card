@@ -1,12 +1,11 @@
 // Keyboard access, readable state colors and reduced motion.
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
 import { test } from "node:test";
 import { mockStatistics, states } from "../scripts/mock-states.mjs";
 import { flush, load, makeHass } from "./load.mjs";
+import { source } from "./source.mjs";
 
 const um = load();
-const source = readFileSync(new URL("../src/utility-meter-card.js", import.meta.url), "utf8");
 
 const render = async (Card, config) => {
   const card = new Card();
