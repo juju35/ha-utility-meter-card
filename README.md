@@ -306,6 +306,7 @@ Index in the subtitle, today and this month (with their cost, or the comparison 
 |---|---|
 | <img src="https://raw.githubusercontent.com/juju35/ha-utility-meter-card/main/screenshots/mini-card.png" alt="mini card" width="380"> | <img src="https://raw.githubusercontent.com/juju35/ha-utility-meter-card/main/screenshots/mini-card-dark.png" alt="mini card dark" width="380"> |
 | <img src="https://raw.githubusercontent.com/juju35/ha-utility-meter-card/main/screenshots/mini-card-gas-light.png" alt="gas mini card light" width="380"> | <img src="https://raw.githubusercontent.com/juju35/ha-utility-meter-card/main/screenshots/mini-card-gas.png" alt="gas mini card" width="380"> |
+| <img src="https://raw.githubusercontent.com/juju35/ha-utility-meter-card/main/screenshots/mini-card-electricity-light.png" alt="electricity mini card light" width="380"> | <img src="https://raw.githubusercontent.com/juju35/ha-utility-meter-card/main/screenshots/mini-card-electricity.png" alt="electricity mini card" width="380"> |
 | <img src="https://raw.githubusercontent.com/juju35/ha-utility-meter-card/main/screenshots/mini-card-leak.png" alt="leak mini card" width="380"> | <img src="https://raw.githubusercontent.com/juju35/ha-utility-meter-card/main/screenshots/mini-card-leak-dark.png" alt="leak mini card dark" width="380"> |
 
 The detail button (top right) switches the mini card to the full card's content:
